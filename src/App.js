@@ -1,12 +1,9 @@
 import React, { Suspense } from 'react';
-import { defaultTheme, Link, Provider } from '@adobe/react-spectrum';
-import { Grid } from '@react-spectrum/layout';
-import { View } from '@react-spectrum/view';
+import { defaultTheme, Provider } from '@adobe/react-spectrum';
 import { Helmet } from 'react-helmet';
 import UpcomingMedium from 'containers/UpcomingMedium';
 import Splash from 'components/Splash';
 import { SWRConfig } from 'swr';
-import Sidenav from './Sidenav';
 import SiteHeader from './components/SiteHeader';
 import SiteFooter from './components/SiteFooter';
 
@@ -29,6 +26,7 @@ function App() {
             return res.json();
           }
         }}
+        suspense
       >
         <Suspense fallback={Splash}>
           <SiteHeader />

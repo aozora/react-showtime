@@ -11,42 +11,54 @@ const initialState = {
   genres: {
     movies: [],
     tv: []
-  },
-
-  content: {
-    menu: null,
-    languages: [],
-    countries: [],
-    movieGenres: [],
-
-    // volatile content
-    movieTopRated: {}, // first 20 results
-    movieUpcoming: [], // first 20 results
-    tvTopRated: [], // first 20 results
-    appLoader: [] // first 20 results
   }
 };
 
-const issuesDisplaySlice = createSlice({
-  name: 'issuesDisplay',
+const configurationSlice = createSlice({
+  name: 'configuration',
   initialState,
   reducers: {
-    displayRepo(state, action) {
-      const { org, repo } = action.payload;
-      state.org = org;
-      state.repo = repo;
+    setApiConfiguration(state, action) {
+      state.api = action.payload;
     },
-    setCurrentPage(state, action) {
-      state.page = action.payload;
+    setTranslations(state, action) {
+      state.translations = action.payload;
     },
-    setCurrentDisplayType(state, action) {
-      const { displayType, issueId = null } = action.payload;
-      state.displayType = displayType;
-      state.issueId = issueId;
+    setLanguages(state, action) {
+      state.languages = action.payload;
+    },
+    setCountries(state, action) {
+      state.countries = action.payload;
+    },
+    setJobs(state, action) {
+      state.jobs = action.payload;
+    },
+    setTimezones(state, action) {
+      state.timezones = action.payload;
+    },
+    setGenresMovies(state, action) {
+      state.genres.movies = action.payload;
+    },
+    setGenresTv(state, action) {
+      state.genres.tv = action.payload;
     }
   }
 });
 
-export const { displayRepo, setCurrentDisplayType, setCurrentPage } = issuesDisplaySlice.actions;
+export const {
+  setApiConfiguration,
+  setTranslations,
+  setLanguages,
+  setCountries,
+  setJobs,
+  setTimezones,
+  setGenresMovies,
+  setGenresTv
+} = configurationSlice.actions;
 
-export default issuesDisplaySlice.reducer;
+// Thunks
+export const setApiConfigurationAsync = () => dispatch => {
+  dispatch(setApiConfiguration);
+};
+
+export default configurationSlice.reducer;

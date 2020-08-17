@@ -1,4 +1,3 @@
-
 /*Set box-sizing globally to handle padding and border widths*/
 html {
   box-sizing: border-box;
@@ -14,5 +13,17 @@ html,
 body {
   min-height: 100%;
   margin: 0;
+  padding: 0;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  position: relative;
+  width: 100vw;
+  height: 100%;
+  margin: 0 auto;
   padding: 0;
 }
