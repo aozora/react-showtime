@@ -12,7 +12,7 @@ module.exports = {
   // cacheDirectory: "/private/var/folders/l_/23qcpd892698zcks7zn0vsz40000gp/T/jest_dy",
 
   // Automatically clear mock calls and instances between every test
-  clearMocks: true,
+  clearMocks: false,
 
   // Indicates whether the coverage information should be collected while executing the test
   // collectCoverage: false,
@@ -29,7 +29,7 @@ module.exports = {
   // ],
 
   // Indicates which provider should be used to instrument code for coverage
-  coverageProvider: "v8",
+  coverageProvider: 'v8'
 
   // A list of reporter names that Jest uses when writing coverage reports
   // coverageReporters: [
