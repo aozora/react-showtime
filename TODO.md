@@ -1,6 +1,18 @@
 # TODO
 
+## IA
+
+upcoming 
+
 ## Core
+
+* on app load:
+    load api configuration
+    load primary translations
+    load languages
+    load countries
+    load jobs
+    load timezones
 
 * api + client
 * hooks

@@ -28,6 +28,9 @@ import '@spectrum-css/button/dist/index-vars.css';
 import '@spectrum-css/sidenav/dist/index-vars.css';
 import '@spectrum-css/card/dist/index-vars.css';
 
+// General app styles
+import './styles/app.css';
+
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>

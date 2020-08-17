@@ -7,11 +7,12 @@ import UpcomingMedium from 'containers/UpcomingMedium';
 import Splash from 'components/Splash';
 import { SWRConfig } from 'swr';
 import Sidenav from './Sidenav';
-import MainHeader from './MainHeader';
+import SiteHeader from './components/SiteHeader';
+import SiteFooter from './components/SiteFooter';
 
 function App() {
   return (
-    <Provider theme={defaultTheme} colorScheme="dark">
+    <Provider theme={defaultTheme}>
       <Helmet>
         <html lang="en" dir="ltr" className="spectrum spectrum--medium spectrum--dark" />
       </Helmet>
@@ -30,41 +31,11 @@ function App() {
         }}
       >
         <Suspense fallback={Splash}>
-          <Grid
-            areas={['header  header', 'sidebar content', 'footer  footer']}
-            columns={['1fr', '3fr']}
-            rows={['size-1000', 'auto', 'size-1000']}
-            height="size-6000"
-            gap="size-100"
-          >
-            <View gridArea="header">
-              <MainHeader />
-            </View>
-
-            <View gridArea="sidebar">
-              <Sidenav />
-            </View>
-
-            <View gridArea="content">
-              <main>
-                <UpcomingMedium />
-              </main>
-            </View>
-
-            <View gridArea="footer">
-              <footer>
-                <Link>
-                  <a
-                    href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Powered by <img src="/vercel.svg" alt="Vercel Logo" />
-                  </a>
-                </Link>
-              </footer>
-            </View>
-          </Grid>
+          <SiteHeader />
+          <main>
+            <UpcomingMedium />
+          </main>
+          <SiteFooter />
         </Suspense>
       </SWRConfig>
     </Provider>
