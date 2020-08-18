@@ -37,8 +37,8 @@ function App() {
         suspense
       >
         <Suspense fallback={Splash}>
-          <SiteHeader />
           <Main>
+            <SiteHeader />
             <UpcomingMedium />
           </Main>
           <SiteFooter />

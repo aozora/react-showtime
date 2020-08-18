@@ -30,7 +30,12 @@ body {
 html {
   height: 100%;
   font-size: 112.5%;
-  scroll-behavior: smooth; // this conflicts with GSAP ScrollToPlugin
+  scroll-behavior: smooth; // this may conflicts with GSAP ScrollToPlugin
+
+  // Use smooth scrolling for anchor links—but not if the reduce motion accessibility preference is enabled
+  @media (prefers-reduced-motion: reduce) {
+    scroll-behavior: auto;
+  }
 }
 
 /*
@@ -206,7 +211,7 @@ p {
 p.initial:first-of-type::first-line {
   --text-weight: calc(var(--p-vf-weight) * 1.25);
 
-  @include media (">=tablet") {
+  @include media(">=tablet") {
     --text-weight: calc(var(--p-vf-weight) * 1.25);
   }
 }
@@ -254,10 +259,10 @@ ul {
   margin-right: auto;
   max-width: var(--text-max-width);
 
-  @include media (">=tablet", "<desktop") {
+  @include media(">=tablet", "<desktop") {
     max-width: calc(38.5 * var(--text-base-size));
   }
-  @include media (">desktop") {
+  @include media(">desktop") {
     max-width: calc(42 * var(--text-base-size));
   }
 }
