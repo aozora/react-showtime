@@ -1,0 +1,358 @@
+// SMACSS Base Rules
+// ----------------------------
+// Base styles include setting heading sizes, default link styles, default
+// font styles, and body backgrounds.
+// There should be no need to use !important in a Base style.
+// ==========================================================================
+
+// Set box-sizing globally to handle padding and border widths
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html,
+body {
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+
+  //@include media("<desktop") {
+  //  overflow-x: hidden; // this conflict with position sticky
+  //}
+}
+
+html {
+  height: 100%;
+  font-size: 112.5%;
+  scroll-behavior: smooth; // this conflicts with GSAP ScrollToPlugin
+}
+
+/*
+  this rules controls the fluid typography across breakpoints
+*/
+:root {
+  @include media('>=tablet', '<desktop') {
+    --text-base-size: 1.111rem;
+    --text-scale-ratio: 1.25;
+  }
+  @include media('>=desktop') {
+    --text-base-size: 1.222rem;
+    --text-scale-ratio: 1.25;
+  }
+}
+
+body,
+div,
+a,
+p,
+th,
+td,
+ul,
+li,
+blockquote,
+figcaption,
+cite,
+i,
+em,
+b,
+strong,
+button {
+  --text-weight: $body-font-weight;
+  font-family: $body-font-family;
+  //font-size: 1rem;
+  //font-size: var(--text-base-size);
+  //line-height: $baseline;
+  //font-weight: var(--text-weight);
+  //font-style: normal;
+  //letter-spacing: var(--text-letter-spacing);
+  //font-kerning: $kerning;
+  //
+  //@if $use-variable-font {
+  //  @supports (font-variation-settings: normal) {
+  //    font-family: $variable-font-family;
+  //    // this settings depends on th vf selected
+  //    font-variation-settings: 'wght' #var (--text-weight);
+  //    /* ,
+  //       'wdth' var(--text-width),
+  //       'opsz' var(--text-opticalsize); */
+  //  }
+  //}
+}
+
+// Default body styles
+body {
+  position: relative;
+  //max-width: $sectionMaxWidth;
+  width: 100vw;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0;
+  background-color: $body-background;
+  color: $body-font-color;
+
+  font-size: var(--text-base-size);
+  line-height: $baseline;
+  font-weight: var(--text-weight);
+  font-style: normal;
+  letter-spacing: var(--text-letter-spacing);
+  font-kerning: $kerning;
+
+
+  @if $use-variable-font {
+    @supports (font-variation-settings: normal) {
+      font-family: $variable-font-family;
+      // this settings depends on th vf selected
+      font-variation-settings: 'wght' #var (--text-weight);
+      /* ,
+         'wdth' var(--text-width),
+         'opsz' var(--text-opticalsize); */
+    }
+  }
+
+  //@if $render-vertical-rhythm-lines {
+  //  background-image: linear-gradient(to bottom, hsla(200, 100%, 50%, .3) 1px, transparent 1px);
+  //  background-position: left top;
+  //  background-repeat: repeat;
+  //  background-size: 100% vr(1);
+  //}
+
+  // > don't use font-smoothing for light text on dark background!!
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+
+  //@include media(">=desktop") {
+  //  max-width: 100%;
+  //}
+}
+
+/* Generic header styles */
+h1, h2, h3, h4, h5, h6 {
+  padding: 0;
+  margin: 0 0 calc(1 * var(--text-base-size)) 0;
+  font-family: $heading-font-family;
+  font-weight: $heading-font-weight;
+  transition: all linear 0.2s;
+  --text-weight: var(--heading-weight);
+  color: inherit;
+
+  @if $use-variable-font-for-headings {
+    @supports (font-variation-settings: normal) {
+      font-family: $variable-heading-font-family;
+      // this settings depends on th vf selected
+      font-variation-settings: 'wght' var(--heading-weight);
+      /* ,
+         'wdth' var(--text-width),
+         'opsz' var(--text-opticalsize); */
+    }
+  }
+}
+
+
+h1 {
+  margin: calc(2 * var(--text-base-size)) 0 calc(3 * var(--text-base-size)) 0;
+  max-width: 50rem;
+  font-size: var(--h1-font-size);
+  line-height: var(--h1-line-height);
+}
+
+h2 {
+  margin: calc(1 * var(--text-base-size)) 0 calc(3 * var(--text-base-size)) 0;
+  max-width: var(--text-max-width);
+  font-size: var(--h2-font-size);
+  line-height: var(--h2-line-height);
+}
+
+h3 {
+  margin: calc(1 * var(--text-base-size)) 0 calc(2 * var(--text-base-size)) 0;
+  max-width: var(--text-max-width);
+  text-align: left;
+  font-size: var(--h3-font-size);
+  line-height: var(--h3-line-height);
+}
+
+
+.italic,
+i,
+em {
+
+}
+
+b,
+strong {
+  --text-weight: 600;
+}
+
+
+/* Paragraph style
+  ============== */
+p {
+  margin: 0 0 calc(1.5 * var(--text-base-size)) 0;
+  max-width: var(--text-max-width);
+  transition: all linear 0.2s;
+  hyphens: auto;
+  hanging-punctuation: first;
+}
+
+
+/* First-line styles */
+p.initial:first-of-type::first-line {
+  --text-weight: calc(var(--p-vf-weight) * 1.25);
+
+  @include media (">=tablet") {
+    --text-weight: calc(var(--p-vf-weight) * 1.25);
+  }
+}
+
+///* Variations and variables */
+//p {
+//  //--text-width: calc(var(--p-vf-width) * 1);
+//  font-size: calc((var(--p-font-size-min) * 1rem) + (var(--p-font-size-max) - var(--p-font-size-min)) * ((100vw - (var(--breakpoint-large) * 1em)) / (var(--breakpoint-xlarge) - var(--breakpoint-large))));
+//  line-height: calc((var(--p-line-height-min) * 1em) + (var(--p-line-height-max) - var(--p-line-height-min)) * ((100vw - (var(--breakpoint-small) * 1em)) / (var(--breakpoint-large) - var(--breakpoint-small))));
+//}
+
+
+/* Link style
+  ============== */
+a {
+  transition: all 0.3s ease;
+
+  &:link {
+    color: var(--color-primary);
+    text-decoration: underline;
+  }
+
+  &:visited {
+    color: var(--color-primary);
+    text-decoration: underline;
+  }
+
+  &:hover {
+    color: var(--color-black);
+  }
+
+  > * {
+    outline: none;
+    cursor: pointer;
+    text-decoration: none;
+  }
+}
+
+
+/**
+ * Turn off margins on nested lists.
+ */
+ul {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: var(--text-max-width);
+
+  @include media (">=tablet", "<desktop") {
+    max-width: calc(38.5 * var(--text-base-size));
+  }
+  @include media (">desktop") {
+    max-width: calc(42 * var(--text-base-size));
+  }
+}
+
+figure {
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  height: auto;
+  max-width: 100%;
+  width: 100%;
+}
+
+blockquote {
+  margin: calc(.5 * var(--text-base-size)) 5% calc(1 * var(--text-base-size)) calc(.5 * var(--text-base-size));
+  transition: all linear 0.2s;
+  padding-left: 1rem;
+  border-left: .5rem solid var(--color-pantone);
+
+  &.right {
+    float: right;
+    margin-left: calc(.5 * var(--text-base-size));
+    margin-right: 5%;
+  }
+
+  &.left {
+    float: left;
+    margin-left: 5%;
+    margin-right: calc(.5 * var(--text-base-size));
+  }
+
+  p {
+    --text-weight: calc(var(--text-weight) * .65);
+    font-size: var(--text-scale-1); // 2.5vw;
+    line-height: var(--bq-line-height);
+    margin: 0 0 .25em 0;
+    position: relative;
+  }
+
+  cite {
+    display: block;
+    font-size: 3.5vw;
+    text-align: right;
+
+    &:before {
+      content: "—";
+    }
+  }
+
+  //@include media (">=tablet", "<desktop") {
+  //  margin: calc(.5 * var(--text-base-size)) 5% calc(.5 * var(--text-base-size)) calc(.5 * var(--text-base-size));
+  //
+  //  &.right {
+  //    margin-left: calc(.5 * var(--text-base-size));
+  //    margin-right: 0;
+  //  }
+  //  &.left {
+  //    margin-left: 0;
+  //    margin-right: calc(.5 * var(--text-base-size));
+  //  }
+  //
+  //  p {
+  //    --text-weight: calc(var(--text-weight) * .8);
+  //    font-size: 5.5vw;
+  //  }
+  //
+  //  cite {
+  //    font-size: 3vw;
+  //  }
+  //}
+  //
+  //@include media (">desktop") {
+  //  margin: 1rem 12vw 2rem 2rem;
+  //  max-width: 29.5%;
+  //
+  //  &.right {
+  //    margin-left: 3.5%;
+  //    margin-right: 12vw;
+  //  }
+  //  &.left {
+  //    margin-left: 17%;
+  //    margin-right: 3.5%;
+  //  }
+  //
+  //  p {
+  //    --text-weight: calc(var(--text-weight) * .7);
+  //    font-size: 4vw;
+  //    line-height: var(--bq-line-height-max);
+  //  }
+  //
+  //  cite {
+  //    font-size: 2.5vw;
+  //  }
+  //}
+}
+

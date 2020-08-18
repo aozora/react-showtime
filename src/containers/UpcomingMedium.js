@@ -1,13 +1,10 @@
 import React from 'react';
 import ScrollableCardsList from 'components/ScrollableCardsList';
 import useSWR from 'swr';
-// import { fetcher } from 'api/index';
-
-// const url = `https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&page=1`;
-const url = `https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1`;
+import { URL } from 'api';
 
 function useUpcomingMedia() {
-  const { data, error } = useSWR(url);
+  const { data, error } = useSWR(URL.movieUpcoming);
 
   return {
     media: data,

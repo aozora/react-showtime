@@ -1,0 +1,49 @@
+/*
+ * Support for lazyload LQIP Blurred images
+*/
+.blur-up {
+  filter: blur(5px);
+  transition: filter 400ms, -webkit-filter 400ms;
+}
+
+.blur-up.lazyloaded {
+  filter: blur(0);
+}
+
+.no-cssfilters {
+  .blur-up {
+    box-shadow: 40px 40px 100px 0 var(--color-black);
+  }
+
+  .blur-up-shadow {
+    display: none;
+  }
+}
+
+
+img[lazy=loading] {
+  /*your style here*/
+}
+
+img[lazy=error] {
+  /*your style here*/
+}
+
+img[lazy=loaded] {
+  /*your style here*/
+}
+
+/*
+or background-image
+*/
+.yourclass[lazy=loading] {
+  /*your style here*/
+}
+
+.yourclass[lazy=error] {
+  /*your style here*/
+}
+
+.yourclass[lazy=loaded] {
+  /*your style here*/
+}

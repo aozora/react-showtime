@@ -1,0 +1,41 @@
+.cards-list--scrollable {
+  flex-wrap: nowrap;
+  align-items: stretch;
+  max-width: none;
+  padding-right: 0;
+  margin: 2rem 0;
+
+  .cards-list__container {
+    flex: 1;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    scrollbar-color: $body-background;
+    scrollbar-width: 10px;
+    scrollbar-gutter: always;
+    overflow-x: scroll;
+    padding: 0;
+  }
+
+  .card {
+    margin: 1.5rem;
+    box-shadow: -1rem 0 2rem var(--color-black);
+
+    &:not(:first-child) {
+      margin-left: -10px;
+
+      @include media('>=tablet') {
+        margin-left: -130px;
+      }
+    }
+
+    &:hover {
+      transform: translate(0, -1rem);
+    }
+
+    //&:focus-within ~ .mini-card,
+    &:hover ~ .card {
+      transform: translateX(130px);
+    }
+  }
+}

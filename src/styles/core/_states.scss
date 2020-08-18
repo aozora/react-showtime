@@ -1,0 +1,68 @@
+
+.visuallyhidden {
+  @include visuallyhidden;
+}
+
+/* SELECTION
+  ============== */
+::selection {
+  background-color: $selection-background-color;
+  text-shadow: none;
+  color: $selection-color;
+}
+
+/* FOCUS
+  ============== */
+body {
+  a:focus,
+  button:focus {
+    outline: var(--focus-outline);
+    box-shadow: var(--focus-box-shadow);
+    border: var(--focus-border-size) var(--focus-border-style) var(--focus-border-color);
+  }
+}
+
+//// overrides for gatsby
+//.gatsby-focus-wrapper:focus {
+//  border: 0;
+//  box-shadow: none;
+//  outline: none;
+//}
+
+
+// Gets rid of the annoying outline for mouse users but preserves it for keyboard users,
+// and is ignored by browsers that don’t support :focus-visible
+:focus:not(:focus-visible) {
+  outline: none
+}
+
+/* PLACEHOLDER
+  ============== */
+::-webkit-input-placeholder {
+  color: $placeholder-color;
+  font-style: italic;
+}
+
+::-moz-placeholder {
+  color: $placeholder-color;
+  font-style: italic;
+}
+
+:-ms-input-placeholder {
+  color: $placeholder-color;
+  font-style: italic;
+}
+
+:-moz-placeholder {
+  color: $placeholder-color;
+  font-style: italic;
+}
+
+input::-moz-placeholder,
+textarea::-moz-placeholder,
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder,
+input::-ms-input-placeholder,
+textarea::-ms-input-placeholder {
+  opacity: 1;
+}

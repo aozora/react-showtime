@@ -1,5 +1,5 @@
 // eslint-disable-next-line import/prefer-default-export
-const URL = {
+export const URL = {
   configuration: `https://api.themoviedb.org/3/configuration`,
   languages: `https://api.themoviedb.org/3/configuration/languages`,
   countries: `https://api.themoviedb.org/3/configuration/countries`,

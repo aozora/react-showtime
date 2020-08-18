@@ -1,5 +1,6 @@
 import React from 'react';
 import MediumCard from 'components/MediumCard';
+import { cardType } from '../lib/shared';
 
 const ScrollableCardsList = ({ media }) => {
   return (
@@ -13,7 +14,10 @@ const ScrollableCardsList = ({ media }) => {
           alignItems: 'center'
         }}
       >
-        {media && media.map((medium, index) => <MediumCard key={index} medium={medium} />)}
+        {media &&
+          media.map((medium, index) => (
+            <MediumCard key={index} medium={medium} cardType={cardType.poster} />
+          ))}
       </div>
     </section>
   );

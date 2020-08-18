@@ -1,13 +1,13 @@
 import React from 'react';
-import { Content, ProgressCircle, Heading } from '@adobe/react-spectrum';
+import Spinner from './Spinner';
 
 const Splash = () => {
   return (
-    <Content className="splash">
-      <Heading level={1}>Spectrum Demo</Heading>
-      <Heading level={2}>Loading...</Heading>
-      <ProgressCircle aria-label="Loading…" isIndeterminate />
-    </Content>
+    <article className="splash">
+      <h1>Spectrum Demo</h1>
+      <h2>Loading...</h2>
+      <Spinner />
+    </article>
   );
 };
 

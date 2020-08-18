@@ -1,0 +1,18 @@
+.cards-list--grid {
+  display: block;
+  max-width: none;
+  margin: 2rem auto;
+
+  .cards-list__container {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  .card:not(.card--video) {
+    flex: 1 1 30%;
+    width: 30%;
+  }
+}

@@ -1,5 +1,5 @@
 /* eslint-disable no-param-reassign */
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, createSelector } from '@reduxjs/toolkit';
 
 const initialState = {
   api: {},
@@ -56,9 +56,32 @@ export const {
   setGenresTv
 } = configurationSlice.actions;
 
-// Thunks
-export const setApiConfigurationAsync = () => dispatch => {
-  dispatch(setApiConfiguration);
+// ***************************************
+//    THUNKS
+// ***************************************
+export const setApiConfigurationAsync = data => dispatch => {
+  dispatch(setApiConfiguration(data));
 };
+
+// ***************************************
+//    SELECTORS
+// ***************************************
+const slice = state => state.configuration;
+export const selectConfigurationImagesBackdropSizes = createSelector(
+  slice,
+  state => state.api.images.backdrop_sizes
+);
+export const selectConfigurationImagesPosterSizes = createSelector(
+  slice,
+  state => state.api.images.poster_sizes
+);
+export const selectConfigurationImagesProfileSizes = createSelector(
+  slice,
+  state => state.api.images.profile_sizes
+);
+export const selectConfigurationImagesSecureBaseUrl = createSelector(
+  slice,
+  state => state.api.images.secure_base_url
+);
 
 export default configurationSlice.reducer;

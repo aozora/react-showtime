@@ -1,5 +1,12 @@
-import { SimpleImg } from 'react-simple-img';
 import React from 'react';
+import { useSelector } from 'react-redux';
+import { SimpleImg } from 'react-simple-img';
+import {
+  selectConfigurationImagesBackdropSizes,
+  selectConfigurationImagesPosterSizes,
+  selectConfigurationImagesProfileSizes,
+  selectConfigurationImagesSecureBaseUrl
+} from 'store/features/tmdb/configuration/configuration-slice';
 import { cardType } from '../lib/shared';
 
 /**
@@ -10,30 +17,29 @@ import { cardType } from '../lib/shared';
  * @constructor
  */
 const MediumImage = ({ medium, imageType }) => {
+  const backdropSizesList = useSelector(selectConfigurationImagesBackdropSizes);
+  const posterSizesList = useSelector(selectConfigurationImagesPosterSizes);
+  const profileSizesList = useSelector(selectConfigurationImagesProfileSizes);
+  const imagesSecureBaseUrl = useSelector(selectConfigurationImagesSecureBaseUrl);
+
   const backdropSizes = () => {
-    return this.$store.state.api.configuration.images.backdrop_sizes.filter(
-      size => size !== 'original'
-    );
+    return backdropSizesList.filter(size => size !== 'original');
   };
   const posterSizes = () => {
-    return this.$store.state.api.configuration.images.poster_sizes.filter(
-      size => size !== 'original'
-    );
+    return posterSizesList.filter(size => size !== 'original');
   };
   const profileSizes = () => {
-    return this.$store.state.api.configuration.images.profile_sizes.filter(
-      size => size !== 'original'
-    );
+    return profileSizesList.filter(size => size !== 'original');
   };
 
   const getImagePath = (filePath, size) => {
-    const baseUrl = this.$store.state.api.configuration.images.secure_base_url;
+    const baseUrl = imagesSecureBaseUrl;
     return `${baseUrl}${size}${filePath}`;
   };
 
   const backdropMaxPath = () => {
-    const filePath = this.medium.backdrop_path;
-    const size = backdropSizes()[this.backdropSizes.length - 1];
+    const filePath = medium.backdrop_path;
+    const size = backdropSizes()[backdropSizes.length - 1];
 
     return getImagePath(filePath, size);
   };
@@ -59,8 +65,7 @@ const MediumImage = ({ medium, imageType }) => {
   };
 
   const pictureResponsivePath = () => {
-    const filePath =
-      imageType === cardType.poster ? this.medium.poster_path : this.medium.backdrop_path;
+    const filePath = imageType === cardType.poster ? medium.poster_path : medium.backdrop_path;
     const sizes = imageType === cardType.poster ? posterSizes() : backdropSizes();
     // console.log({ sizes });
     return sizes.map(size => `${getImagePath(filePath, size)} ${size.replace('w', '')}w`).join(',');

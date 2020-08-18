@@ -1,15 +1,23 @@
 import React, { Suspense } from 'react';
-import { defaultTheme, Provider } from '@adobe/react-spectrum';
 import { Helmet } from 'react-helmet';
 import UpcomingMedium from 'containers/UpcomingMedium';
 import Splash from 'components/Splash';
 import { SWRConfig } from 'swr';
 import SiteHeader from './components/SiteHeader';
 import SiteFooter from './components/SiteFooter';
+import Main from './Main';
 
 function App() {
+  // useEffect(() => {
+  //   async function init() {
+  //     await dispatch(setApiConfigurationAsync(api));
+  //   }
+  //
+  //   init();
+  // }, [dispatch]);
+
   return (
-    <Provider theme={defaultTheme}>
+    <>
       <Helmet>
         <html lang="en" dir="ltr" className="spectrum spectrum--medium spectrum--dark" />
       </Helmet>
@@ -30,13 +38,13 @@ function App() {
       >
         <Suspense fallback={Splash}>
           <SiteHeader />
-          <main>
+          <Main>
             <UpcomingMedium />
-          </main>
+          </Main>
           <SiteFooter />
         </Suspense>
       </SWRConfig>
-    </Provider>
+    </>
   );
 }
 
