@@ -2,9 +2,10 @@ import React from 'react';
 import ScrollableCardsList from 'components/ScrollableCardsList';
 import useSWR from 'swr';
 import { URL } from 'api';
+import { fetcher } from '../api';
 
 function useUpcomingMedia() {
-  const { data, error } = useSWR(URL.movieUpcoming);
+  const { data, error } = useSWR(URL.movieUpcoming, fetcher);
 
   return {
     media: data,

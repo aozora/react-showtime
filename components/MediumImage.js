@@ -39,7 +39,7 @@ const MediumImage = ({ medium, imageType }) => {
 
   const backdropMaxPath = () => {
     const filePath = medium.backdrop_path;
-    const size = backdropSizes()[backdropSizes.length - 1];
+    const size = backdropSizes()[backdropSizes().length - 1];
 
     return getImagePath(filePath, size);
   };
@@ -58,7 +58,7 @@ const MediumImage = ({ medium, imageType }) => {
   const movieMaxPictureSize = () => {
     const maxSize =
       imageType === cardType.poster
-        ? posterSizes()[posterSizes.length - 1]
+        ? posterSizes()[posterSizes().length - 1]
         : backdropSizes()[backdropSizes().length - 1];
 
     return `(max-width: ${maxSize}px) 100vw, ${maxSize}px`;
@@ -84,7 +84,7 @@ const MediumImage = ({ medium, imageType }) => {
           sizes={movieMaxPictureSize()}
           srcSet={pictureResponsivePath()}
           src={movieMaxPicturePath}
-          placeholder={getPlaceholder()}
+          // placeholder={getPlaceholder()}
           alt=""
         />
       )}

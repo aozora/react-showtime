@@ -1,4 +1,15 @@
-// eslint-disable-next-line import/prefer-default-export
+/* eslint-disable import/prefer-default-export */
+
+export const fetcher = async url => {
+  const res = await fetch(url, {
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${process.env.NEXT_PUBLIC_TMDB_ACCESS_TOKEN}`
+    }
+  });
+  return res.json();
+};
+
 export const URL = {
   configuration: `https://api.themoviedb.org/3/configuration`,
   languages: `https://api.themoviedb.org/3/configuration/languages`,
