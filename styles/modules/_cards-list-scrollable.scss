@@ -10,7 +10,7 @@
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
-    scrollbar-color: $body-background;
+    scrollbar-color: var(--color-body-background);
     scrollbar-width: 10px;
     scrollbar-gutter: always;
     overflow-x: scroll;

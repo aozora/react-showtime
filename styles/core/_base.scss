@@ -98,7 +98,7 @@ body {
   height: 100%;
   margin: 0 auto;
   padding: 0;
-  background-color: $body-background;
+  background-color: var(--color-body-background);
   color: $body-font-color;
 
   font-size: var(--text-base-size);

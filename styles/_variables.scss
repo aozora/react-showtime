@@ -16,14 +16,19 @@
    * @tokens Colors
    * @presenter Color
    */
-  --color-primary: #000;
+  --color-primary: #FA9E27;
+  --color-secondary: #1D2125;
   --color-black: #000;
   --color-white: #fff;
+  --color-light: #FFE6CB;
 
   // grayscale
-  --color-dark-gray: #4a4a4a;
-  --color-gray: #777;
+  --color-dark-gray: #0C1115;
+  --color-gray: #606065;
   --color-light-gray: #f6f6f6;
+
+  // background color
+  --color-body-background: var(--color-black);
 
 
   /* Breakpoint variables */

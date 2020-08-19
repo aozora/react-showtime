@@ -1,24 +1,18 @@
 import React, { useCallback } from 'react';
 import { format, parse } from 'date-fns';
+import { cardType } from '@/lib/shared';
 import MediumImage from './MediumImage';
 
-const MediumCard = ({ medium, cardType }) => {
+const MediumCard = ({ medium, card }) => {
   const formatDate = useCallback(date => {
     const d = parse(date, 'yyyy-MM-dd', new Date());
     return format(d, 'MMM d, yyyy');
   }, []);
 
   return (
-    <article
-      className="card"
-      role="figure"
-      style={{
-        width: 240,
-        margin: '0 1rem 1rem 0'
-      }}
-    >
-      <MediumImage medium={medium} imageType={cardType} />
-      {cardType === cardType.backdrop && (
+    <article className={`card ${card === cardType.poster ? 'card--poster' : 'card--backdrop'}`}>
+      <MediumImage medium={medium} imageType={card} />
+      {card === cardType.backdrop && (
         <header>
           <p>Released {formatDate(medium.release_date)}</p>
           <h3 lang={medium.original_language}>{medium.original_title}</h3>

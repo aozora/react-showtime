@@ -85,6 +85,7 @@ const MediumImage = ({ medium, imageType }) => {
           srcSet={pictureResponsivePath()}
           src={movieMaxPicturePath}
           // placeholder={getPlaceholder()}
+          placeholder={false}
           alt=""
         />
       )}

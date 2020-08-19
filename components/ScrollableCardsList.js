@@ -16,7 +16,7 @@ const ScrollableCardsList = ({ media }) => {
       >
         {media &&
           media.map((medium, index) => (
-            <MediumCard key={index} medium={medium} cardType={cardType.poster} />
+            <MediumCard key={index} medium={medium} card={cardType.poster} />
           ))}
       </div>
     </section>
