@@ -25,79 +25,89 @@
   }
 }
 
-.header {
-  //position: -webkit-sticky;
-  //position: sticky;
-  //top: 0;
-  display: grid;
-  grid-template-columns: 2.667rem 1fr 1fr 2.667rem;
-  grid-template-rows: $menu-height;
-  grid-template-areas: "toggle title menu search";
-  grid-gap: 1rem;
-  width: 100%;
-  max-width: none;
+.site-header {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  width: 100vw;
   height: $menu-height;
-  margin: 0;
-  padding: 0;
+  z-index: $menu-zindex + 1;
+  background-color: transparent;
+  overflow: hidden;
+
+  &.header--open {
+    height: 100vh;
+    overflow: auto;
+  }
 }
 
 /**
   Mobile Navigation
  */
-.menu {
-  grid-area: menu;
+.main-menu {
   position: relative;
-  display: none;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
   width: 100%;
-  height: $menu-height;
-  padding: 0;
-  //overflow: hidden;
+  height: 100%;
+  //height: $menu-height;
+  overflow: hidden;
+  padding: 0 4%;
   background-color: $menu-background;
-  z-index: $menu-zindex;
 
   @include media(">=tablet") {
-    display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
+    flex-direction: row;
+    flex-wrap: nowrap;
   }
 }
 
-.menu__toggle {
-  grid-area: toggle;
-  @include icon-button;
+.menu__logo,
+.menu__logo a {
+  margin: 0;
+  padding: 0;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.main-menu__toggle {
+  flex: 0 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 3.33rem;
+  height: 3.33rem;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  background-color: transparent;
   z-index: $menu-toggle-button-zindex;
+
+  svg {
+    width: 1.44rem;
+    height: .88rem;
+  }
 
   @include media(">=tablet") {
     display: none;
   }
 }
 
-.menu__toggle-close {
-  opacity: 1;
-}
-
-.menu__toggle-open {
-  opacity: 0;
-}
-
-.menu__search {
-  grid-area: search;
-  @include icon-button;
-  z-index: $menu-toggle-button-zindex;
-}
-
-.menu__items {
+.main-menu__menu {
+  display: flex;
+  flex-direction: column;
+  position: relative;
   width: 100%;
-  height: 100%;
+  height: auto;
+  margin: 2rem 0 0 0;
   list-style-type: none;
-  margin: 0;
-  padding: 0;
+  padding: 0 2.22rem;
   background-color: transparent;
-
-  // fix odd safari issue
-  &:focus {
-    border: 0;
-  }
+  z-index: $menu-zindex;
 
   > li {
     margin: 0;
@@ -110,23 +120,20 @@
     position: relative;
     display: block;
     width: 100%;
-    height: 100%;
-    margin: 0;
     padding: 0;
-    border: .10em solid transparent;
     font-family: $heading-font-family;
-    //font-size: 1rem;
+    font-size: .8rem;
     line-height: 1;
     font-weight: 500;
+    letter-spacing: 0.37px;
     text-transform: uppercase;
     text-decoration: none;
-    text-align: center;
-    color: var(--color-primary);
-    transition: all .2s ease-out;
+    color: var(--color-white);
+    transition: color .2s ease-out;
 
 
     /*
-     * Don't enable hover on links on mobile, it will cause this issue on ios:
+     * Don't enable hover on links, it wll cause this issue on ios:
      * https://css-tricks.com/annoying-mobile-double-tap-link-issue/
     */
     // &:hover:after,
@@ -138,19 +145,18 @@
     &:focus {
       color: var(--color-primary);
       text-decoration: none;
-      border-bottom: .10em dashed var(--color-pantone);
-      outline: 0;
     }
+
   }
 
   @include media(">=tablet") {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
     position: relative;
     top: auto;
     left: auto;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    flex-direction: row;
     height: 100%;
     margin: 0;
     padding: 0;
@@ -158,6 +164,14 @@
     > li {
       flex: 0 0 auto;
       margin: 0 .5rem;
+
+      &:last-child {
+        padding: 0;
+      }
+
+      &.main-menu__search {
+        margin: 0;
+      }
     }
 
     a {
@@ -165,226 +179,13 @@
       width: auto;
       margin: 0 1rem;
 
-      //&:hover,
-      //&:active,
-      //&:focus {
-      //  color: var(--color-primary);
-      //  text-decoration: none;
-      //  border-bottom: .10em solid var(--color-pantone);
-      //  outline: 0;
-      //}
-
-    }
-  }
-}
-
-.menu__social {
-  width: 100%;
-  height: 100%;
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-
-  span {
-    @include visuallyhidden;
-  }
-}
-
-@include media(">=tablet") {
-  .header .menu__social {
-    display: none;
-  }
-}
-
-.header--menu-open {
-  background-color: var(--color-black);
-
-  .menu__toggle-close {
-    opacity: 0;
-  }
-
-  .menu__toggle-open {
-    opacity: 1;
-  }
-
-  .menu__search {
-    display: none;
-  }
-
-  &::before {
-    content: '';
-    position: absolute;
-    display: block;
-    width: 100vw;
-    height: 100vh;
-    z-index: $menu-toggle-button-zindex - 2;
-    background-color: var(--color-pantone);
-  }
-
-  .menu {
-    position: fixed;
-    top: 0;
-    left: 0;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 2fr 1fr;
-    grid-template-areas: ". items ." "social social social";
-    width: 100vw;
-    height: 100vh;
-    padding: $menu-height 1rem 1rem 1rem;
-    background-color: var(--color-black);
-    z-index: $menu-toggle-button-zindex - 1;
-    clip-path: polygon(10% 0%, 25% 0%, 50% 0%, 75% 0%, 100% 0%, 100% 100%, 75% 100%, 50% 100%, 25% 100%, 0% 100%, 0% 0%);
-    animation: menu-enter 3s ease-in-out;
-    animation-fill-mode: forwards;
-    will-change: clip-path;
-  }
-
-
-  .menu__items {
-    grid-area: items;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(auto-fill, 4rem);
-
-    li {
-      width: 100%;
-    }
-
-    a {
-      display: inline-block;
-      height: 2.778rem;
-      width: auto;
-      color: var(--color-white);
-      font-size: 2rem;
-      line-height: 1.6;
-      letter-spacing: 1px;
-    }
-  }
-
-  .menu__social {
-    grid-area: social;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-  }
-}
-
-.menu__title {
-  grid-area: title;
-  padding: 1rem 0;
-  margin: 0 .5rem;
-  font-family: $heading-font-family;
-  font-size: 1.833rem;
-  line-height: 2.667rem;
-  color: var(--color-black);
-  text-transform: uppercase;
-
-  @include media('<846px') {
-    grid-column: span 2;
-    justify-self: center;
-    padding: .388rem 0;
-  }
-
-  span {
-    &:last-child {
-      display: none;
-    }
-  }
-
-  @include media('>=846px', '<1060px') {
-    grid-column: span 2;
-    padding-left: 1rem;
-    font-size: 1.111rem;
-    line-height: 1.5;
-
-    span {
-      &:first-child {
-        display: none;
+      &:hover,
+      &:active,
+      &:focus {
+        color: var(--color-primary);
+        text-decoration: none;
       }
 
-      &:last-child {
-        display: block;
-      }
-    }
-  }
-
-  @include media('>=1060px') {
-    font-size: 1.833rem;
-    line-height: 1;
-
-    span {
-      &:first-child {
-        display: none;
-      }
-
-      &:last-child {
-        display: block;
-      }
-    }
-  }
-}
-
-
-/*
-  Desktop menu links animation with effect Kumya by Codrops:
-  https://tympanus.net/codrops/2015/05/13/inspiration-for-text-styles-and-hover-effects/
-*/
-/* Kumya */
-
-@include media('>=desktop') {
-  .menu__items {
-    a {
-      overflow: hidden;
-      padding: 10px 10px 5px 10px;
-      border: 0;
-
-      &:focus,
-      &:hover {
-        color: var(--color-white);
-        border: 0;
-      }
-
-      &::after {
-        content: '';
-        position: absolute;
-        height: 100%;
-        width: 100%;
-        top: 0;
-        right: 0;
-        z-index: -1;
-        background-color: var(--color-black);
-        transform: translate3d(101%, 0, 0);
-        transition: transform 0.5s;
-        transition-timing-function: cubic-bezier(0.7, 0, 0.3, 1);
-      }
-
-      &:focus::after,
-      &:hover::after {
-        transform: translate3d(0, 0, 0);
-      }
-
-      span {
-        display: block;
-        position: relative;
-
-        &::before {
-          content: attr(data-letters);
-          position: absolute;
-          color: var(--color-white);
-          left: 0;
-          overflow: hidden;
-          white-space: nowrap;
-          width: 0;
-          transition: width 0.5s;
-          transition-timing-function: cubic-bezier(0.7, 0, 0.3, 1);
-        }
-      }
-
-      &:focus span::before,
-      &:hover span::before {
-        width: 100%;
-      }
     }
   }
 }
