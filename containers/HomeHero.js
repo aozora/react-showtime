@@ -29,7 +29,7 @@ const HomeHero = () => {
   // get the first medium
   if (!isLoading && !isError && media) {
     // eslint-disable-next-line prefer-destructuring
-    medium = media[0];
+    medium = media.results[0];
   }
 
   const getAbstract = () => {
@@ -39,8 +39,11 @@ const HomeHero = () => {
 
   const getGenre = id => {
     if (tvGenres) {
-      const genre = tvGenres.find(g => g.id === id);
-      return genre.name || undefined;
+      const genre = tvGenres.genres.find(g => g.id === id);
+      if (genre) {
+        return genre.name;
+      }
+      return undefined;
     }
 
     return '';
@@ -57,7 +60,7 @@ const HomeHero = () => {
   return (
     <section className="full-width">
       <article className="hero">
-        {medium && console.log('***DEBUG***', medium)}
+        {console.log('*** DEBUG ***', medium)}
         {medium && (
           <figure>
             <MediumImage medium={medium} imageType={cardType.backdrop} />
