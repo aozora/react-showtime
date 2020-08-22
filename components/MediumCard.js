@@ -1,14 +1,9 @@
 import React, { useCallback } from 'react';
 import { format, parse } from 'date-fns';
-import { cardType } from '@/lib/shared';
+import { cardType, formatDate } from '@/lib/shared';
 import MediumImage from './MediumImage';
 
 const MediumCard = ({ medium, card }) => {
-  const formatDate = useCallback(date => {
-    const d = parse(date, 'yyyy-MM-dd', new Date());
-    return format(d, 'MMM d, yyyy');
-  }, []);
-
   return (
     <article className={`card ${card === cardType.poster ? 'card--poster' : 'card--backdrop'}`}>
       <MediumImage medium={medium} imageType={card} />

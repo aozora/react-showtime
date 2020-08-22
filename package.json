@@ -9,8 +9,8 @@
     "test": "jest",
     "start": "next start",
     "debug": "NODE_OPTIONS='--inspect' next dev",
-    "storybook": "start-storybook -p 6006 -s public",
-    "build-storybook": "build-storybook -s public"
+    "storybook": "start-storybook -s ./public -p 6006",
+    "build-storybook": "build-storybook"
   },
   "browserslist": {
     "production": [
@@ -41,6 +41,7 @@
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-error-boundary": "^2.3.1",
     "react-helmet": "^6.1.0",
     "react-redux": "^7.2.1",
     "react-simple-img": "^2.3.9",
@@ -49,17 +50,16 @@
     "swr": "^0.3.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.11.1",
-    "@storybook/addon-actions": "^6.0.12",
-    "@storybook/addon-essentials": "^6.0.12",
-    "@storybook/addon-links": "^6.0.12",
-    "@storybook/node-logger": "^6.0.12",
-    "@storybook/preset-create-react-app": "^3.1.4",
+    "@babel/core": "^7.11.4",
+    "@storybook/addon-actions": "^6.0.16",
+    "@storybook/addon-essentials": "^6.0.16",
+    "@storybook/addon-links": "^6.0.16",
     "@storybook/preset-scss": "^1.0.2",
-    "@storybook/react": "^6.0.12",
+    "@storybook/react": "^6.0.16",
     "babel-eslint": "^10.1.0",
     "babel-jest": "^26.3.0",
     "babel-loader": "^8.1.0",
+    "babel-preset-react-app": "^9.1.2",
     "css-loader": "^4.2.1",
     "eslint": "6.6.0",
     "eslint-config-airbnb": "^18.2.0",
@@ -72,6 +72,7 @@
     "include-media": "^1.4.9",
     "jest": "^26.4.0",
     "jest-dom": "^4.0.0",
+    "node-sass": "^4.14.1",
     "postcss-flexbugs-fixes": "4.2.1",
     "postcss-preset-env": "^6.7.0",
     "prettier": "^2.0.5",

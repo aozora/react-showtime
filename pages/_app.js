@@ -22,41 +22,10 @@ function MyApp({ Component, pageProps, router }) {
           <title>{APP_TITLE}</title>
         </Head>
 
-        {/* <AnimatePresence exitBeforeEnter> */}
-        {/* <SWRConfig */}
-        {/*  value={{ */}
-        {/*    fetcher: async url => { */}
-        {/*      const res = await fetch(url, { */}
-        {/*        headers: { */}
-        {/*          'Content-Type': 'application/json', */}
-        {/*          Authorization: `Bearer ${process.env.TMDB_ACCESS_TOKEN}` */}
-        {/*        } */}
-        {/*      }); */}
-        {/*      return res.json(); */}
-        {/*    } */}
-        {/*  }} */}
-        {/*  suspense */}
-        {/* > */}
-        {/* <Suspense fallback={Splash}> */}
-        {/* eslint-disable-next-line react/jsx-props-no-spreading */}
         <Component {...pageProps} key={router.route} />
-        {/* </Suspense> */}
-        {/* </SWRConfig> */}
-        {/* </AnimatePresence> */}
       </Layout>
     </Provider>
   );
 }
-
-// Only uncomment this method if you have blocking data requirements for
-// every single page in your application. This disables the ability to
-// perform automatic static optimization, causing every page in your app to
-// be server-side rendered.
-// MyApp.getInitialProps = async appContext => {
-//   // calls page's `getInitialProps` and fills `appProps.pageProps`
-//   const appProps = await App.getInitialProps(appContext);
-//
-//   return { ...appProps };
-// };
 
 export default MyApp;

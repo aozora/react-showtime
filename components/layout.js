@@ -3,6 +3,7 @@ import SiteHeader from '@/components/SiteHeader';
 import SiteFooter from '@/components/SiteFooter';
 import { useDispatch } from 'react-redux';
 import { setApiConfiguration } from '@/store/features/tmdb/configuration/configuration-slice';
+import Splash from '@/components/Splash';
 import { useConfigurationApi } from '../hooks/configurationHooks';
 
 export default function Layout({ preview, children }) {
@@ -11,6 +12,10 @@ export default function Layout({ preview, children }) {
 
   if (api && !isLoading && !isError) {
     dispatch(setApiConfiguration(api));
+  }
+
+  if (isLoading) {
+    return <Splash />;
   }
 
   return (
