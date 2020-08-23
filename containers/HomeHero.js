@@ -2,8 +2,7 @@ import React from 'react';
 import MediumImage from '@/components/MediumImage';
 import { cardType, formatDate } from '@/lib/shared';
 import Link from 'next/link';
-import { useUpcomingMedia } from '../hooks/mediaHooks';
-import { useConfigurationTvGenres } from '../hooks/configurationHooks';
+import { useUpcomingMovies, useMoviesGenres } from '../hooks/moviesHooks';
 
 /**
  * Big hero component that display a full screen media
@@ -14,9 +13,9 @@ const HomeHero = () => {
   // TODO: randomly get a movie or a tv medium
 
   let medium;
-  const { media, isLoading, isError } = useUpcomingMedia();
+  const { media, isLoading, isError } = useUpcomingMovies();
   // load genres; don't care for error, in that case the medium genres will not be displayed
-  const { tvGenres } = useConfigurationTvGenres();
+  const { tvGenres } = useMoviesGenres();
 
   if (isError) {
     return <div>failed to load</div>;

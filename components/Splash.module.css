@@ -1,0 +1,35 @@
+.splash {
+  --splash-focused-media-zindex: 10;
+  --splash-titles-zindex: 11;
+
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.splashFocusedMedium {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: var(--splash-focused-media-zindex);
+}
+
+.splashTitle {
+  margin: 1rem auto;
+  z-index: var(--splash-titles-zindex);
+}
+
+.splashFocusedCards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.splashFocusedCards .card {
+  margin: 0 2rem 2rem 0;
+}

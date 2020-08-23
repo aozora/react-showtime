@@ -1,27 +1,16 @@
+import Spinner from '@/components/Spinner';
 import React from 'react';
-import { useSelector } from 'react-redux';
-import MediumImage from '@/components/MediumImage';
-import { cardType } from '@/lib/shared';
-import MediumCard from '@/components/MediumCard';
-import { selectConfigurationImagesPosterSizes } from '@/store/features/tmdb/configuration/configuration-slice';
-import styles from './Splash.module.css';
-import { APP_TITLE } from '../lib/constants';
-import Spinner from './Spinner';
-import { useTopRatedMovies } from '../hooks/moviesHooks';
+import { APP_TITLE } from '@/lib/constants';
+import styles from './Preload.module.css';
 
-const Splash = () => {
-  const configurationReady = useSelector(selectConfigurationImagesPosterSizes);
-  const { media, isLoading, isError } = useTopRatedMovies();
-
-  if (isError) {
-    return <div>failed to load</div>;
-  }
-
-  const cardsCount = media && media.results.length > 3 ? 4 : undefined;
-
+/**
+ * Simpler splash screen to be displayed while loading the configuration api and set the data in the store.
+ * @constructor
+ */
+const Preload = () => {
   return (
-    <article className={styles.splash}>
-      <h1 className={styles.splashTitle}>
+    <article className={styles.preload}>
+      <h1>
         <svg width="235" height="40" viewBox="0 0 431 73" xmlns="http://www.w3.org/2000/svg">
           <title>{APP_TITLE}</title>
           <defs>
@@ -86,24 +75,8 @@ const Splash = () => {
       </h1>
       <h2>Loading...</h2>
       <Spinner />
-
-      {media && media.results.length > 0 && (
-        <>
-          <article className={styles.splashFocusedMedium}>
-            <MediumImage medium={media.results[0]} imageType={cardType.backdrop} />
-          </article>
-
-          {configurationReady && cardsCount && (
-            <div className={styles.splashFocusedCards}>
-              {Array(cardsCount).map(index => (
-                <MediumCard key={index} medium={media.results[index - 1]} card={cardType.poster} />
-              ))}
-            </div>
-          )}
-        </>
-      )}
     </article>
   );
 };
 
-export default Splash;
+export default Preload;

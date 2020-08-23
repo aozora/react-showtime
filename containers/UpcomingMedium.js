@@ -1,9 +1,9 @@
 import React from 'react';
 import ScrollableCardsList from 'components/ScrollableCardsList';
-import { useUpcomingMedia } from '../hooks/mediaHooks';
+import { useUpcomingMovies } from '../hooks/moviesHooks';
 
 const UpcomingMedium = () => {
-  const { media, isLoading, isError } = useUpcomingMedia();
+  const { media, isLoading, isError } = useUpcomingMovies();
   // setUpcomingMedia(media);
 
   if (isError) {

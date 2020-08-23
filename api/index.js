@@ -11,9 +11,13 @@ export const fetcher = async url => {
 };
 
 export const URL = {
-  configuration: `https://api.themoviedb.org/3/configuration`,
-  languages: `https://api.themoviedb.org/3/configuration/languages`,
-  countries: `https://api.themoviedb.org/3/configuration/countries`,
+  configuration: 'https://api.themoviedb.org/3/configuration',
+  languages: 'https://api.themoviedb.org/3/configuration/languages',
+  countries: 'https://api.themoviedb.org/3/configuration/countries',
+  jobs: 'https://api.themoviedb.org/3/configuration/jobs',
+  timezones: 'https://api.themoviedb.org/3/configuration/timezones',
+  primaryTranslations: 'https://api.themoviedb.org/3/configuration/primary_translations',
+
   images: 'https://image.tmdb.org/t/p/',
   youtubeEmbed: 'https://www.youtube.com/embed/',
   youtubeTrailer: 'https://www.youtube.com/watch?v=',

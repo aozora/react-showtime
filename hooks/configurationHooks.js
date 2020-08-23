@@ -6,24 +6,51 @@ export const useConfigurationApi = () => {
   const { data, error } = useSWR(URL.configuration, fetcher);
   return {
     api: data,
+    isLoadingConfigurationApi: !error && !data,
+    isError: error
+  };
+};
+
+export const useConfigurationLanguages = () => {
+  const { data, error } = useSWR(URL.languages, fetcher);
+  return {
+    languages: data,
     isLoading: !error && !data,
     isError: error
   };
 };
 
-export const useConfigurationMoviesGenres = () => {
-  const { data, error } = useSWR(URL.moviesGenres, fetcher);
+export const useConfigurationCountries = () => {
+  const { data, error } = useSWR(URL.countries, fetcher);
   return {
-    moviesGenres: data,
+    countries: data,
     isLoading: !error && !data,
     isError: error
   };
 };
 
-export const useConfigurationTvGenres = () => {
-  const { data, error } = useSWR(URL.tvGenres, fetcher);
+export const useConfigurationPrimaryTranslations = () => {
+  const { data, error } = useSWR(URL.primaryTranslations, fetcher);
   return {
-    tvGenres: data,
+    primaryTranslations: data,
+    isLoading: !error && !data,
+    isError: error
+  };
+};
+
+export const useConfigurationJobs = () => {
+  const { data, error } = useSWR(URL.jobs, fetcher);
+  return {
+    jobs: data,
+    isLoading: !error && !data,
+    isError: error
+  };
+};
+
+export const useConfigurationTimezones = () => {
+  const { data, error } = useSWR(URL.timezones, fetcher);
+  return {
+    timezones: data,
     isLoading: !error && !data,
     isError: error
   };
