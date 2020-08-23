@@ -1,27 +1,41 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useCallback } from 'react';
 import MediumImage from '@/components/MediumImage';
 import { cardType } from '@/lib/shared';
 import MediumCard from '@/components/MediumCard';
-import { selectConfigurationImagesPosterSizes } from '@/store/features/tmdb/configuration/configuration-slice';
 import styles from './Splash.module.css';
 import { APP_TITLE } from '../lib/constants';
 import Spinner from './Spinner';
-import { useTopRatedMovies } from '../hooks/moviesHooks';
+import { useMoviesGenres, useTopRatedMovies } from '../hooks/moviesHooks';
+// import { useTvGenres } from '../hooks/tvHooks';
 
-const Splash = () => {
-  const configurationReady = useSelector(selectConfigurationImagesPosterSizes);
+const Splash = ({ configurationApi, moviesGenres }) => {
   const { media, isLoading, isError } = useTopRatedMovies();
 
   if (isError) {
     return <div>failed to load</div>;
   }
 
-  const cardsCount = media && media.results.length > 3 ? 4 : undefined;
+  /**
+   * Get only a slice of the original array
+   * @type {(...args: any[]) => any}
+   */
+  const getSlicedMedia = useCallback(
+    count => {
+      if (media && media.results.length > count - 1) {
+        return media.results.filter((medium, index) => index < count);
+      }
+      if (media && media.results.length < count - 1) {
+        return media.results;
+      }
+
+      return undefined;
+    },
+    [media]
+  );
 
   return (
     <article className={styles.splash}>
-      <h1 className={styles.splashTitle}>
+      <h1>
         <svg width="235" height="40" viewBox="0 0 431 73" xmlns="http://www.w3.org/2000/svg">
           <title>{APP_TITLE}</title>
           <defs>
@@ -87,19 +101,18 @@ const Splash = () => {
       <h2>Loading...</h2>
       <Spinner />
 
-      {media && media.results.length > 0 && (
+      {configurationApi && moviesGenres && media && (
         <>
           <article className={styles.splashFocusedMedium}>
             <MediumImage medium={media.results[0]} imageType={cardType.backdrop} />
           </article>
 
-          {configurationReady && cardsCount && (
-            <div className={styles.splashFocusedCards}>
-              {Array(cardsCount).map(index => (
-                <MediumCard key={index} medium={media.results[index - 1]} card={cardType.poster} />
-              ))}
-            </div>
-          )}
+          <div className={styles.splashFocusedCards}>
+            {getSlicedMedia(4).map((medium, index) => (
+              // eslint-disable-next-line react/no-array-index-key
+              <MediumCard key={index} medium={medium} card={cardType.poster} />
+            ))}
+          </div>
         </>
       )}
     </article>

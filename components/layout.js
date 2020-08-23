@@ -1,10 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import SiteHeader from '@/components/SiteHeader';
 import SiteFooter from '@/components/SiteFooter';
 import { useDispatch } from 'react-redux';
-import { setApiConfiguration } from '@/store/features/tmdb/configuration/configuration-slice';
+import {
+  setApiConfiguration,
+  setTranslations,
+  setLanguages,
+  setCountries,
+  setJobs,
+  setTimezones,
+  setGenresMovies,
+  setGenresTv
+} from '@/store/features/tmdb/configuration/configuration-slice';
 import Splash from '@/components/Splash';
-import Preload from '@/components/Preload';
 import {
   useConfigurationApi,
   useConfigurationLanguages,
@@ -29,16 +37,40 @@ export default function Layout({ preview, children }) {
   const { jobs } = useConfigurationJobs();
   const { primaryTranslations } = useConfigurationPrimaryTranslations();
 
-  if (api && !isLoadingConfigurationApi && !isError) {
+  if (api && !isLoadingConfigurationApi) {
     dispatch(setApiConfiguration(api));
   }
 
-  if (isLoadingConfigurationApi && (isLoadingMoviesGenres || isLoadingTvGenres)) {
-    return <Preload />;
+  if (languages) {
+    dispatch(setLanguages(languages));
   }
 
-  if (!isLoadingConfigurationApi && !isLoadingMoviesGenres && !isLoadingTvGenres) {
-    return <Splash />;
+  if (timezones) {
+    dispatch(setTimezones(timezones));
+  }
+
+  if (countries) {
+    dispatch(setCountries(countries));
+  }
+
+  if (jobs) {
+    dispatch(setJobs(jobs));
+  }
+
+  if (primaryTranslations) {
+    dispatch(setTranslations(primaryTranslations));
+  }
+
+  if (moviesGenres) {
+    dispatch(setGenresMovies(moviesGenres));
+  }
+
+  if (tvGenres) {
+    dispatch(setGenresTv(tvGenres));
+  }
+
+  if (isLoadingConfigurationApi || isLoadingMoviesGenres || isLoadingTvGenres) {
+    return <Splash configurationApi={api} moviesGenres={moviesGenres} />;
   }
 
   return (

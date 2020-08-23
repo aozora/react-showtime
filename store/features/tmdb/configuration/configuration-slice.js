@@ -8,6 +8,9 @@ const initialState = {
   countries: [],
   jobs: [],
   timezones: [],
+
+  // genres doesn't belong within the configuration api, however since they are 2 lists used everywhere
+  // we keep them in this configuration slice
   genres: {
     movies: [],
     tv: []
