@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import { format, parse } from 'date-fns';
-import { cardType, formatDate } from '@/lib/shared';
+import { cardType, formatDate } from '../lib/shared';
 import MediumImage from './MediumImage';
 
 const MediumCard = ({ medium, card }) => {

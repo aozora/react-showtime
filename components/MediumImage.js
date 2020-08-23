@@ -6,7 +6,7 @@ import {
   selectConfigurationImagesPosterSizes,
   selectConfigurationImagesProfileSizes,
   selectConfigurationImagesSecureBaseUrl
-} from 'store/features/tmdb/configuration/configuration-slice';
+} from '../store/features/tmdb/configuration/configuration-slice';
 import { cardType } from '../lib/shared';
 
 /**
