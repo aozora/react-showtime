@@ -6,5 +6,6 @@ module.exports = {
     // '@storybook/preset-scss',
     '@storybook/addon-links',
     '@storybook/addon-essentials'
-  ]
+  ],
+  presets: [path.resolve(__dirname, './presets/next-preset.js')]
 };

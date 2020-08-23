@@ -10,6 +10,7 @@ import { APP_TITLE } from '@/lib/constants';
 import { useStore } from '../store';
 
 // app styles
+import '@/styles/fonts.css';
 import '@/styles/app.scss';
 
 function MyApp({ Component, pageProps, router }) {

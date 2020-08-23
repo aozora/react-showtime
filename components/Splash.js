@@ -6,7 +6,7 @@ import { APP_TITLE } from '../lib/constants';
 import Spinner from './Spinner';
 import { useMoviesGenres, useTopRatedMovies } from '../hooks/moviesHooks';
 // import { useTvGenres } from '../hooks/tvHooks';
-import styles from './Splash.module.css';
+import styles from './Splash.module.scss';
 
 const Splash = ({ configurationApi, moviesGenres }) => {
   const { media, isLoading, isError } = useTopRatedMovies();
