@@ -5,5 +5,6 @@ export default create({
   colorPrimary: '#FA9E27',
   colorSecondary: '#1D2125',
   brandTitle: 'Storybook -VN Edition',
-  brandImage: '/img/logo.svg'
+  brandImage: '/img/logo.svg',
+  fontBase: 'Inter, Helvetica, Roboto, Arial, sans-serif'
 });

@@ -65,10 +65,10 @@
   --text-max-width: 38rem;
 
   /* focus state */
-  --focus-outline: none;
-  --focus-box-shadow: none;
-  --focus-border-size: 2px;
-  --focus-border-style: dashed;
+  //--focus-outline: none;
+  //--focus-box-shadow: none;
+  //--focus-border-size: 2px;
+  //--focus-border-style: dashed;
   --focus-ring-color: rgb(38, 128, 235);
 
 
@@ -76,7 +76,6 @@
   --heading-weight: 700;
   --text-weight: $body-font-weight;
   --text-width: 100;
-  // --text-opticalsize: 16;
 
   /* spacing */
   --text-letter-spacing: 1.2px;
@@ -87,8 +86,6 @@
   --p-line-height-max: 1.6;
   --p-font-size-min: 1.0;
   --p-font-size-max: 1.25;
-  //--p-vf-weight: var(--text-weight);
-  //--p-vf-width: var(--text-width);
 
   /* H1 variables */
   --h1-font-size: var(--text-scale-6);

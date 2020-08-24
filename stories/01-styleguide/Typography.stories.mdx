@@ -1,0 +1,25 @@
+import { Meta, Typeset } from '@storybook/addon-docs/blocks';
+import { typography } from '../shared';
+
+<Meta title="Styleguide/Typography" />
+
+# Typography
+
+**Font:** Inter
+
+**Weights:** 100 (thin), 200 (extra light), 300 (light), 400(regular), 500 (medium), 600 (semi bold), 700(bold), 800(extrabold), 900(black)
+
+<Typeset
+  fontSizes={[
+    Number(typography.size.s1),
+    Number(typography.size.s2),
+    Number(typography.size.s3),
+    Number(typography.size.m1),
+    Number(typography.size.m2),
+    Number(typography.size.m3),
+    Number(typography.size.l1),
+    Number(typography.size.l2),
+    Number(typography.size.l3),
+  ]}
+  fontWeight={typography.weight.black}
+/>

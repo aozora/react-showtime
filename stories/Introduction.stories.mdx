@@ -8,9 +8,12 @@ import Plugin from './assets/plugin.svg';
 import Repo from './assets/repo.svg';
 import StackAlt from './assets/stackalt.svg';
 
-<Meta title="Example/Introduction" />
+<Meta title="Introduction" />
 
 <style>{`
+  * {
+    font-family: 'Inter', Helvetica, Roboto, Arial, sans-serif;
+  }
   .subheading {
     --mediumdark: '#999999';
     font-weight: 900;
@@ -46,6 +49,7 @@ import StackAlt from './assets/stackalt.svg';
     }
   }
 
+  a.link-item,
   .link-item {
     display: block;
     padding: 20px 30px 20px 15px;
@@ -55,6 +59,7 @@ import StackAlt from './assets/stackalt.svg';
     color: #333333;
     display: flex;
     align-items: flex-start;
+    text-decoration: none;
   }
 
   .link-item:hover {
@@ -73,7 +78,7 @@ import StackAlt from './assets/stackalt.svg';
     display: block;
     margin-bottom: 2px;
   }
-  
+
   .link-item img {
     height: 40px;
     width: 40px;
@@ -111,7 +116,7 @@ import StackAlt from './assets/stackalt.svg';
     display: inline-block;
   }
 
-  
+
 `}</style>
 
 # Welcome to Storybook
