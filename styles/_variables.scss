@@ -12,10 +12,9 @@
 @import 'settings';
 
 :root {
-  /**
-   * @tokens Colors
-   * @presenter Color
-   */
+  // ################################################################
+  //    COLORS
+  // ################################################################
   --color-primary: #FA9E27;
   --color-secondary: #1D2125;
   --color-black: #000;
@@ -31,19 +30,48 @@
   --color-body-background: var(--color-black);
 
 
-  /* Breakpoint variables */
+  // ################################################################
+  //    STATES
+  // ################################################################
+  --selection-color: var(--color-white);
+  --selection-background-color: var(--color-primary);
+  --placeholder-color: var(--color-black);
+  --focus-ring-color: rgb(38, 128, 235);
+
+
+  // ################################################################
+  //    SHADOWS
+  // ################################################################
+  --default-box-shadow: none;
+  --default-text-shadow: none;
+
+
+
+  // ################################################################
+  //    BREAKPOINT
+  // ################################################################
   --breakpoint-small: #{strip-unit(map_get($breakpoints, phone))};
   --breakpoint-medium: #{strip-unit(map_get($breakpoints, tablet))};
   --breakpoint-large: #{strip-unit(map_get($breakpoints, desktop))};
   --breakpoint-xlarge: #{strip-unit(map_get($breakpoints, desktophd))};
 
 
-  /* Globals */
+  // ################################################################
+  //    GLOBALS
+  // ################################################################
   --global-border-radius: 20px;
 
 
-  /* sectioning */
+  // ################################################################
+  //    SECTIONING
+  // ################################################################
   --var-section-margin: 3rem;
+  --section-max-width: 1024px;
+
+
+  // ################################################################
+  //    TYPOGRAPHY
+  // ################################################################
 
   /* type modular scale */
   // body font size
@@ -63,13 +91,6 @@
 
   /* max text sizes  */
   --text-max-width: 38rem;
-
-  /* focus state */
-  //--focus-outline: none;
-  //--focus-box-shadow: none;
-  //--focus-border-size: 2px;
-  //--focus-border-style: dashed;
-  --focus-ring-color: rgb(38, 128, 235);
 
 
   /* vf initial values */
@@ -110,7 +131,11 @@
   --bq-font-size-min: 2.7;
   --bq-font-size-max: 5;
 
-  /* buttons */
+
+  // ################################################################
+  //    BUTTONS
+  // ################################################################
+
   --button-min-width: 96px;
   --button-height: 40px;
   --button-padding: 10px 1rem;
@@ -125,12 +150,17 @@
   --button-primary-background-color: var(--color-primary);
   --button-primary-border: 2px solid var(--color-primary);
 
-  /* form fields */
+
+  // ################################################################
+  //    FORM
+  // ################################################################
   --form-field-height: 40px;
   --form-field-border: 1px solid var(--color-gray);
   --form-field-max-width: 240px;
 
-  /* Z indexes */
+  // ################################################################
+  //    Z-INDEXES
+  // ################################################################
   --burgher-menu-z-index: 11;
   --mobile-menu-z-index: 10;
 }

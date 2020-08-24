@@ -1,36 +1,5 @@
 @import 'math';
 
-@mixin visuallyhidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  clip: rect(0 0 0 0);
-  margin: -1px;
-  padding: 0;
-  border: 0;
-  overflow: hidden;
-}
-
-
-@mixin container {
-  max-width: $sectionMaxWidth;
-  width: 100%;
-  margin: 0 auto;
-  padding: 0 3rem;
-
-  @include media("<tablet") {
-    padding: 0 1.5rem;
-  }
-
-  @include media(">=desktop","<1092") {
-    padding: 0 1.5rem;
-  }
-
-  @include media(">=desktophd") {
-    padding: 0;
-  }
-}
-
 @mixin branded-heading {
   font-size: 1.667rem;
   font-weight: 600;

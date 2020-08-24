@@ -2,10 +2,15 @@ import React, { useCallback } from 'react';
 import { format, parse } from 'date-fns';
 import { cardType, formatDate } from '../lib/shared';
 import MediumImage from './MediumImage';
+import styles from './MediumCard.module.scss';
 
 const MediumCard = ({ medium, card }) => {
   return (
-    <article className={`card ${card === cardType.poster ? 'card--poster' : 'card--backdrop'}`}>
+    <article
+      className={`${styles.card} ${
+        card === cardType.poster ? styles.cardPoster : styles.cardBackdrop
+      }`}
+    >
       <MediumImage medium={medium} imageType={card} />
       {card === cardType.backdrop && (
         <header>

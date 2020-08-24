@@ -7,7 +7,8 @@
  */
 
 // Dependencies
-@import '../node_modules/include-media/dist/include-media';
+//@import '../node_modules/include-media/dist/include-media';
+@import 'shared';
 
 @import 'variables';
 @import 'settings';
@@ -32,10 +33,7 @@
 @import 'modules/footer';
 
 @import 'modules/home-hero';
-@import 'modules/card';
-@import 'modules/cards-list';
-@import 'modules/cards-list-grid';
-@import 'modules/cards-list-scrollable';
+//@import 'modules/cards-list-grid';
 
 @import 'modules/error-page';
 

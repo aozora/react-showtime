@@ -14,7 +14,7 @@ main {
 
 main > section,
 main > article {
-  max-width: $sectionMaxWidth;
+  max-width: var(--section-max-width);
   margin: 0 auto;
   padding: 0;
 }

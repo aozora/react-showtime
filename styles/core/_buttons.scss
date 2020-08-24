@@ -24,7 +24,7 @@ button {
   letter-spacing: normal;
   color: var(--button-color);
   text-transform: none;
-  box-shadow: $default-box-shadow;
+  box-shadow: var(--default-box-shadow);
   outline: 0;
 
   &::after {

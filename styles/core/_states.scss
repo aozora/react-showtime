@@ -6,9 +6,9 @@
 /* SELECTION
   ============== */
 ::selection {
-  background-color: $selection-background-color;
+  background-color: var(--selection-background-color);
   text-shadow: none;
-  color: $selection-color;
+  color: var(--selection-color);
 }
 
 /* FOCUS
@@ -33,22 +33,22 @@
 /* PLACEHOLDER
   ============== */
 ::-webkit-input-placeholder {
-  color: $placeholder-color;
+  color: var(--placeholder-color);
   font-style: italic;
 }
 
 ::-moz-placeholder {
-  color: $placeholder-color;
+  color: var(--placeholder-color);
   font-style: italic;
 }
 
 :-ms-input-placeholder {
-  color: $placeholder-color;
+  color: var(--placeholder-color);
   font-style: italic;
 }
 
 :-moz-placeholder {
-  color: $placeholder-color;
+  color: var(--placeholder-color);
   font-style: italic;
 }
 

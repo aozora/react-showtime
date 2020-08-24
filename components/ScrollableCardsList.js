@@ -1,11 +1,12 @@
 import React from 'react';
 import MediumCard from 'components/MediumCard';
 import { cardType } from '../lib/shared';
+import styles from './ScrollableCardsList.module.scss';
 
 const ScrollableCardsList = ({ media }) => {
   return (
-    <section className="cards-list cards-list--scrollable">
-      <div className="cards-list__container">
+    <section className={`${styles.cardsList} ${styles.cardsListScrollable}`}>
+      <div className={`${styles.cardsListContainer}`}>
         {media &&
           media.map((medium, index) => (
             <MediumCard key={index} medium={medium} card={cardType.poster} />

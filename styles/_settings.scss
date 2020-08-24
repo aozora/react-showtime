@@ -5,26 +5,8 @@
 // 1. Global
 // ---------
 $render-vertical-rhythm-lines: false;
-$sectionMaxWidth: 1024px;
-
-// Include-Media breakpoints
-// ------------------
-$breakpoints: (
-  phone: 25.875em, // 414px,
-  tablet: 48em, // 768px,
-  desktop: 64em, // 1024px,
-  desktophd: 75em // 1200px
-);
 
 
-// Shadows
-// ------------------
-$default-box-shadow: none;
-$default-text-shadow: none;
-
-// Body
-// ------------------
-//$global-radius: 4px;
 
 // Base Typography
 // ------------------
@@ -35,9 +17,7 @@ $heading-font-weight: 700;
 $kerning: normal; // auto (default), normal (enabled), none (disabled)
 $body-font-color: var(--color-primary);
 //$body-font-letter-spacing: normal;
-$selection-color: var(--color-white);
-$selection-background-color: var(--color-primary);
-$placeholder-color: var(--color-black);
+
 
 // Fonts
 $use-variable-font: true;
@@ -48,25 +28,10 @@ $body-font-family: 'Inter', Helvetica, Roboto, Arial, sans-serif;
 $heading-font-family: 'Inter', sans-serif;
 
 
-// Focus
-// -----------
-//$focus-outline: none;
-//$focus-box-shadow: none;
-//$focus-border: 2px dashed var(--color-black);
-
-
-
 // Main Menu
 // -----------
 $menu-background: transparent;
 $menu-height: 3.33rem; // 60px
-
-
-// Forms
-// -----------
-$form-field-max-width: 20rem;
-$form-field-border: 2px solid var(--color-black);
-$form-border-radius: 2px;
 
 
 // Z-INDEXES
