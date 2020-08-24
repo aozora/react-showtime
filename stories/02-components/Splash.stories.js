@@ -1,6 +1,6 @@
 import React from 'react';
-import Splash from '../components/Splash';
-import { withProvider } from './story-redux-helper';
+import Splash from '../../components/Splash';
+import { withProvider } from '../story-redux-helper';
 
 export default {
   title: 'Components/Splash',
