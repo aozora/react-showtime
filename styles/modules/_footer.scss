@@ -1,4 +1,4 @@
-.footer {
+.site-footer {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: auto auto auto;
@@ -7,6 +7,10 @@
   @include container;
   margin: 4rem auto;
 
+  .tmdb {
+    width: 56px;
+    height: 40px;
+  }
 
   .menu__social {
     grid-area: social;
@@ -54,7 +58,7 @@
     }
   }
 
-  .footer__copyright {
+  .site-footer__copyright {
     grid-area: copyright;
     margin: 0 auto 2rem auto;
     padding: 0 1rem;
@@ -63,16 +67,29 @@
     text-align: center;
   }
 
-  .footer__credits {
+  .site-footer__credits {
     grid-area: credits;
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    grid-template-rows: 1fr;
+    grid-gap: 1rem;
+    grid-template-areas: "credits-logo credits-text";
+    width: 100%;
     margin: 0 auto 2rem auto;
     padding: 0 1rem;
     font-size: .778rem;
-    color: var(--color-black);
+    //color: var(--color-black);
     text-align: center;
 
-    a {
-      font-size: inherit;
+    > a {
+      grid-area: credits-logo;
     }
+
+    >p {
+      grid-area: credits-text;
+    }
+    //a {
+    //  font-size: inherit;
+    //}
   }
 }

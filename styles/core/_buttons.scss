@@ -1,68 +1,66 @@
-@mixin icon-button {
+
+button {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 2.667rem;
-  height: 2.667rem;
-  padding: 0;
-  margin: 0;
-  border: 2px dashed transparent;
-  background-color: var(--color-black);
-  color: var(--color-white);
+  height: var(--button-height);
+  padding: var(--button-padding);
+  border: var(--button-border);
+  border-radius: var(--button-border-radius);
+  background-color: var(--button-background-color);
+  transition: all .2s ease-out;
+  font-family: $body-font-family;
 
-  &:active,
-  &:focus {
-    border: var(--focus-border-size) var(--focus-border-style) var(--focus-border-color);
+  @if $use-variable-font {
+    @supports (font-variation-settings: normal) {
+      font-family: $variable-font-family;
+    }
   }
 
-  //&:active,
-  //&:focus {
-  //  color: var(--color-primary);
-  //  text-decoration: none;
-  //}
+  font-size: 1rem;
+  line-height: 1;
+  font-weight: 400;
+  letter-spacing: normal;
+  color: var(--button-color);
+  text-transform: none;
+  box-shadow: $default-box-shadow;
+  outline: 0;
 
-  path {
-    transition: opacity .55s ease-in;
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    border-radius: var(--button-border-radius);
+    margin: 2px;
+    transition: box-shadow 130ms ease-out, margin 130ms ease-out;
+  }
+
+  &:hover,
+  &:active {
+    background-color: var(--button-hover-background-color);
+    border: var(--button-hover-border);
+  }
+
+  &:disabled {
+    opacity: .5;
   }
 }
 
-.scroll-down-button {
-  @include icon-button;
+.button--focus-ring {
 
+  &::after {
+    box-shadow: 0 0 0 2px var(--focus-ring-color);
+    margin: -4px;
+  }
 }
 
-//.button {
-//  position: relative;
-//  display: flex;
-//  justify-content: center;
-//  align-items: center;
-//  height: 1.888rem;
-//  padding: 10px 1rem;
-//  border: 0;
-//  border-radius: $global-radius;
-//  background-color: var(--color-primary);
-//  transition: all .2s ease-out;
-//  font-family: $body-font-family;
-//
-//  @if $use-variable-font {
-//    @supports (font-variation-settings: normal) {
-//      font-family: $variable-font-family;
-//    }
-//  }
-//
-//  font-size: 1rem;
-//  line-height: 1;
-//  font-weight: 700;
-//  letter-spacing: normal;
-//  color: var(--color-white);
-//  text-transform: none;
-//  box-shadow: $default-box-shadow;
-//
-//  &:hover,
-//  &:focus,
-//  &:active {
-//    background-color: var(--color-primary);
-//    color: var(--color-black);
-//  }
-//}
-//
+.button--primary {
+  border: var(--button-primary-border);
+  background-color: var(--button-primary-background-color);
+  color: var(--button-primary-color);
+}

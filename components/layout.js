@@ -78,8 +78,8 @@ export default function Layout({ preview, children }) {
       <a href="#main" tabIndex="0">
         Skip to main content
       </a>
-      <SiteHeader />
       <main id="main" role="main">
+        <SiteHeader />
         {children}
       </main>
       <SiteFooter />

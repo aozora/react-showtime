@@ -85,7 +85,7 @@ const HomeHero = () => {
               <p className="hero__info-small">{formatDate(medium.release_date)}</p>
               <p className="hero__info-small">Popularity: {medium.vote_average * 10}%</p>
               <p className="hero__abstract">{getAbstract(medium)}</p>
-              <button className="button button--icon" type="button">
+              <button className="button button--primary" type="button">
                 Play trailer
                 {/* <span className="button__icon" aria-hidden="true"> */}
                 {/*      <svg> */}

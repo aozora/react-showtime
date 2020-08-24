@@ -26,6 +26,7 @@ const LazyYouTubeVideo = ({ url, alt, label, aspectRatio }) => {
   }, []);
 
   return (
+    // eslint-disable-next-line jsx-a11y/click-events-have-key-events
     <div className="y-video" onClick={clickHandler}>
       <div className="y-video__inner" style={getPaddingBottom()}>
         {!isVideoLoaded && (

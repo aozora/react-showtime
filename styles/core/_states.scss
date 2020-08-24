@@ -13,21 +13,15 @@
 
 /* FOCUS
   ============== */
-body {
-  a:focus,
-  button:focus {
-    outline: var(--focus-outline);
-    box-shadow: var(--focus-box-shadow);
-    border: var(--focus-border-size) var(--focus-border-style) var(--focus-border-color);
-  }
-}
-
-//// overrides for gatsby
-//.gatsby-focus-wrapper:focus {
-//  border: 0;
-//  box-shadow: none;
-//  outline: none;
+//body {
+//  a:focus,
+//  button:focus {
+//    outline: var(--focus-outline);
+//    box-shadow: var(--focus-box-shadow);
+//    border: var(--focus-border-size) var(--focus-border-style) var(--focus-border-color);
+//  }
 //}
+
 
 
 // Gets rid of the annoying outline for mouse users but preserves it for keyboard users,

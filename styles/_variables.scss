@@ -69,7 +69,7 @@
   --focus-box-shadow: none;
   --focus-border-size: 2px;
   --focus-border-style: dashed;
-  --focus-border-color: var(--color-black);
+  --focus-ring-color: rgb(38, 128, 235);
 
 
   /* vf initial values */
@@ -116,15 +116,17 @@
   /* buttons */
   --button-min-width: 96px;
   --button-height: 40px;
-  --button-padding: 0 1.14rem;
-  --button-color: var(--color-primary);
-  --button-background-color: var(--color-light-gray);
-  --button-border: 0; // 1px solid $color-light-gray;
+  --button-padding: 10px 1rem;
+  --button-color: var(--color-white);
+  --button-background-color: transparent;
+  --button-border: 2px solid var(--color-gray); // 1px solid $color-light-gray;
   --button-border-radius: var(--global-border-radius);
+  --button-hover-border: 2px solid var(--color-gray); // 1px solid $color-light-gray;
+  --button-hover-background-color: var(--color-gray);
 
   --button-primary-color: var(--color-white);
   --button-primary-background-color: var(--color-primary);
-  --button-primary-border: 1px solid var(--color-primary);
+  --button-primary-border: 2px solid var(--color-primary);
 
   /* form fields */
   --form-field-height: 40px;

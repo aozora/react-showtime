@@ -1,6 +1,3 @@
-//$header-h1-scrolled-font-size: 2.33rem;
-//$header-h1-scrolled-line-height: 1;
-
 /**
   Skip Links
  */
@@ -26,8 +23,9 @@
 }
 
 .site-header {
-  position: -webkit-sticky;
-  position: sticky;
+  //position: -webkit-sticky;
+  //position: sticky;
+  position: fixed;
   top: 0;
   width: 100vw;
   height: $menu-height;
@@ -56,7 +54,7 @@
   //height: $menu-height;
   overflow: hidden;
   padding: 0 4%;
-  background-color: $menu-background;
+  //background-color: $menu-background;
 
   @include media(">=tablet") {
     justify-content: space-between;
