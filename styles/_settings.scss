@@ -12,33 +12,20 @@ $render-vertical-rhythm-lines: false;
 // ------------------
 $baseline: 1.5;
 
-$body-font-weight: 400;
-$heading-font-weight: 700;
-$kerning: normal; // auto (default), normal (enabled), none (disabled)
-$body-font-color: var(--color-primary);
-//$body-font-letter-spacing: normal;
 
 
 // Fonts
 $use-variable-font: true;
 $use-variable-font-for-headings: true;
-$variable-font-family: 'Inter var', Helvetica, Roboto, Arial, sans-serif;
-$variable-heading-font-family: 'Inter var', sans-serif;
-$body-font-family: 'Inter', Helvetica, Roboto, Arial, sans-serif;
-$heading-font-family: 'Inter', sans-serif;
-
-
-// Main Menu
-// -----------
-$menu-background: transparent;
-$menu-height: 3.33rem; // 60px
+//$variable-font-family: 'Inter var', Helvetica, Roboto, Arial, sans-serif;
+//$variable-heading-font-family: 'Inter var', sans-serif;
+//$body-font-family: 'Inter', Helvetica, Roboto, Arial, sans-serif;
+//$heading-font-family: 'Inter', sans-serif;
 
 
 // Z-INDEXES
 // -----------
 // list in ascending order
 // -----------
-$menu-zindex: 101;
-$menu-toggle-button-zindex: $menu-zindex + 2;
-$skiplink-zindex: $menu-toggle-button-zindex + 1;
+
 $home-mobile-loader-zindex: 110;

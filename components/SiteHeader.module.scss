@@ -1,28 +1,11 @@
-/**
-  Skip Links
- */
-[href="#main"] {
-  position: absolute;
-  top: 0;
-  right: 100%; /* moves off screen */
-  width: 100vw;
-  height: $menu-height;
-  padding: 0 1rem;
-  margin: 0;
-  background-color: var(--color-black);
-  font-size: 1.6rem;
-  line-height: $menu-height;
-  color: var(--color-white);
-  text-decoration: underline;
+@import '../styles/shared';
 
-  &:focus {
-    right: auto;
-    z-index: $skiplink-zindex;
-    color: var(--color-white);
-  }
-}
+$menu-background: transparent;
+$menu-height: 3.33rem; // 60px
+$menu-zindex: 101;
+$menu-toggle-button-zindex: $menu-zindex + 2;
 
-.site-header {
+.siteHeader {
   //position: -webkit-sticky;
   //position: sticky;
   position: fixed;
@@ -32,17 +15,17 @@
   z-index: $menu-zindex + 1;
   background-color: transparent;
   overflow: hidden;
+}
 
-  &.header--open {
-    height: 100vh;
-    overflow: auto;
-  }
+.header--open {
+  height: 100vh;
+  overflow: auto;
 }
 
 /**
   Mobile Navigation
  */
-.main-menu {
+.mainMenu {
   position: relative;
   display: flex;
   flex-direction: row;
@@ -64,15 +47,7 @@
   }
 }
 
-.menu__logo,
-.menu__logo a {
-  margin: 0;
-  padding: 0;
-  font-size: 1rem;
-  line-height: 1;
-}
-
-.main-menu__toggle {
+.mainMenuToggle {
   flex: 0 0 auto;
   display: flex;
   justify-content: center;
@@ -95,7 +70,7 @@
   }
 }
 
-.main-menu__menu {
+.mainMenuItems {
   display: flex;
   flex-direction: column;
   position: relative;
@@ -119,7 +94,7 @@
     display: block;
     width: 100%;
     padding: 0;
-    font-family: $heading-font-family;
+    font-family: var(--variable-font-family);
     font-size: .8rem;
     line-height: 1;
     font-weight: 500;

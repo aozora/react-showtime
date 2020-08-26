@@ -1,13 +1,14 @@
 import React from 'react';
+import styles from './SiteFooter.module.scss';
 
 const SiteFooter = () => {
   return (
-    <footer className="site-footer">
-      <p>&copy; All rights reserved.</p>
-      <div className="site-footer__credits">
+    <footer className={styles.siteFooter}>
+      <p className={styles.siteFooterCopyright}>&copy; All rights reserved.</p>
+      <div className={styles.siteFooterCredits}>
         <a href="https://www.themoviedb.org" rel="noreferrer noopener nofollow">
           <img
-            className="tmdb"
+            className={styles.tmdb}
             width="56"
             height="40"
             src="/img/tmdb-blue_square_2.svg"

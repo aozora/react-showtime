@@ -3,15 +3,16 @@ import React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import HeaderLogo from './HeaderLogo';
+import styles from './SiteHeader.module.scss';
 
 const SiteHeader = () => {
   const router = useRouter();
 
   return (
-    <header id="site-header" className="site-header">
+    <header id="site-header" className={styles.siteHeader}>
       <a href="#main">Skip to main content</a>
 
-      <nav id="main-menu" className="main-menu">
+      <nav id="main-menu" className={styles.mainMenu}>
         <HeaderLogo isHome>
           <Link href="/">
             <a>
@@ -175,7 +176,7 @@ const SiteHeader = () => {
           </Link>
         </HeaderLogo>
 
-        <ul className="main-menu__menu">
+        <ul className={styles.mainMenuItems}>
           <li>
             <Link href="/">
               <a className={router.pathname === '/' ? 'active' : ''}>Home</a>

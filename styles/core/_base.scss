@@ -69,7 +69,7 @@ b,
 strong,
 button {
   --text-weight: $body-font-weight;
-  font-family: $body-font-family;
+  font-family: var(--body-font-family);
   //font-size: 1rem;
   //font-size: var(--text-base-size);
   //line-height: $baseline;
@@ -99,24 +99,19 @@ body {
   margin: 0 auto;
   padding: 0;
   background-color: var(--color-body-background);
-  color: $body-font-color;
+  color: var(--body-font-color);
 
   font-size: var(--text-base-size);
   line-height: $baseline;
   font-weight: var(--text-weight);
   font-style: normal;
   letter-spacing: var(--text-letter-spacing);
-  font-kerning: $kerning;
+  font-kerning: var(--kerning);
 
 
   @if $use-variable-font {
     @supports (font-variation-settings: normal) {
-      font-family: $variable-font-family;
-      // this settings depends on th vf selected
-      font-variation-settings: 'wght' #var (--text-weight);
-      /* ,
-         'wdth' var(--text-width),
-         'opsz' var(--text-opticalsize); */
+      font-family: var(--variable-font-family);
     }
   }
 
@@ -142,20 +137,15 @@ body {
 h1, h2, h3, h4, h5, h6 {
   padding: 0;
   margin: 0 0 calc(1 * var(--text-base-size)) 0;
-  font-family: $heading-font-family;
-  font-weight: $heading-font-weight;
+  font-family: var(--heading-font-family);
+  font-weight: var(--heading-font-family);
   transition: all linear 0.2s;
   --text-weight: var(--heading-weight);
   color: inherit;
 
   @if $use-variable-font-for-headings {
     @supports (font-variation-settings: normal) {
-      font-family: $variable-heading-font-family;
-      // this settings depends on th vf selected
-      font-variation-settings: 'wght' var(--heading-weight);
-      /* ,
-         'wdth' var(--text-width),
-         'opsz' var(--text-opticalsize); */
+      font-family: var(--variable-heading-font-family);
     }
   }
 }
@@ -360,4 +350,29 @@ blockquote {
   //  }
   //}
 }
+
+/**
+  Skip Links
+ */
+[href="#main"] {
+  position: absolute;
+  top: 0;
+  right: 100%; /* moves off screen */
+  width: 100vw;
+  height: 1rem; // $menu-height;
+  padding: 0 1rem;
+  margin: 0;
+  background-color: var(--color-black);
+  font-size: 1.6rem;
+  line-height: 1rem; // $menu-height;
+  color: var(--color-white);
+  text-decoration: underline;
+
+  &:focus {
+    right: auto;
+    z-index: 104;
+    color: var(--color-white);
+  }
+}
+
 

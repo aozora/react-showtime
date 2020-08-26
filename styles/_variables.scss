@@ -70,8 +70,18 @@
 
 
   // ################################################################
-  //    TYPOGRAPHY
+  //    TYPOGRAPHY SCALE & FONTS
   // ################################################################
+  --variable-font-family: 'Inter var', Helvetica, Roboto, Arial, sans-serif;
+  --variable-heading-font-family: 'Inter var', sans-serif;
+  --body-font-family: 'Inter', Helvetica, Roboto, Arial, sans-serif;
+  --heading-font-family: 'Inter', sans-serif;
+
+  --body-font-weight: 400;
+  --heading-font-weight: 700;
+  --kerning: normal; // auto (default), normal (enabled), none (disabled)
+  --body-font-color: var(--color-primary);
+
 
   /* type modular scale */
   // body font size

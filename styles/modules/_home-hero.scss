@@ -7,7 +7,7 @@
   img,
   figure {
     width: 100%;
-    height: calc(100vh - #{$menu-height});
+    height: 100vh; // calc(100vh - #{$menu-height});
   }
 
   figure {

@@ -10,11 +10,11 @@ button {
   border-radius: var(--button-border-radius);
   background-color: var(--button-background-color);
   transition: all .2s ease-out;
-  font-family: $body-font-family;
+  font-family: var(--body-font-family);
 
   @if $use-variable-font {
     @supports (font-variation-settings: normal) {
-      font-family: $variable-font-family;
+      font-family: var(--variable-font-family);
     }
   }
 
