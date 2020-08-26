@@ -4,7 +4,7 @@ import MediumImage from './MediumImage';
 import { useMovieCredits, useMovieDetails } from '../hooks/moviesHooks';
 import styles from './MediumDetails.module.scss';
 
-const MediumDetails = ({ slug }) => {
+const MovieDetails = ({ slug }) => {
   const { medium, isLoading, isError } = useMovieDetails(slug);
   const { credits, isCreditsLoading, isCreditsError } = useMovieCredits(slug);
 
@@ -119,4 +119,4 @@ const MediumDetails = ({ slug }) => {
   );
 };
 
-export default MediumDetails;
+export default MovieDetails;
