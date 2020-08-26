@@ -30,3 +30,23 @@ export function useTopRatedMovies() {
     isError: error
   };
 }
+
+export function useMovieDetails(slug) {
+  const { data, error } = useSWR(URL.movieDetails.replace('MOVIE_ID', slug), fetcher);
+
+  return {
+    medium: data,
+    isLoading: !error && !data,
+    isError: error
+  };
+}
+
+export function useMovieCredits(slug) {
+  const { data, error } = useSWR(URL.movieCredits.replace('MOVIE_ID', slug), fetcher);
+
+  return {
+    credits: data,
+    isCreditsLoading: !error && !data,
+    isCreditsError: error
+  };
+}

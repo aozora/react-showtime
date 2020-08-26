@@ -40,3 +40,17 @@ $breakpoints: (
     padding: 0;
   }
 }
+
+
+@mixin title-genres {
+  margin-bottom: .667rem;
+
+  span {
+    margin-right: 22px;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--color-white);
+    text-align: left;
+    text-transform: capitalize;
+  }
+}
