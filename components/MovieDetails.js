@@ -2,7 +2,8 @@ import React from 'react';
 import { cardType, formatDate } from '../lib/shared';
 import MediumImage from './MediumImage';
 import { useMovieCredits, useMovieDetails } from '../hooks/moviesHooks';
-import styles from './MediumDetails.module.scss';
+import Person from './Person';
+import styles from './MovieDetails.module.scss';
 
 const MovieDetails = ({ slug }) => {
   const { medium, isLoading, isError } = useMovieDetails(slug);
@@ -101,15 +102,19 @@ const MovieDetails = ({ slug }) => {
         </div>
       </section>
 
-      {/* <section className="medium-details__cast-and-crew">
-          <h2>Cast</h2>
-          <ul v-if="credits !== undefined" className="medium__cast">
-            <li v-for="cast in credits.cast"
-            :key="cast.cast_id">
-            <Person :person="cast"></Person>
-        </li>
+      <h2>Cast</h2>
+      {isCreditsLoading && <div>Loading...</div>}
+      {credits && (
+        <section className={styles.mediumDetailsCastAndCrew}>
+          <ul className={styles.mediumCast}>
+            {credits.cast.map(cast => (
+              <li key={cast.cast_id}>
+                <Person person={cast} />
+              </li>
+            ))}
           </ul>
-          </section> */}
+        </section>
+      )}
 
       {/* <section className="medium__videos">
           <h2>Videos</h2>
