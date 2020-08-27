@@ -59,7 +59,6 @@ const HomeHero = () => {
   return (
     <section className="full-width">
       <article className="hero">
-        {console.log('*** DEBUG ***', medium)}
         {medium && (
           <figure>
             <MediumImage medium={medium} imageType={cardType.backdrop} />
@@ -76,7 +75,9 @@ const HomeHero = () => {
             <figcaption>
               <span className="hero__tag">Movies</span>
               <h1>
-                <Link href={`/media/${medium.id}`}>{medium.title}</Link>
+                <Link href="/media/[slug]" as={`/media/${medium.id}`}>
+                  <a>{medium.title}</a>
+                </Link>
               </h1>
               <p className="hero__genres">
                 {tvGenres &&

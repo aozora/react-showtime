@@ -11,7 +11,7 @@ const MediumCard = ({ medium, card }) => {
         card === cardType.poster ? styles.cardPoster : styles.cardBackdrop
       }`}
     >
-      <Link href={`/movie/${medium.id}`}>
+      <Link href="/movie/[slug]" as={`/movie/${medium.id}`}>
         <a>
           <MediumImage medium={medium} imageType={card} />
           {card === cardType.backdrop && (
