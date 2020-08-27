@@ -21,6 +21,16 @@ export function useUpcomingMovies() {
   };
 }
 
+export function useNowPlayingMovies() {
+  const { data, error } = useSWR(URL.movieNowPlaying, fetcher);
+
+  return {
+    media: data,
+    isLoading: !error && !data,
+    isError: error
+  };
+}
+
 export function useTopRatedMovies() {
   const { data, error } = useSWR(URL.movieTopRated, fetcher);
 
