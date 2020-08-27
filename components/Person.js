@@ -41,6 +41,7 @@ const Person = ({ person }) => {
 
   return (
     <Link href={`/people/${person.id}`}>
+      {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
       <a>
         <SimpleImg
           sizes={personMaxPictureSize()}

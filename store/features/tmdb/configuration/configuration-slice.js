@@ -87,4 +87,7 @@ export const selectConfigurationImagesSecureBaseUrl = createSelector(
   state => state.api.images.secure_base_url
 );
 
+export const selectConfigurationLanguages = createSelector(slice, state => state.languages);
+export const selectConfigurationCountries = createSelector(slice, state => state.countries);
+
 export default configurationSlice.reducer;
