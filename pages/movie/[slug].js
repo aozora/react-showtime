@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 import ErrorPage from 'next/error';
-import MovieDetails from '@/components/MovieDetails';
+import MovieDetails from '../../components/MovieDetails';
 
 export default function Medium({ preview }) {
   const router = useRouter();

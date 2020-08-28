@@ -1,10 +1,11 @@
 import React from 'react';
+import MediaContextProvider from '@/containers/MediaContextProvider';
+import { mediaType } from '@/lib/shared';
 import ScrollableCardsList from '../components/ScrollableCardsList';
 import { useUpcomingMovies } from '../hooks/moviesHooks';
 
 const UpcomingMovies = ({ motionKey }) => {
   const { media, isLoading, isError } = useUpcomingMovies();
-  // setUpcomingMedia(media);
 
   if (isError) {
     return <div>failed to load</div>;
@@ -15,9 +16,9 @@ const UpcomingMovies = ({ motionKey }) => {
   }
 
   return (
-    <>
+    <MediaContextProvider type={mediaType.movie}>
       <ScrollableCardsList media={media.results} motionKey={motionKey} />
-    </>
+    </MediaContextProvider>
   );
 };
 

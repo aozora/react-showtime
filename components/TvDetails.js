@@ -3,15 +3,19 @@ import { useSelector } from 'react-redux';
 import CircularScore from '@/components/CircularScore';
 import { cardType, formatDate } from '../lib/shared';
 import MediumImage from './MediumImage';
-import { useMovieCredits, useMovieDetails } from '../hooks/moviesHooks';
 import Person from './Person';
 import styles from './MediumDetails.module.scss';
-import { selectConfigurationLanguages } from '../store/features/tmdb/configuration/configuration-slice';
+import {
+  selectConfigurationImagesSecureBaseUrl,
+  selectConfigurationLanguages
+} from '../store/features/tmdb/configuration/configuration-slice';
+import { useTvCredits, useTvDetails } from '../hooks/tvHooks';
 
-const MovieDetails = ({ slug }) => {
-  const { medium, isLoading, isError } = useMovieDetails(slug);
-  const { credits, isCreditsLoading, isCreditsError } = useMovieCredits(slug);
+const TvDetails = ({ slug }) => {
+  const { medium, isLoading, isError } = useTvDetails(slug);
+  const { credits, isCreditsLoading, isCreditsError } = useTvCredits(slug);
   const languages = useSelector(selectConfigurationLanguages);
+  const imagesSecureBaseUrl = useSelector(selectConfigurationImagesSecureBaseUrl);
 
   if (isError) {
     return <div>failed to load</div>;
@@ -40,7 +44,7 @@ const MovieDetails = ({ slug }) => {
       return '';
     }
 
-    const { runtime } = medium;
+    const runtime = medium.episode_run_time;
 
     return `${parseInt(runtime / 60, 10)}h ${runtime - 60 * parseInt(runtime / 60, 10)}min`;
   };
@@ -49,14 +53,15 @@ const MovieDetails = ({ slug }) => {
     <article className={styles.mediumDetails}>
       <header>
         <div className={styles.mediumDetailsHeader}>
-          <h1>{medium.original_title}</h1>
-          {medium.original_title !== medium.title && <h2>{medium.title}</h2>}
+          <h1>{medium.original_name}</h1>
+          {medium.original_name !== medium.name && <h2>{medium.name}</h2>}
           {medium.genres.map(genre => (
             <p key={genre.id} className={styles.mediumGenres}>
               <span>{genre.name}</span>
             </p>
           ))}
-          <p className="medium__released">Released {formatDate(medium.release_date)}</p>
+          <p className="medium__released">First Aired {formatDate(medium.first_air_date)}</p>
+          <p className="medium__released">Last Aired {formatDate(medium.last_air_date)}</p>
         </div>
 
         <MediumImage medium={medium} imageType={cardType.backdrop} />
@@ -120,14 +125,25 @@ const MovieDetails = ({ slug }) => {
 
             <dt>Original language</dt>
             <dd>{getLanguage()}</dd>
-            <dt>Runtime</dt>
+            <dt>Episode Runtime</dt>
             <dd>{getRuntime()}</dd>
-            <dt>Budget</dt>
-            <dd>{medium.budget.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</dd>
-            <dt>Revenue</dt>
+            <dt>Networks</dt>
             <dd>
-              {medium.revenue.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
+              {medium.networks.map(network => (
+                <>
+                  <img
+                    className={styles.networkLogo}
+                    src={`${imagesSecureBaseUrl}w45${network.logo_path}`}
+                    alt={network.name}
+                  />
+                </>
+              ))}
             </dd>
+
+            <dt>Status</dt>
+            <dd>{medium.status}</dd>
+            <dt>Type</dt>
+            <dd>{medium.type}</dd>
           </dl>
         </div>
       </section>
@@ -154,4 +170,4 @@ const MovieDetails = ({ slug }) => {
   );
 };
 
-export default MovieDetails;
+export default TvDetails;

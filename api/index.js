@@ -48,6 +48,7 @@ export const URL = {
 
   // tv series
   // ------------------------------------------------------------
+  tvCredits: `https://api.themoviedb.org/3/tv/TV_ID/credits`,
   tvCertifications: `https://api.themoviedb.org/3/certification/tv/list`,
   tvGenres: `https://api.themoviedb.org/3/genre/tv/list?language=en-US`,
   tvDetails: `https://api.themoviedb.org/3/tv/TV_ID?append_to_response=videos,images`,
