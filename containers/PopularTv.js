@@ -1,9 +1,9 @@
 import React from 'react';
 import ScrollableCardsList from '../components/ScrollableCardsList';
-import { useNowPlayingMovies } from '../hooks/moviesHooks';
+import { usePopularTv } from "../hooks/tvHooks";
 
-const NowPlayingMedium = ({ motionKey }) => {
-  const { media, isLoading, isError } = useNowPlayingMovies();
+const PopularTv = ({ motionKey }) => {
+  const { media, isLoading, isError } = usePopularTv();
 
   if (isError) {
     return <div>failed to load</div>;
@@ -20,4 +20,4 @@ const NowPlayingMedium = ({ motionKey }) => {
   );
 };
 
-export default NowPlayingMedium;
+export default PopularTv;

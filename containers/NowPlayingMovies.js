@@ -1,10 +1,9 @@
 import React from 'react';
 import ScrollableCardsList from '../components/ScrollableCardsList';
-import { useUpcomingMovies } from '../hooks/moviesHooks';
+import { useNowPlayingMovies } from '../hooks/moviesHooks';
 
-const UpcomingMedium = ({ motionKey }) => {
-  const { media, isLoading, isError } = useUpcomingMovies();
-  // setUpcomingMedia(media);
+const NowPlayingMovies = ({ motionKey }) => {
+  const { media, isLoading, isError } = useNowPlayingMovies();
 
   if (isError) {
     return <div>failed to load</div>;
@@ -21,4 +20,4 @@ const UpcomingMedium = ({ motionKey }) => {
   );
 };
 
-export default UpcomingMedium;
+export default NowPlayingMovies;

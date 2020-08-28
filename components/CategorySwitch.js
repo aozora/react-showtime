@@ -34,6 +34,7 @@ export const CategoryRadio = props => {
   const isSelected = state.selectedValue === props.value;
 
   return (
+    // eslint-disable-next-line jsx-a11y/label-has-associated-control
     <label style={{ display: 'flex', alignItems: 'center' }}>
       <VisuallyHidden>
         <input {...inputProps} {...focusProps} />

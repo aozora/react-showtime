@@ -10,3 +10,33 @@ export const useTvGenres = () => {
     isError: error
   };
 };
+
+export function usePopularTv() {
+  const { data, error } = useSWR(URL.tvPopular, fetcher);
+
+  return {
+    media: data,
+    isLoading: !error && !data,
+    isError: error
+  };
+}
+
+export function useOnTheAirTodayTv() {
+  const { data, error } = useSWR(URL.tvOnTheAirToday, fetcher);
+
+  return {
+    media: data,
+    isLoading: !error && !data,
+    isError: error
+  };
+}
+
+export function useLatestTv() {
+  const { data, error } = useSWR(URL.tvLatest, fetcher);
+
+  return {
+    medium: data,
+    isLoading: !error && !data,
+    isError: error
+  };
+}
