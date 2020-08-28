@@ -96,9 +96,7 @@ const MovieDetails = ({ slug }) => {
       <section className={styles.mediumDetailsDetails}>
         <aside className={styles.mediumPoster}>
           <h2>Poster</h2>
-          <figure>
-            <MediumImage medium={medium} imageType={cardType.poster} />
-          </figure>
+          <MediumImage medium={medium} imageType={cardType.poster} />
         </aside>
 
         <div className={styles.mediumStoryline}>

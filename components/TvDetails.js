@@ -62,6 +62,8 @@ const TvDetails = ({ slug }) => {
           ))}
           <p className="medium__released">First Aired {formatDate(medium.first_air_date)}</p>
           <p className="medium__released">Last Aired {formatDate(medium.last_air_date)}</p>
+          <p>Number of seasons: {medium.number_of_seasons}</p>
+          <p>Number of episodes: {medium.number_of_episodes}</p>
         </div>
 
         <MediumImage medium={medium} imageType={cardType.backdrop} />
@@ -101,9 +103,7 @@ const TvDetails = ({ slug }) => {
       <section className={styles.mediumDetailsDetails}>
         <aside className={styles.mediumPoster}>
           <h2>Poster</h2>
-          <figure>
-            <MediumImage medium={medium} imageType={cardType.poster} />
-          </figure>
+          <MediumImage medium={medium} imageType={cardType.poster} />
         </aside>
 
         <div className={styles.mediumStoryline}>
