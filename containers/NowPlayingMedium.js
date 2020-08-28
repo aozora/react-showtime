@@ -1,8 +1,8 @@
 import React from 'react';
-import ScrollableCardsList from 'components/ScrollableCardsList';
+import ScrollableCardsList from '../components/ScrollableCardsList';
 import { useNowPlayingMovies } from '../hooks/moviesHooks';
 
-const NowPlayingMedium = () => {
+const NowPlayingMedium = ({ motionKey }) => {
   const { media, isLoading, isError } = useNowPlayingMovies();
 
   if (isError) {
@@ -15,7 +15,7 @@ const NowPlayingMedium = () => {
 
   return (
     <>
-      <ScrollableCardsList media={media.results} />
+      <ScrollableCardsList media={media.results} motionKey={motionKey} />
     </>
   );
 };

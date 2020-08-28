@@ -1,25 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import UpcomingMedium from '@/containers/UpcomingMedium';
 import HomeHero from '@/containers/HomeHero';
 import NowPlayingMedium from '@/containers/NowPlayingMedium';
 import CategorySwitch, { CategoryRadio } from '@/components/CategorySwitch';
-// import { motionVariants } from '@/lib/helpers';
+import { movieCategory } from '@/lib/shared';
 
 export default function Index({}) {
+  const [selectedMovieCategory, setSelectedMovieCategory] = useState(movieCategory.upcoming);
+
   return (
     <>
       <HomeHero />
 
-      <CategorySwitch label="Movies" onChange={value => console.log(value)}>
-        <CategoryRadio label="Upcoming" value="upcoming" />
-        <CategoryRadio label="Now Playing" value="now-playing" />
+      <CategorySwitch label="Movies" onChange={value => setSelectedMovieCategory(value)}>
+        <CategoryRadio label="Upcoming" value={movieCategory.upcoming} />
+        <CategoryRadio label="Now Playing" value={movieCategory.nowPlaying} />
       </CategorySwitch>
 
-      <h2>Upcoming</h2>
-      <UpcomingMedium />
-
-      <h2>Now Playing</h2>
-      <NowPlayingMedium />
+      <div className="cards-list-container">
+        <AnimatePresence>
+          {selectedMovieCategory === movieCategory.upcoming && <UpcomingMedium />}
+          {selectedMovieCategory === movieCategory.nowPlaying && <NowPlayingMedium />}
+        </AnimatePresence>
+      </div>
     </>
   );
 }

@@ -1,8 +1,8 @@
 import React from 'react';
-import ScrollableCardsList from 'components/ScrollableCardsList';
+import ScrollableCardsList from '../components/ScrollableCardsList';
 import { useUpcomingMovies } from '../hooks/moviesHooks';
 
-const UpcomingMedium = () => {
+const UpcomingMedium = ({ motionKey }) => {
   const { media, isLoading, isError } = useUpcomingMovies();
   // setUpcomingMedia(media);
 
@@ -16,7 +16,7 @@ const UpcomingMedium = () => {
 
   return (
     <>
-      <ScrollableCardsList media={media.results} />
+      <ScrollableCardsList media={media.results} motionKey={motionKey} />
     </>
   );
 };
