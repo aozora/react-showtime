@@ -1,0 +1,56 @@
+@import '../node_modules/include-media/dist/include-media';
+
+// Include-Media breakpoints
+// ------------------
+$breakpoints: (
+  phone: 25.875em, // 414px,
+  tablet: 48em, // 768px,
+  desktop: 64em, // 1024px,
+  desktophd: 75em // 1200px
+);
+
+
+@mixin visuallyhidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  clip: rect(0 0 0 0);
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+}
+
+
+@mixin container {
+  max-width: var(--section-max-width);
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 3rem;
+
+  @include media("<tablet") {
+    padding: 0 1.5rem;
+  }
+
+  @include media(">=desktop","<1092") {
+    padding: 0 1.5rem;
+  }
+
+  @include media(">=desktophd") {
+    padding: 0;
+  }
+}
+
+
+@mixin title-genres {
+  margin-bottom: .667rem;
+
+  span {
+    margin-right: 22px;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--color-white);
+    text-align: left;
+    text-transform: capitalize;
+  }
+}

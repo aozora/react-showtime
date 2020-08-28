@@ -1,0 +1,32 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Contributing/Development" />
+
+# Development
+
+## Components
+
+### Styles
+
+Component styles must be developed as [(S)CSS-Modules](https://github.com/css-modules/css-modules) using SASS;
+the SASS file must have the following format: `{ComponentName}.module.scss`
+It's recommeded to import the shared scss files that contains the import for the Include Media util
+and few mixins.
+
+Class names should be named using pascal-case.
+
+Example:
+```scss
+@import '../styles/shared';
+
+.cardsList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+
+  [class^="MediumCard"] {
+    margin: 0 2rem 2rem 0;
+  }
+}
+```

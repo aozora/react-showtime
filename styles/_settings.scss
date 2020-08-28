@@ -1,0 +1,31 @@
+//  Settings
+//  -----------------------------
+@import 'mixins/mixins';
+
+// 1. Global
+// ---------
+$render-vertical-rhythm-lines: false;
+
+
+
+// Base Typography
+// ------------------
+$baseline: 1.5;
+
+
+
+// Fonts
+$use-variable-font: true;
+$use-variable-font-for-headings: true;
+//$variable-font-family: 'Inter var', Helvetica, Roboto, Arial, sans-serif;
+//$variable-heading-font-family: 'Inter var', sans-serif;
+//$body-font-family: 'Inter', Helvetica, Roboto, Arial, sans-serif;
+//$heading-font-family: 'Inter', sans-serif;
+
+
+// Z-INDEXES
+// -----------
+// list in ascending order
+// -----------
+
+$home-mobile-loader-zindex: 110;

@@ -1,0 +1,26 @@
+$contrast: color-contrast($body-background, $color-light);
+@if ($contrast < 4.5) {
+  @warn "Contrast ratio of #{$body-background} on #{$color-light} is pretty bad, just #{$contrast}";
+}
+
+//$contrast: color-contrast($body-background, $color-gray);
+//@if ($contrast < 4.5) {
+//  @warn "Contrast ratio of #{$body-background} on #{$color-gray} is pretty bad, just #{$contrast}";
+//}
+
+$contrast: color-contrast($color-light, var(--color-black));
+@if ($contrast < 4.5) {
+  @warn "Contrast ratio of #{$color-light} on #{var(--color-black)} is pretty bad, just #{$contrast}";
+}
+//
+//$contrast: color-contrast($color-blue, var(--color-black));
+//@if ($contrast < 4.5) {
+//  @warn "Contrast ratio of #{$color-blue} on #{var(--color-black)} is pretty bad, just #{$contrast}";
+//}
+//
+//$contrast: color-contrast($color-blue, $color-light-gray);
+//@if ($contrast < 4.5) {
+//  @warn "Contrast ratio of #{$color-light-gray} on #{var(--color-black)} is pretty bad, just #{$contrast}";
+//}
+//
+//

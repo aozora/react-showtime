@@ -1,0 +1,204 @@
+@import 'math';
+
+@mixin branded-heading {
+  font-size: 1.667rem;
+  font-weight: 600;
+  line-height: 1.667rem;
+  letter-spacing: 0.33px;
+  color: var(--color-primary);
+  text-align: left;
+  text-transform: uppercase;
+
+  @include media(">=tablet") {
+    font-size: 1.667rem;
+    line-height: 2.05rem;
+    letter-spacing: .4px;
+  }
+}
+
+
+@mixin dropcap {
+  /* Initial Cap styles */
+  &:first-of-type::first-letter {
+    --text-weight: calc(var(--p-vf-weight) * 1.75);
+
+    float: left;
+    font-size: calc(var(--dc-font-size) * 1rem);
+    line-height: var(--dc-line-height);
+    padding: .1em .05em .05em 0;
+    //border: 1px solid #fff;
+
+    // if initial-letter is supported
+    @supports (initial-letter: 2) or (-webkit-initial-letter: 2) {
+      -webkit-initial-letter: 2;
+      initial-letter: 2;
+      /* undo other bits */
+      float: none;
+      font-size: inherit;
+      line-height: inherit;
+      margin: 0;
+      padding: 0 0.25em 0 0;
+    }
+  }
+}
+
+@function strip-unit($value) {
+  @return $value / ($value * 0 + 1);
+}
+
+
+/**
+ * Sets vertical–rhythm for the given level.
+ * Usage:
+ *
+ * 	h1 {
+ * 		@include v-rhythm( 4 );
+ * 	}
+ */
+@mixin v-rhythm( $level ) {
+  $rhythm: map-get($rhythm-levels, $level);
+
+  font-size: nth($rhythm, 1);
+  line-height: nth($rhythm, 2);
+  margin-top: nth($rhythm, 3);
+  margin-bottom: nth($rhythm, 4);
+}
+
+/**
+  Create a margin bottom as a multiple of the line height
+ */
+@mixin margin-bottom($number) {
+  margin-bottom: #{$number * $line-height + 'rem'};
+}
+
+
+/*
+   Improved Links underline
+   CSS Secrets, Lea Verou, Chapter 5
+*/
+// Sara Soueidan version
+@mixin better-underline($underline-color: currentColor) {
+  text-decoration: none;
+  border-bottom: .10em solid transparent;
+  outline: 0;
+  transition: all .3s ease-out;
+
+  &:hover {
+    text-decoration: none;
+    border-bottom: .10em solid $underline-color;
+    outline: 0;
+    //font-weight: 400;
+  }
+}
+
+@mixin better-underline-always($underline-color: var(--color-white)) {
+  text-decoration: none;
+  outline: 0;
+  border-bottom: .10em solid currentColor;
+
+  &:hover {
+    text-decoration: none;
+    border-bottom: .10em solid currentColor;
+    outline: 0;
+    //font-weight: 400;
+    transition: all .3s ease-out;
+  }
+}
+
+
+// =========================================================================
+//
+//  PRECISE CONTROL OVER RESPONSIVE TYPOGRAPHY FOR SASS
+//  ---------------------------------------------------
+//  Indrek Paas @indrekpaas
+//
+//  Inspired by Mike Riethmuller's Precise control over responsive typography
+//  http://madebymike.com.au/writing/precise-control-responsive-typography/
+//
+//  `strip-unit()` function by Hugo Giraudel
+//  https://css-tricks.com/snippets/sass/strip-unit-function/
+//
+//  02.04.2018 Remove `screen` keyword from media queries
+//  11.08.2016 Remove redundant `&` self-reference
+//  31.03.2016 Remove redundant parenthesis from output
+//  02.10.2015 Add support for multiple properties
+//  24.04.2015 Initial release
+//
+// // Examples
+// /* Single property */
+// html {
+//   @include fluid-type(font-size, 320px, 1366px, 14px, 18px);
+// }
+//
+// /* Multiple properties with same values */
+// h1 {
+//   @include fluid-type(padding-bottom padding-top, 20em, 70em, 2em, 4em);
+// }
+// =========================================================================
+
+@mixin fluid-type($properties, $min-vw, $max-vw, $min-value, $max-value) {
+  & {
+    @each $property in $properties {
+      #{$property}: $min-value;
+    }
+
+    @media (min-width: $min-vw) {
+      @each $property in $properties {
+        #{$property}: calc(#{$min-value} + #{strip-unit($max-value - $min-value)} * ((100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)}));
+      }
+    }
+
+    @media (min-width: $max-vw) {
+      @each $property in $properties {
+        #{$property}: $max-value;
+      }
+    }
+  }
+}
+
+
+/// Checks the luminance of `$color`.
+///
+/// @param {Color} $color - Color to check the luminance of.
+///
+/// @returns {Number} The luminance of `$color`.
+@function color-luminance($color) {
+  // Adapted from: https://github.com/LeaVerou/contrast-ratio/blob/gh-pages/color.js
+  // Formula: http://www.w3.org/TR/2008/REC-WCAG20-20081211/#relativeluminancedef
+  $rgba: red($color), green($color), blue($color);
+  $rgba2: ();
+
+  @for $i from 1 through 3 {
+    $rgb: nth($rgba, $i);
+    $rgb: $rgb / 255;
+
+    $rgb: if($rgb < 0.03928, $rgb / 12.92, pow(($rgb + 0.055) / 1.055, 2.4));
+
+    $rgba2: append($rgba2, $rgb);
+  }
+
+  @return 0.2126 * nth($rgba2, 1) + 0.7152 * nth($rgba2, 2) + 0.0722 * nth($rgba2, 3);
+}
+
+/// Checks the contrast ratio of two colors.
+///
+/// @param {Color} $color1 - First color to compare.
+/// @param {Color} $color2 - Second color to compare.
+///
+/// @returns {Number} The contrast ratio of the compared colors.
+@function color-contrast($color1, $color2) {
+  // Adapted from: https://github.com/LeaVerou/contrast-ratio/blob/gh-pages/color.js
+  // Formula: http://www.w3.org/TR/2008/REC-WCAG20-20081211/#contrast-ratiodef
+  $luminance1: color-luminance($color1) + 0.05;
+  $luminance2: color-luminance($color2) + 0.05;
+  $ratio: $luminance1 / $luminance2;
+
+  @if $luminance2 > $luminance1 {
+    $ratio: 1 / $ratio;
+  }
+
+  $ratio: round($ratio * 10) / 10;
+
+  @return $ratio;
+}
+

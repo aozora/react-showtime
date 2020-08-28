@@ -1,5 +1,9 @@
 # TODO
 
+## Urgent
+
+* move modules scss to per-component CSS-Modules (scss); global app.scss->css still remains
+
 ## IA
 
 upcoming 

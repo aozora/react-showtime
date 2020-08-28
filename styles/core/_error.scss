@@ -1,0 +1,27 @@
+.error-page{
+  @include container;
+
+  h1 {
+    svg {
+      display: block;
+      width: 80px;
+      height:95px;
+      margin: 0 auto;
+    }
+  }
+
+  .hero {
+    margin-bottom: 10rem;
+  }
+
+  nav {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+
+    a {
+      //display: inline-block;
+      margin: 0 auto;
+    }
+  }
+}
