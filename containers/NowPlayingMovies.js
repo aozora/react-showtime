@@ -1,6 +1,8 @@
 import React from 'react';
+import { mediaType } from '@/lib/shared';
 import ScrollableCardsList from '../components/ScrollableCardsList';
 import { useNowPlayingMovies } from '../hooks/moviesHooks';
+import MediaContextProvider from './MediaContextProvider';
 
 const NowPlayingMovies = ({ motionKey }) => {
   const { media, isLoading, isError } = useNowPlayingMovies();
@@ -14,9 +16,9 @@ const NowPlayingMovies = ({ motionKey }) => {
   }
 
   return (
-    <>
+    <MediaContextProvider type={mediaType.movie}>
       <ScrollableCardsList media={media.results} motionKey={motionKey} />
-    </>
+    </MediaContextProvider>
   );
 };
 

@@ -1,6 +1,8 @@
 import React from 'react';
+import MediaContextProvider from '@/containers/MediaContextProvider';
+import { mediaType } from '@/lib/shared';
 import ScrollableCardsList from '../components/ScrollableCardsList';
-import { usePopularTv } from "../hooks/tvHooks";
+import { usePopularTv } from '../hooks/tvHooks';
 
 const PopularTv = ({ motionKey }) => {
   const { media, isLoading, isError } = usePopularTv();
@@ -14,9 +16,9 @@ const PopularTv = ({ motionKey }) => {
   }
 
   return (
-    <>
+    <MediaContextProvider type={mediaType.tv}>
       <ScrollableCardsList media={media.results} motionKey={motionKey} />
-    </>
+    </MediaContextProvider>
   );
 };
 

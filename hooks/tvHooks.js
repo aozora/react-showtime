@@ -40,3 +40,23 @@ export function useLatestTv() {
     isError: error
   };
 }
+
+export function useTvDetails(slug) {
+  const { data, error } = useSWR(URL.tvDetails.replace('TV_ID', slug), fetcher);
+
+  return {
+    medium: data,
+    isLoading: !error && !data,
+    isError: error
+  };
+}
+
+export function useTvCredits(slug) {
+  const { data, error } = useSWR(URL.tvCredits.replace('TV_ID', slug), fetcher);
+
+  return {
+    credits: data,
+    isCreditsLoading: !error && !data,
+    isCreditsError: error
+  };
+}
