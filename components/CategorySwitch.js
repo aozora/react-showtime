@@ -4,6 +4,7 @@ import { useRadioGroup, useRadio } from '@react-aria/radio';
 import { VisuallyHidden } from '@react-aria/visually-hidden';
 import { useFocusRing } from '@react-aria/focus';
 import { useRadioGroupState } from '@react-stately/radio';
+import styles from './CategorySwitch.module.scss';
 
 const RadioContext = React.createContext();
 
@@ -17,7 +18,7 @@ export const CategorySwitch = props => {
   }, [state.selectedValue]);
 
   return (
-    <div {...radioGroupProps}>
+    <div {...radioGroupProps} className={styles.categorySwitch}>
       <h2 {...labelProps}>{label}</h2>
       <RadioContext.Provider value={state}>{children}</RadioContext.Provider>
     </div>
