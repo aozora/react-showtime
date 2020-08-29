@@ -62,5 +62,5 @@ export const URL = {
   // people
   // ------------------------------------------------------------
   peopleDetails: `https://api.themoviedb.org/3/person/PERSON_ID?language=en-US`,
-  peopleCredits: `https://api.themoviedb.org/3/person/PERSON_ID/combined_credits?language=en-US`
+  peopleCombinedCredits: `https://api.themoviedb.org/3/person/PERSON_ID/combined_credits?language=en-US`
 };
