@@ -8,6 +8,9 @@
 ## Core
 
 > tests + storybook
+> landing page movies, tv, people
+  (popular, top rated)
+> search
 
 * medium details:
     * add keywords
@@ -16,7 +19,13 @@
 
 * add i18next or Adobe provider
 
+## v2
+
+* login, ratings, ...
+
+
 ## UI
 
 * loaders/suspense
-* containers
+
+* hero: auto slide + ken-burn effect of all backdrops

@@ -14,7 +14,7 @@ const Button = props => {
       type={type || 'submit'}
       {...buttonProps}
       {...focusProps}
-      className={`${className} ${isFocusVisible ? 'button--focus-ring' : ''}`}
+      className={`${className ?? ''} ${isFocusVisible ? 'button--focus-ring' : ''}`}
       ref={ref}
     >
       {children}
