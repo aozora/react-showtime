@@ -19,10 +19,6 @@ const PeopleDetails = ({ slug }) => {
     return <div>loading...</div>;
   }
 
-  if (credits) {
-    console.log('*** DEBUG *** credits', credits.cast.sort(compareCastReleaseDatesDesc));
-  }
-
   return (
     <article className={`${styles.mediumDetails} ${styles.personDetails}`}>
       <header>
