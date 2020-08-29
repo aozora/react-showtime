@@ -1,6 +1,5 @@
 @import '../styles/shared';
 
-$card-shadow: -1rem 0 2rem var(--color-black);
 
 .cardsList {
   display: flex;
@@ -22,7 +21,7 @@ $card-shadow: -1rem 0 2rem var(--color-black);
 
   [class^="MediumCard"] {
     margin: 1rem;
-    box-shadow: $card-shadow;
+    box-shadow: var(--card-shadow);
     transform: scale(1);
     z-index: 1;
     transition: transform 350ms ease-out;

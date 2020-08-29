@@ -1,3 +1,5 @@
+@import '../styles/shared';
+
 .hero {
   position: relative;
   width: 100%;
@@ -24,13 +26,13 @@
     left: 0;
     width: 70%;
     height: 100%;
-    padding: 5rem 4.5vw;
+    padding: 25vh 4.5vw;
     background-image: linear-gradient(to right, rgba(0, 0, 0, .4) 0, rgba(0, 0, 0, 0) 100%);
     background-blend-mode: multiply;
     overflow: hidden;
 
     h1 {
-      margin-bottom: .44rem;
+      margin: 0 0 .44rem 0;
 
       a {
         margin: 0;
@@ -38,8 +40,9 @@
         font-size: inherit;
         font-weight: inherit;
         letter-spacing: inherit;
+        text-decoration: none;
 
-        @include better-underline;
+        //@include better-underline;
       }
     }
 
@@ -53,16 +56,16 @@
   }
 }
 
-.hero__genres {
+.heroGenres {
   @include title-genres;
 }
 
-.hero__info-small {
+.heroInfoSmall {
   font-size: 13px;
   letter-spacing: 0.4px;
 }
 
-.hero__tag {
+.heroTag {
   display: inline-block;
   width: auto;
   height: 1.5rem;
@@ -77,7 +80,7 @@
   color: var(--color-dark-gray);
 }
 
-.hero__play-button {
+.heroPlayButton {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -102,9 +105,19 @@
   }
 }
 
+.heroActions {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 1rem 0;
 
-.hero__abstract {
-  position: absolute;
-  left: 4.5vw;
-  bottom: 4rem;
+  button {
+    margin-right: 1rem;
+  }
+}
+
+.heroAbstract {
+  //position: absolute;
+  //left: 4.5vw;
+  //bottom: 4rem;
 }
