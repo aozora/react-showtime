@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { compareCastReleaseDatesDesc } from '@/lib/shared';
 import { formatDate } from '../lib/shared';
 import styles from './MediumDetails.module.scss';
@@ -9,12 +9,18 @@ const PeopleDetails = ({ slug }) => {
   const { person, isLoading, isError } = usePeopleDetails(slug);
   const { credits, isCreditsLoading, isCreditsError } = usePeopleCredits(slug);
 
+  const formatDateTime = useCallback(date => formatDate(date));
+
   if (isError) {
     return <div>failed to load</div>;
   }
 
   if (isLoading) {
     return <div>loading...</div>;
+  }
+
+  if (credits) {
+    console.log('*** DEBUG *** credits', credits.cast.sort(compareCastReleaseDatesDesc));
   }
 
   return (
@@ -37,13 +43,13 @@ const PeopleDetails = ({ slug }) => {
           <h2>Personal Info</h2>
           <dl>
             <dt>Birthday</dt>
-            <dd>{formatDate(person.birthday)}</dd>
+            <dd>{formatDateTime(person.birthday)}</dd>
             <dt>Place of birth</dt>
             <dd>{person.place_of_birth}</dd>
             {person.deathday && (
               <>
                 <dt>Death</dt>
-                <dd>{formatDate(person.deathday)}</dd>
+                <dd>{formatDateTime(person.deathday)}</dd>
               </>
             )}
             <dt>Also known as</dt>
@@ -58,10 +64,11 @@ const PeopleDetails = ({ slug }) => {
               <tbody>
                 {credits.cast.sort(compareCastReleaseDatesDesc).map((cast, index) => (
                   <tr key={index}>
-                    <td>{cast.release_date && formatDate(cast.release_date)}</td>
+                    <td>{cast.release_date && formatDateTime(cast.release_date)}</td>
                     <td>
                       {cast.title}
                       {cast.original_title && <span>{`(${cast.original_title})`}</span>}
+                      {cast.character && <>&nbsp;as {cast.character}</>}
                     </td>
                   </tr>
                 ))}
