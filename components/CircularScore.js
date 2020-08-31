@@ -48,7 +48,7 @@ const CircularScore = ({ score }) => {
       <g filter="url(#a)" transform="translate(7 7)" fill="none" fillRule="evenodd">
         <path
           fill="none"
-          stroke="#E6B91E"
+          stroke="#FFFFFF"
           strokeWidth="7"
           d={describeArc(116 / 2, 116 / 2, 54, 0, (score * 360) / 100)}
         />

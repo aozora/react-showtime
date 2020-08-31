@@ -54,16 +54,22 @@ const TvDetails = ({ slug }) => {
       <header>
         <div className={styles.mediumDetailsHeader}>
           <h1>{medium.original_name}</h1>
+
           {medium.original_name !== medium.name && <h2>{medium.name}</h2>}
-          {medium.genres.map(genre => (
-            <p key={genre.id} className={styles.mediumGenres}>
-              <span>{genre.name}</span>
-            </p>
-          ))}
-          <p className="medium__released">First Aired {formatDate(medium.first_air_date)}</p>
-          <p className="medium__released">Last Aired {formatDate(medium.last_air_date)}</p>
-          <p>Number of seasons: {medium.number_of_seasons}</p>
-          <p>Number of episodes: {medium.number_of_episodes}</p>
+
+          <p className={styles.mediumGenres}>
+            {medium.genres.map(genre => (
+              <span key={genre.id}>{genre.name}</span>
+            ))}
+          </p>
+
+          <p className={styles.mediumReleased}>First Aired {formatDate(medium.first_air_date)}</p>
+          <p className={styles.mediumReleased}>Last Aired {formatDate(medium.last_air_date)}</p>
+          <p className={styles.mediumSeasonsEpisodesInfo}>
+            {medium.number_of_seasons}&nbsp;
+            {medium.number_of_seasons === 1 ? 'Season' : 'Seasons'}, {medium.number_of_episodes}{' '}
+            episodes
+          </p>
         </div>
 
         <MediumImage medium={medium} imageType={cardType.backdrop} />

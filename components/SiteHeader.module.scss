@@ -19,7 +19,7 @@ $menu-toggle-button-zindex: $menu-zindex + 2;
 }
 
 .siteHeaderScrolled {
-  background-color: var(--color-black);
+  background-color: var(--color-body-background);
 }
 
 .header--open {
@@ -94,7 +94,8 @@ $menu-toggle-button-zindex: $menu-zindex + 2;
     text-align: left;
   }
 
-  a {
+  a,
+  a:link {
     position: relative;
     display: block;
     width: 100%;
@@ -144,10 +145,12 @@ $menu-toggle-button-zindex: $menu-zindex + 2;
       margin: 0 .5rem;
     }
 
-    a {
+    a,
+    a:link {
       display: block;
       width: auto;
       margin: 0 1rem;
+      color: var(--color-white);
 
       &:hover,
       &:active,

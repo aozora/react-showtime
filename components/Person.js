@@ -11,8 +11,10 @@ const Person = ({ person }) => {
         {/* <svg v-else class="avatar-placeholder"> */}
         {/*  <use xlink:href="#icon-avatar"></use> */}
         {/* </svg> */}
-        <p>{person.character}</p>
-        <p>{person.name}</p>
+        <div>
+          <p>{person.character}</p>
+          <p>{person.name}</p>
+        </div>
       </a>
     </Link>
   );

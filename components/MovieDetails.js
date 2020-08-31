@@ -50,13 +50,15 @@ const MovieDetails = ({ slug }) => {
       <header>
         <div className={styles.mediumDetailsHeader}>
           <h1>{medium.original_title}</h1>
+
           {medium.original_title !== medium.title && <h2>{medium.title}</h2>}
-          {medium.genres.map(genre => (
-            <p key={genre.id} className={styles.mediumGenres}>
-              <span>{genre.name}</span>
-            </p>
-          ))}
-          <p className="medium__released">Released {formatDate(medium.release_date)}</p>
+
+          <p className={styles.mediumGenres}>
+            {medium.genres.map(genre => (
+              <span key={genre.id}>{genre.name}</span>
+            ))}
+          </p>
+          <p className={styles.mediumReleased}>Released {formatDate(medium.release_date)}</p>
         </div>
 
         <MediumImage medium={medium} imageType={cardType.backdrop} />
