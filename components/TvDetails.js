@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import CircularScore from '@/components/CircularScore';
-import { cardType, formatDate } from '../lib/shared';
+import CategorySwitch, { CategoryRadio } from '@/components/CategorySwitch';
+import { AnimatePresence } from 'framer-motion';
+import ScrollableMediaList from '@/components/ScrollableMediaList';
+import { cardType, formatDate, mediaListType } from '../lib/shared';
 import MediumImage from './MediumImage';
 import Person from './Person';
 import styles from './MediumDetails.module.scss';
@@ -12,6 +15,7 @@ import {
 import { useTvCredits, useTvDetails } from '../hooks/tvHooks';
 
 const TvDetails = ({ slug }) => {
+  const [selectedMediaListType, setSelectedMediaListType] = useState(mediaListType.videos);
   const { medium, isLoading, isError } = useTvDetails(slug);
   const { credits, isCreditsLoading, isCreditsError } = useTvCredits(slug);
   const languages = useSelector(selectConfigurationLanguages);
@@ -47,6 +51,20 @@ const TvDetails = ({ slug }) => {
     const runtime = medium.episode_run_time;
 
     return `${parseInt(runtime / 60, 10)}h ${runtime - 60 * parseInt(runtime / 60, 10)}min`;
+  };
+
+  const getMediumMedia = mediaType => {
+    if (mediaType === mediaListType.videos) {
+      return medium.videos.results;
+    }
+    if (mediaType === mediaListType.posters) {
+      return medium.images.posters;
+    }
+    if (mediaType === mediaListType.backdrops) {
+      return medium.images.backdrops;
+    }
+
+    return [];
   };
 
   return (
@@ -167,10 +185,27 @@ const TvDetails = ({ slug }) => {
         </section>
       )}
 
-      {/* <section className="medium__videos">
-          <h2>Videos</h2>
-          <VideoList :videos="medium.videos.results"></VideoList>;
-          </section> */}
+      <section className={styles.mediumMedia}>
+        <CategorySwitch
+          label="Media"
+          value={mediaListType.videos}
+          onChange={value => setSelectedMediaListType(value)}
+        >
+          <CategoryRadio label="Videos" value={mediaListType.videos} />
+          <CategoryRadio label="Posters" value={mediaListType.posters} />
+          <CategoryRadio label="Backdrops" value={mediaListType.backdrops} />
+        </CategorySwitch>
+
+        <div className="media-list-container">
+          <AnimatePresence>
+            {selectedMediaListType === mediaListType.videos}
+            <ScrollableMediaList
+              media={getMediumMedia(selectedMediaListType)}
+              mediaType={selectedMediaListType}
+            />
+          </AnimatePresence>
+        </div>
+      </section>
     </article>
   );
 };

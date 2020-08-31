@@ -1,0 +1,60 @@
+.video {
+  width: 100%;
+  background-color: var(--color-black);
+  cursor: pointer;
+
+
+  //&:hover {
+  //  #{$block}__button-shape {
+  //    fill: red;
+  //    fill-opacity: 1;
+  //  }
+  //}
+}
+
+.videoInner {
+  position: relative;
+}
+
+.videoEmbed,
+.videoMedia {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-width: 0;
+}
+
+.videoButton {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-width: 0;
+  background-color: transparent;
+  width: 68px;
+  height: 48px;
+  padding: 0;
+  cursor: pointer;
+
+
+
+  &:focus {
+    outline: 0;
+
+    //#{$block}__button-shape {
+    //  fill: red;
+    //  fill-opacity: 1;
+    //}
+  }
+}
+
+.videoButtonShape {
+  fill: #212121;
+  fill-opacity: 0.8;
+}
+
+.videoButtonIcon {
+  fill: #fff;
+}

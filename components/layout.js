@@ -80,8 +80,6 @@ export default function Layout({ preview, children }) {
     return <Splash configurationApi={api} moviesGenres={moviesGenres} />;
   }
 
-  console.log(entry);
-
   return (
     <>
       <a href="#main" tabIndex="0">

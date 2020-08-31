@@ -31,14 +31,14 @@ export const CategoryRadio = props => {
   const { inputProps } = useRadio(props, state);
   const { isFocusVisible, focusProps } = useFocusRing();
 
-  const isSelected = state.selectedValue === props.value;
+  const isSelected = state.selectedValue === value;
 
   return (
     // eslint-disable-next-line jsx-a11y/label-has-associated-control
     <label style={{ display: 'flex', alignItems: 'center' }}>
-      <VisuallyHidden>
-        <input {...inputProps} {...focusProps} />
-      </VisuallyHidden>
+      {/* <VisuallyHidden> */}
+      <input {...inputProps} {...focusProps} />
+      {/* </VisuallyHidden> */}
       <div
         className={`button ${isSelected ? 'button--primary' : ''} ${
           isFocusVisible ? 'button--focus-ring' : ''

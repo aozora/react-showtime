@@ -20,7 +20,7 @@ export const URL = {
 
   images: 'https://image.tmdb.org/t/p/',
   youtubeEmbed: 'https://www.youtube.com/embed/',
-  youtubeTrailer: 'https://www.youtube.com/watch?v=',
+  youtubeTrailer: 'https://www.youtube.com/watch?v=YOUTUBEKEY',
   youtubePoster: 'https://img.youtube.com/vi/YOUTUBEKEY/hqdefault.jpg',
   youtubePosterMaxRes: 'https://img.youtube.com/vi/YOUTUBEKEY/maxresdefault.jpg',
   search: `https://api.themoviedb.org/3/search/multi?language=en-US&query=KEYWORD&page=1&include_adult=false`,
