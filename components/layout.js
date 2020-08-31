@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import SiteHeader from '@/components/SiteHeader';
 import SiteFooter from '@/components/SiteFooter';
 import { useDispatch } from 'react-redux';
@@ -13,6 +13,7 @@ import {
   setGenresTv
 } from '@/store/features/tmdb/configuration/configuration-slice';
 import Splash from '@/components/Splash';
+import { useInView } from 'react-intersection-observer';
 import {
   useConfigurationApi,
   useConfigurationLanguages,
@@ -36,6 +37,12 @@ export default function Layout({ preview, children }) {
   const { countries } = useConfigurationCountries();
   const { jobs } = useConfigurationJobs();
   const { primaryTranslations } = useConfigurationPrimaryTranslations();
+
+  const [ref, inView, entry] = useInView({
+    /* Optional options */
+    threshold: 0,
+    rootMargin: '200px'
+  });
 
   if (api && !isLoadingConfigurationApi) {
     dispatch(setApiConfiguration(api));
@@ -73,13 +80,16 @@ export default function Layout({ preview, children }) {
     return <Splash configurationApi={api} moviesGenres={moviesGenres} />;
   }
 
+  console.log(entry);
+
   return (
     <>
       <a href="#main" tabIndex="0">
         Skip to main content
       </a>
+      <SiteHeader scrolled={inView} />
       <main id="main" role="main">
-        <SiteHeader />
+        <div ref={ref} className="visuallyhidden">{`Header inside viewport ${inView}.`}</div>
         {children}
       </main>
       <SiteFooter />

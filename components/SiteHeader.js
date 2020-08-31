@@ -1,15 +1,18 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import HeaderLogo from './HeaderLogo';
 import styles from './SiteHeader.module.scss';
 
-const SiteHeader = () => {
+const SiteHeader = ({ scrolled }) => {
   const router = useRouter();
 
   return (
-    <header id="site-header" className={styles.siteHeader}>
+    <header
+      id="site-header"
+      className={`${styles.siteHeader} ${scrolled ? '' : styles.siteHeaderScrolled}`}
+    >
       <a href="#main">Skip to main content</a>
 
       <nav id="main-menu" className={styles.mainMenu}>
@@ -187,12 +190,16 @@ const SiteHeader = () => {
               <a className={router.pathname === '/movies' ? 'active' : ''}>Movies</a>
             </Link>
           </li>
-          <Link href="/tv">
-            <a className={router.pathname === '/tv' ? 'active' : ''}>TV</a>
-          </Link>
-          <Link href="/people">
-            <a className={router.pathname === '/people' ? 'active' : ''}>People</a>
-          </Link>
+          <li>
+            <Link href="/tv">
+              <a className={router.pathname === '/tv' ? 'active' : ''}>TV</a>
+            </Link>
+          </li>
+          <li>
+            <Link href="/people">
+              <a className={router.pathname === '/people' ? 'active' : ''}>People</a>
+            </Link>
+          </li>
         </ul>
       </nav>
     </header>

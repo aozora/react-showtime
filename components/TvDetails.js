@@ -130,13 +130,12 @@ const TvDetails = ({ slug }) => {
             <dt>Networks</dt>
             <dd>
               {medium.networks.map(network => (
-                <>
-                  <img
-                    className={styles.networkLogo}
-                    src={`${imagesSecureBaseUrl}w45${network.logo_path}`}
-                    alt={network.name}
-                  />
-                </>
+                <img
+                  key={network.name}
+                  className={styles.networkLogo}
+                  src={`${imagesSecureBaseUrl}w45${network.logo_path}`}
+                  alt={network.name}
+                />
               ))}
             </dd>
 
@@ -153,8 +152,8 @@ const TvDetails = ({ slug }) => {
       {credits && (
         <section className={styles.mediumDetailsCastAndCrew}>
           <ul className={styles.mediumCast}>
-            {credits.cast.map(cast => (
-              <li key={cast.cast_id}>
+            {credits.cast.map((cast, index) => (
+              <li key={index}>
                 <Person person={cast} />
               </li>
             ))}

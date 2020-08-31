@@ -14,7 +14,12 @@ $menu-toggle-button-zindex: $menu-zindex + 2;
   height: $menu-height;
   z-index: $menu-zindex + 1;
   background-color: transparent;
+  transition: background-color .35s ease-in-out;
   overflow: hidden;
+}
+
+.siteHeaderScrolled {
+  background-color: var(--color-black);
 }
 
 .header--open {
@@ -137,14 +142,6 @@ $menu-toggle-button-zindex: $menu-zindex + 2;
     > li {
       flex: 0 0 auto;
       margin: 0 .5rem;
-
-      &:last-child {
-        padding: 0;
-      }
-
-      &.main-menu__search {
-        margin: 0;
-      }
     }
 
     a {

@@ -1,5 +1,6 @@
 
 .button,
+a.button,
 button {
   position: relative;
   display: flex;
@@ -12,6 +13,7 @@ button {
   background-color: var(--button-background-color);
   transition: all .2s ease-out;
   font-family: var(--body-font-family);
+  text-decoration: none;
 
   @if $use-variable-font {
     @supports (font-variation-settings: normal) {

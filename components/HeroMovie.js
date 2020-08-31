@@ -1,7 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import Button from '@/components/Button';
 import { getRandomInt } from '@/lib/shared';
 import { cardType, formatDate } from '../lib/shared';
 import MediumImage from './MediumImage';
@@ -62,7 +61,7 @@ const HeroMovie = () => {
           {/* //          alt="" */}
           {/* // > */}
           <figcaption>
-            <span className={styles.heroTag}>Movies</span>
+            <span className={styles.heroTag}>Movie</span>
             <h1>
               <Link href="/movie/[slug]" as={`/movie/${medium.id}`}>
                 {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
@@ -77,7 +76,10 @@ const HeroMovie = () => {
             <p className={styles.heroInfoSmall}>Popularity: {medium.vote_average * 10}%</p>
             <p className={styles.heroAbstract}>{getAbstract(medium)}</p>
             <p className={styles.heroActions}>
-              <Button onPress={() => router.push(`/movie/${medium.id}`)}>Details</Button>
+              <Link href="/movie/[slug]" as={`/movie/${medium.id}`}>
+                {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+                <a className="button">Details</a>
+              </Link>
               <button type="button" className="button button--primary">
                 Play trailer
               </button>
