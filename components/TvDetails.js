@@ -1,9 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import CircularScore from '@/components/CircularScore';
-import CategorySwitch, { CategoryRadio } from '@/components/CategorySwitch';
-import { AnimatePresence } from 'framer-motion';
-import ScrollableMediaList from '@/components/ScrollableMediaList';
 import MediumMediaList from '@/components/MediumMediaList';
 import { cardType, formatDate, mediaListType } from '../lib/shared';
 import MediumImage from './MediumImage';

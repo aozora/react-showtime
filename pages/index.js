@@ -4,7 +4,7 @@ import UpcomingMovies from '@/containers/UpcomingMovies';
 import HomeHero from '@/containers/HomeHero';
 import NowPlayingMovies from '@/containers/NowPlayingMovies';
 import CategorySwitch, { CategoryRadio } from '@/components/CategorySwitch';
-import { movieCategory, tvCategory } from '@/lib/shared';
+import { mediaListType, movieCategory, tvCategory } from '@/lib/shared';
 import OnTheAirTodayTv from '@/containers/OnTheAirTodayTv';
 import PopularTv from '@/containers/PopularTv';
 
@@ -17,34 +17,42 @@ export default function Index({}) {
       <HomeHero />
 
       <CategorySwitch
-        label="Movies"
-        value={movieCategory.upcoming}
+        label="Media"
+        initialValue={movieCategory.upcoming}
+        radios={[
+          { label: `Upcoming`, value: movieCategory.upcoming },
+          { label: `Now Playing`, value: movieCategory.nowPlaying }
+        ]}
         onChange={value => setSelectedMovieCategory(value)}
-      >
-        <CategoryRadio label="Upcoming" value={movieCategory.upcoming} />
-        <CategoryRadio label="Now Playing" value={movieCategory.nowPlaying} />
-      </CategorySwitch>
+      />
 
       <div className="cards-list-container">
         <AnimatePresence>
-          {selectedMovieCategory === movieCategory.upcoming && <UpcomingMovies />}
-          {selectedMovieCategory === movieCategory.nowPlaying && <NowPlayingMovies />}
+          {selectedMovieCategory === movieCategory.upcoming && (
+            <UpcomingMovies key={movieCategory.upcoming} />
+          )}
+          {selectedMovieCategory === movieCategory.nowPlaying && (
+            <NowPlayingMovies key={movieCategory.nowPlaying} />
+          )}
         </AnimatePresence>
       </div>
 
       <CategorySwitch
-        label="TV Shows"
-        value={tvCategory.onTheAirToday}
+        label="Media"
+        initialValue={tvCategory.onTheAirToday}
+        radios={[
+          { label: `On The Air Today`, value: tvCategory.onTheAirToday },
+          { label: `Popular`, value: tvCategory.popular }
+        ]}
         onChange={value => setSelectedTvCategory(value)}
-      >
-        <CategoryRadio label="On The Air Today" value={tvCategory.onTheAirToday} />
-        <CategoryRadio label="Popular" value={tvCategory.popular} />
-      </CategorySwitch>
+      />
 
       <div className="cards-list-container">
         <AnimatePresence>
-          {selectedTvCategory === tvCategory.onTheAirToday && <OnTheAirTodayTv />}
-          {selectedTvCategory === tvCategory.popular && <PopularTv />}
+          {selectedTvCategory === tvCategory.onTheAirToday && (
+            <OnTheAirTodayTv key={tvCategory.onTheAirToday} />
+          )}
+          {selectedTvCategory === tvCategory.popular && <PopularTv key={tvCategory.popular} />}
         </AnimatePresence>
       </div>
     </>
