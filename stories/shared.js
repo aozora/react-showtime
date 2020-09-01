@@ -1,8 +1,8 @@
 // eslint-disable-next-line import/prefer-default-export
 export const colors = {
   // Palette
-  primary: '#FA9E27',
-  secondary: '#1D2125',
+  primary: '#6c43bf',
+  secondary: '#1a1a1a',
   black: '#000000',
   white: '#FFFFFF',
   light: '#FFE6CB',

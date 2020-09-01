@@ -1,2 +1,34 @@
 /* Default Form Style
 ------------------------ */
+[type='color'],
+[type='date'],
+[type='datetime-local'],
+[type='datetime'],
+[type='email'],
+[type='month'],
+[type='number'],
+[type='password'],
+[type='search'],
+[type='tel'],
+[type='text'],
+[type='time'],
+[type='url'],
+[type='week'],
+textarea,
+select {
+  display: block;
+  width: var(--form-field-max-width);
+  height: var(--form-field-height);
+  padding: 0 1.14rem;
+  border: var(--form-field-border);
+  border-radius: var(--global-border-radius);
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--color-light-gray);
+  background-color: var(--color-white);
+  transition: all 0.35s ease-in-out;
+
+  &[disabled] {
+    color: rgba(var(--color-gray), .5);
+  }
+}

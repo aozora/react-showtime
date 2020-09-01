@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import MiniSearch from './MiniSearch';
 import HeaderLogo from './HeaderLogo';
 import styles from './SiteHeader.module.scss';
 
@@ -201,6 +202,9 @@ const SiteHeader = ({ scrolled }) => {
             </Link>
           </li>
         </ul>
+        <div className={styles.mainMenuSearch}>
+          <MiniSearch />
+        </div>
       </nav>
     </header>
   );
