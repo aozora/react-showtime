@@ -42,17 +42,17 @@ const LazyYouTubeVideo = ({ url, alt, label }) => {
       <div className={styles.videoInner} style={getPaddingBottom()}>
         {!isVideoLoaded && (
           <>
-            <picture>
-              <source
-                srcSet={`https://i.ytimg.com/vi_webp/${url}/hqdefault.webp`}
-                type="image/webp"
-              />
-              <img
-                className={styles.videoMedia}
-                src={`https://i.ytimg.com/vi/${url}/hqdefault.jpg`}
-                alt={alt}
-              />
-            </picture>
+            {/* <picture> */}
+            {/*  <source */}
+            {/*    srcSet={`https://i.ytimg.com/vi_webp/${url}/hqdefault.webp`} */}
+            {/*    type="image/webp" */}
+            {/*  /> */}
+            <img
+              className={styles.videoMedia}
+              src={`https://i.ytimg.com/vi/${url}/hqdefault.jpg`}
+              alt={alt}
+            />
+            {/* </picture> */}
             <button type="button" className={styles.videoButton} aria-label={label}>
               <svg viewBox="0 0 68 48" version="1.1" width="100%" height="100%">
                 <path

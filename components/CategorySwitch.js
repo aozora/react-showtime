@@ -31,7 +31,10 @@ export const CategorySwitch = ({ radios, label, initialValue, onChange }) => {
           {radios &&
             radios.map(radio => (
               // eslint-disable-next-line jsx-a11y/label-has-associated-control
-              <label key={radio.value}>
+              <label
+                key={radio.value}
+                className={`button ${selectedValue === radio.value ? 'button--primary' : ''}`}
+              >
                 <input
                   type="radio"
                   name={name}

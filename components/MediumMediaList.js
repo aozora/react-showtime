@@ -14,9 +14,9 @@ const MediumMediaList = ({ medium }) => {
         label="Media"
         initialValue={mediaListType.videos}
         radios={[
-          { label: 'Videos', value: mediaListType.videos },
-          { label: 'Posters', value: mediaListType.posters },
-          { label: 'Backdrops', value: mediaListType.backdrops }
+          { label: `Videos (${medium.videos.results.length})`, value: mediaListType.videos },
+          { label: `Posters (${medium.images.posters.length})`, value: mediaListType.posters },
+          { label: `Backdrops (${medium.images.backdrops.length})`, value: mediaListType.backdrops }
         ]}
         onChange={value => setSelectedMediaListType(value)}
       />
@@ -24,13 +24,22 @@ const MediumMediaList = ({ medium }) => {
       <div className="media-list-container">
         <AnimatePresence>
           {selectedMediaListType === mediaListType.videos && (
-            <ScrollableMediaList media={medium.videos.results} mediaType={mediaListType.videos} />
+            <ScrollableMediaList
+              key={mediaListType.videos}
+              media={medium.videos.results}
+              mediaType={mediaListType.videos}
+            />
           )}
           {selectedMediaListType === mediaListType.posters && (
-            <ScrollableMediaList media={medium.images.posters} mediaType={mediaListType.posters} />
+            <ScrollableMediaList
+              key={mediaListType.posters}
+              media={medium.images.posters}
+              mediaType={mediaListType.posters}
+            />
           )}
           {selectedMediaListType === mediaListType.backdrops && (
             <ScrollableMediaList
+              key={mediaListType.backdrops}
               media={medium.images.backdrops}
               mediaType={mediaListType.backdrops}
             />
