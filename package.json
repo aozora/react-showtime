@@ -36,6 +36,7 @@
     "@react-aria/utils": "^3.1.0",
     "@react-aria/visually-hidden": "^3.2.0",
     "@reduxjs/toolkit": "^1.4.0",
+    "d3-shape": "^2.0.0",
     "date-fns": "^2.16.0",
     "framer-motion": "^2.6.5",
     "next": "^9.5.2",

@@ -61,7 +61,9 @@ const HeroMovie = () => {
           {/* //          alt="" */}
           {/* // > */}
           <figcaption>
-            <span className={styles.heroTag}>Movie</span>
+            <span role="doc-subtitle" className={styles.heroTag}>
+              Movie
+            </span>
             <h1>
               <Link href="/movie/[slug]" as={`/movie/${medium.id}`}>
                 {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}

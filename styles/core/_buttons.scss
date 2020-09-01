@@ -55,7 +55,6 @@ button {
 }
 
 .button--focus-ring {
-
   &::after {
     box-shadow: 0 0 0 2px var(--focus-ring-color);
     margin: -4px;
@@ -66,4 +65,15 @@ button {
   border: var(--button-primary-border);
   background-color: var(--button-primary-background-color);
   color: var(--button-primary-color);
+}
+
+
+.button--icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  svg {
+    margin-left: 1rem;
+  }
 }
