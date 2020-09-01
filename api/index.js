@@ -33,7 +33,7 @@ export const URL = {
   movieCredits: `https://api.themoviedb.org/3/movie/MOVIE_ID/credits`,
 
   // trending: https://developers.themoviedb.org/3/trending/get-trending
-  trending: `https://api.themoviedb.org/3/trending/TYPE/TIME`,
+  trending: `https://api.themoviedb.org/3/trending/MEDIA_TYPE/TIME_WINDOW`,
 
   // movie collections
   latestMovie: `https://api.themoviedb.org/3/movie/latest?language=en-US`,

@@ -4,21 +4,46 @@ import UpcomingMovies from '@/containers/UpcomingMovies';
 import HomeHero from '@/containers/HomeHero';
 import NowPlayingMovies from '@/containers/NowPlayingMovies';
 import CategorySwitch from '@/components/CategorySwitch';
-import { movieCategory, tvCategory } from '@/lib/shared';
+import { mediaType, movieCategory, timeWindow, tvCategory } from '@/lib/shared';
 import OnTheAirTodayTv from '@/containers/OnTheAirTodayTv';
 import PopularTv from '@/containers/PopularTv';
 import PopularMovies from '@/containers/PopularMovies';
 import TopRatedMovies from '@/containers/TopRatedMovies';
 import OnTheAirTv from '@/containers/OnTheAirTv';
 import TopRatedTv from '@/containers/TopRatedTv';
+import TrendingMedia from '@/containers/TrendingMedia';
 
 export default function Index({}) {
   const [selectedMovieCategory, setSelectedMovieCategory] = useState(movieCategory.upcoming);
+  const [selectedTrendingCategory, setSelectedTrendingCategory] = useState(timeWindow.day);
   const [selectedTvCategory, setSelectedTvCategory] = useState(tvCategory.onTheAirToday);
 
   return (
     <>
       <HomeHero />
+
+      {/* TrendingMedia */}
+
+      <CategorySwitch
+        label="Trending"
+        initialValue={timeWindow.day}
+        radios={[
+          { label: `Today`, value: timeWindow.day },
+          { label: `This week`, value: timeWindow.week }
+        ]}
+        onChange={value => setSelectedTrendingCategory(value)}
+      />
+
+      <div className="cards-list-container">
+        <AnimatePresence>
+          {selectedTrendingCategory === timeWindow.day && (
+            <TrendingMedia key={timeWindow.day} type={mediaType.all} time={timeWindow.day} />
+          )}
+          {selectedTrendingCategory === timeWindow.week && (
+            <TrendingMedia key={timeWindow.day} type={mediaType.all} time={timeWindow.week} />
+          )}
+        </AnimatePresence>
+      </div>
 
       <CategorySwitch
         label="Media"

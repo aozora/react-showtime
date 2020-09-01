@@ -7,14 +7,14 @@
 
 ## Core
 
-> tests + storybook
-> landing page movies, tv, people
+* tests + storybook
+* landing page movies, tv, people
   (popular, top rated)
-> search
+* search
+* i18n + language management
 
 * medium details:
     * add keywords
-    * add images/videos list
     * (tv) add episodes/seasons
 
 * add i18next or Adobe provider
