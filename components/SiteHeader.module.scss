@@ -14,7 +14,12 @@ $menu-toggle-button-zindex: $menu-zindex + 2;
   height: $menu-height;
   z-index: $menu-zindex + 1;
   background-color: transparent;
+  transition: background-color .35s ease-in-out;
   overflow: hidden;
+}
+
+.siteHeaderScrolled {
+  background-color: var(--color-body-background);
 }
 
 .header--open {
@@ -89,7 +94,8 @@ $menu-toggle-button-zindex: $menu-zindex + 2;
     text-align: left;
   }
 
-  a {
+  a,
+  a:link {
     position: relative;
     display: block;
     width: 100%;
@@ -137,20 +143,14 @@ $menu-toggle-button-zindex: $menu-zindex + 2;
     > li {
       flex: 0 0 auto;
       margin: 0 .5rem;
-
-      &:last-child {
-        padding: 0;
-      }
-
-      &.main-menu__search {
-        margin: 0;
-      }
     }
 
-    a {
+    a,
+    a:link {
       display: block;
       width: auto;
       margin: 0 1rem;
+      color: var(--color-white);
 
       &:hover,
       &:active,

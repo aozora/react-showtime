@@ -92,7 +92,7 @@ const MediumImage = ({ medium, imageType }) => {
 
       {!medium && <img src={getPlaceholder()} alt="" />}
 
-      <figcaption>{medium.title}</figcaption>
+      {medium.title && <figcaption>{medium.title}</figcaption>}
     </figure>
   );
 };

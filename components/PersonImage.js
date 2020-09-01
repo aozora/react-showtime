@@ -62,7 +62,7 @@ const PersonImage = ({ person }) => {
 
       {/* {!medium && <img src={getPlaceholder()} alt="" />} */}
 
-      <figcaption>{person.name}</figcaption>
+      {/* <figcaption>{person.name}</figcaption> */}
     </figure>
   );
 };

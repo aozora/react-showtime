@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import CircularScore from '@/components/CircularScore';
-import { cardType, formatDate } from '../lib/shared';
+import CategorySwitch, { CategoryRadio } from '@/components/CategorySwitch';
+import { AnimatePresence } from 'framer-motion';
+import ScrollableMediaList from '@/components/ScrollableMediaList';
+import MediumMediaList from '@/components/MediumMediaList';
+import { cardType, formatDate, mediaListType } from '../lib/shared';
 import MediumImage from './MediumImage';
 import Person from './Person';
 import styles from './MediumDetails.module.scss';
@@ -54,16 +58,22 @@ const TvDetails = ({ slug }) => {
       <header>
         <div className={styles.mediumDetailsHeader}>
           <h1>{medium.original_name}</h1>
+
           {medium.original_name !== medium.name && <h2>{medium.name}</h2>}
-          {medium.genres.map(genre => (
-            <p key={genre.id} className={styles.mediumGenres}>
-              <span>{genre.name}</span>
-            </p>
-          ))}
-          <p className="medium__released">First Aired {formatDate(medium.first_air_date)}</p>
-          <p className="medium__released">Last Aired {formatDate(medium.last_air_date)}</p>
-          <p>Number of seasons: {medium.number_of_seasons}</p>
-          <p>Number of episodes: {medium.number_of_episodes}</p>
+
+          <p className={styles.mediumGenres}>
+            {medium.genres.map(genre => (
+              <span key={genre.id}>{genre.name}</span>
+            ))}
+          </p>
+
+          <p className={styles.mediumReleased}>First Aired {formatDate(medium.first_air_date)}</p>
+          <p className={styles.mediumReleased}>Last Aired {formatDate(medium.last_air_date)}</p>
+          <p className={styles.mediumSeasonsEpisodesInfo}>
+            {medium.number_of_seasons}&nbsp;
+            {medium.number_of_seasons === 1 ? 'Season' : 'Seasons'}, {medium.number_of_episodes}{' '}
+            episodes
+          </p>
         </div>
 
         <MediumImage medium={medium} imageType={cardType.backdrop} />
@@ -130,13 +140,12 @@ const TvDetails = ({ slug }) => {
             <dt>Networks</dt>
             <dd>
               {medium.networks.map(network => (
-                <>
-                  <img
-                    className={styles.networkLogo}
-                    src={`${imagesSecureBaseUrl}w45${network.logo_path}`}
-                    alt={network.name}
-                  />
-                </>
+                <img
+                  key={network.name}
+                  className={styles.networkLogo}
+                  src={`${imagesSecureBaseUrl}w45${network.logo_path}`}
+                  alt={network.name}
+                />
               ))}
             </dd>
 
@@ -153,8 +162,8 @@ const TvDetails = ({ slug }) => {
       {credits && (
         <section className={styles.mediumDetailsCastAndCrew}>
           <ul className={styles.mediumCast}>
-            {credits.cast.map(cast => (
-              <li key={cast.cast_id}>
+            {credits.cast.map((cast, index) => (
+              <li key={index}>
                 <Person person={cast} />
               </li>
             ))}
@@ -162,10 +171,7 @@ const TvDetails = ({ slug }) => {
         </section>
       )}
 
-      {/* <section className="medium__videos">
-          <h2>Videos</h2>
-          <VideoList :videos="medium.videos.results"></VideoList>;
-          </section> */}
+      <MediumMediaList medium={medium} />
     </article>
   );
 };

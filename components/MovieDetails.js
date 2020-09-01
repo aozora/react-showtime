@@ -1,7 +1,12 @@
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 import { useSelector } from 'react-redux';
 import CircularScore from '@/components/CircularScore';
-import { cardType, formatDate } from '../lib/shared';
+import CategorySwitch, { CategoryRadio } from '@/components/CategorySwitch';
+import { mediaListType, mediaType } from '@/lib/shared';
+import { AnimatePresence } from 'framer-motion';
+import ScrollableMediaList from '@/components/ScrollableMediaList';
+import MediumMediaList from '@/components/MediumMediaList';
+import { cardType, formatDate, tvCategory } from '../lib/shared';
 import MediumImage from './MediumImage';
 import { useMovieCredits, useMovieDetails } from '../hooks/moviesHooks';
 import Person from './Person';
@@ -50,13 +55,15 @@ const MovieDetails = ({ slug }) => {
       <header>
         <div className={styles.mediumDetailsHeader}>
           <h1>{medium.original_title}</h1>
+
           {medium.original_title !== medium.title && <h2>{medium.title}</h2>}
-          {medium.genres.map(genre => (
-            <p key={genre.id} className={styles.mediumGenres}>
-              <span>{genre.name}</span>
-            </p>
-          ))}
-          <p className="medium__released">Released {formatDate(medium.release_date)}</p>
+
+          <p className={styles.mediumGenres}>
+            {medium.genres.map(genre => (
+              <span key={genre.id}>{genre.name}</span>
+            ))}
+          </p>
+          <p className={styles.mediumReleased}>Released {formatDate(medium.release_date)}</p>
         </div>
 
         <MediumImage medium={medium} imageType={cardType.backdrop} />
@@ -144,10 +151,7 @@ const MovieDetails = ({ slug }) => {
         </section>
       )}
 
-      {/* <section className="medium__videos">
-          <h2>Videos</h2>
-          <VideoList :videos="medium.videos.results"></VideoList>;
-          </section> */}
+      <MediumMediaList medium={medium} />
     </article>
   );
 };
