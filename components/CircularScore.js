@@ -42,7 +42,7 @@ const CircularScore = ({ score }) => {
       <path fill="var(--color-primary)" d={arcPath} style={{ transform: 'translate(50%, 50%)' }} />
       <g>
         <text fontFamily="Inter" fontSize="32" fontWeight="400" fill="var(--color-primary)">
-          <tspan textAnchor="middle" x="58" y="55">
+          <tspan textAnchor="middle" x="62" y="56">
             {score}%
           </tspan>
         </text>

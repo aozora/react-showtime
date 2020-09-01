@@ -36,7 +36,7 @@ export const URL = {
   trending: `https://api.themoviedb.org/3/trending/TYPE/TIME`,
 
   // movie collections
-  // latestMovie: `https://api.themoviedb.org/3/movie/latest?language=en-US`,
+  latestMovie: `https://api.themoviedb.org/3/movie/latest?language=en-US`,
   movieTopRated: `https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1`,
   movieNowPlaying: `https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1`,
   movieUpcoming: `https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1`,
