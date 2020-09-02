@@ -15,7 +15,7 @@ $menu-toggle-button-zindex: $menu-zindex + 2;
   z-index: $menu-zindex + 1;
   background-color: transparent;
   transition: background-color .35s ease-in-out;
-  overflow: hidden;
+  //overflow: hidden;
 }
 
 .siteHeaderScrolled {
@@ -40,7 +40,7 @@ $menu-toggle-button-zindex: $menu-zindex + 2;
   width: 100%;
   height: 100%;
   //height: $menu-height;
-  overflow: hidden;
+  //overflow: hidden;
   padding: 0 4%;
   //background-color: $menu-background;
 
@@ -162,3 +162,4 @@ $menu-toggle-button-zindex: $menu-zindex + 2;
     }
   }
 }
+

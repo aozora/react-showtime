@@ -23,6 +23,9 @@ export const URL = {
   youtubeTrailer: 'https://www.youtube.com/watch?v=YOUTUBEKEY',
   youtubePoster: 'https://img.youtube.com/vi/YOUTUBEKEY/hqdefault.jpg',
   youtubePosterMaxRes: 'https://img.youtube.com/vi/YOUTUBEKEY/maxresdefault.jpg',
+
+  // search
+  // ------------------------------------------------------------
   search: `https://api.themoviedb.org/3/search/multi?language=en-US&query=KEYWORD&page=1&include_adult=false`,
 
   // movies
@@ -33,10 +36,10 @@ export const URL = {
   movieCredits: `https://api.themoviedb.org/3/movie/MOVIE_ID/credits`,
 
   // trending: https://developers.themoviedb.org/3/trending/get-trending
-  trending: `https://api.themoviedb.org/3/trending/TYPE/TIME`,
+  trending: `https://api.themoviedb.org/3/trending/MEDIA_TYPE/TIME_WINDOW`,
 
   // movie collections
-  // latestMovie: `https://api.themoviedb.org/3/movie/latest?language=en-US`,
+  latestMovie: `https://api.themoviedb.org/3/movie/latest?language=en-US`,
   movieTopRated: `https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1`,
   movieNowPlaying: `https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1`,
   movieUpcoming: `https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1`,

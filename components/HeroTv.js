@@ -60,7 +60,9 @@ const HeroTv = () => {
           {/* //          alt="" */}
           {/* // > */}
           <figcaption>
-            <span className={styles.heroTag}>TV</span>
+            <span role="doc-subtitle" className={styles.heroTag}>
+              TV Show
+            </span>
             <h1>
               <Link href="/tv/[slug]" as={`/tv/${medium.id}`}>
                 {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}

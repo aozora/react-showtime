@@ -41,6 +41,26 @@ export function useTopRatedMovies() {
   };
 }
 
+export function usePopularMovies() {
+  const { data, error } = useSWR(URL.moviePopular, fetcher);
+
+  return {
+    media: data,
+    isLoading: !error && !data,
+    isError: error
+  };
+}
+
+export function useLatestMovie() {
+  const { data, error } = useSWR(URL.latestMovie, fetcher);
+
+  return {
+    medium: data,
+    isLoading: !error && !data,
+    isError: error
+  };
+}
+
 export function useMovieDetails(slug) {
   const { data, error } = useSWR(URL.movieDetails.replace('MOVIE_ID', slug), fetcher);
 

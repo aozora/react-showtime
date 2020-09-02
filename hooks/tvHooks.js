@@ -31,6 +31,26 @@ export function useOnTheAirTodayTv() {
   };
 }
 
+export function useOnTheAirTv() {
+  const { data, error } = useSWR(URL.tvOnTheAir, fetcher);
+
+  return {
+    media: data,
+    isLoading: !error && !data,
+    isError: error
+  };
+}
+
+export function useTopRatedTv() {
+  const { data, error } = useSWR(URL.tvTopRated, fetcher);
+
+  return {
+    media: data,
+    isLoading: !error && !data,
+    isError: error
+  };
+}
+
 export function useLatestTv() {
   const { data, error } = useSWR(URL.tvLatest, fetcher);
 

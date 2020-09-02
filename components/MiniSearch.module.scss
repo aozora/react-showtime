@@ -1,0 +1,114 @@
+@import '../styles/shared';
+
+.miniSearch {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+
+.searchField {
+  display: flex;
+  flex-direction: row;
+  width: var(--form-field-max-width);
+  height: var(--form-field-height);
+  padding: 0 1.14rem;
+  border: var(--form-field-border);
+  border-radius: var(--global-border-radius);
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--form-field-color);
+  background: var(--form-field-background);
+
+  input {
+    flex: 1 0 auto;
+    width: calc(100% - 40px - 1.14rem - 1.14rem); // 160px;
+    padding: 0;
+
+    &::-webkit-input-placeholder {
+      color: var(--body-font-color);
+    }
+
+    &::-webkit-search-cancel-button,
+    &::-webkit-search-decoration {
+      -webkit-appearance: none;
+      appearance: none;
+    }
+  }
+
+  input,
+  button {
+    -webkit-appearance: none;
+    appearance: none;
+    border: 0;
+    border-radius: 0;
+    outline: none;
+    background: none;
+  }
+
+  button {
+    width: 40px;
+    color: var(--color-gray);
+
+    &:hover {
+      color: var(--color-white);
+      background-color: var(--color-gray);
+    }
+  }
+
+
+}
+
+.miniSearchResults {
+  //position: absolute;
+  top: calc(var(--form-field-height) + 10px);
+  right: 2rem;
+  width: calc(var(--form-field-max-width) + 120px);
+  height: 100vh;
+  max-height: 50vh;
+  padding: 1rem;
+  background-color: var(--color-gray);
+  border: 1px solid var(--color-dark-gray);
+  overflow: auto;
+
+  p {
+    font-size: .9rem;
+  }
+
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  li {
+    display: block;
+    font-size: .8rem;
+    height: 40px;
+  }
+
+  a,
+  a:link{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    color: var(--color-white);
+    text-decoration: none;
+    line-height: 1.2;
+
+    img {
+      width: 32px;
+      height: 48px;
+    }
+
+    &:visited{
+      color: var(--color-light);
+      text-decoration: none;
+    }
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
