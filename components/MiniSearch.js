@@ -1,15 +1,24 @@
-import React, { useState } from 'react';
-import { useSearchField } from '@react-aria/searchfield';
-import { useSearchFieldState } from '@react-stately/searchfield';
+import React, { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
+import SearchField from './SearchField';
 import styles from './MiniSearch.module.scss';
+import { useMultiSearch } from '../hooks/searchHooks';
 
 const MiniSearch = props => {
-  const { label } = props;
-  const state = useSearchFieldState(props);
-  const ref = React.useRef();
-  const { labelProps, inputProps, clearButtonProps } = useSearchField(props, state, ref);
   const [searchIsVisible, setSearchIsVisible] = useState(false);
+  const [keyword, setKeyword] = useState();
+  const { media, isLoading, isError } = useMultiSearch(keyword);
+
+  // useEffect(() => {
+  //   if (media) {
+  //
+  //   }
+  // }, [media]);
+
+  const onSubmit = value => {
+    // console.log('VALUE', value);
+    setKeyword(value);
+  };
 
   return (
     <form className={styles.miniSearch}>
@@ -21,14 +30,23 @@ const MiniSearch = props => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
-            {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-            <input {...inputProps} ref={ref} />
-            {state.value !== '' && (
-              <button type="button" {...clearButtonProps}>
-                x
-              </button>
-            )}
+            <SearchField onSubmit={onSubmit} placeholder="Search..." />
           </motion.div>
+        )}
+      </AnimatePresence>
+      <AnimatePresence>
+        {media && (
+          <div className={styles.miniSearchResults}>
+            Found ({media.results.length}) results.
+            <p />
+            <ul>
+              {media.results.map(result => (
+                <li>
+                  {result.title || result.name} ({result.media_type})
+                </li>
+              ))}
+            </ul>
+          </div>
         )}
       </AnimatePresence>
       <button type="button" onClick={() => setSearchIsVisible(!searchIsVisible)}>

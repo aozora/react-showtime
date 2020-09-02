@@ -1,6 +1,7 @@
 @import '../styles/shared';
 
 .miniSearch {
+  position: relative;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -60,6 +61,29 @@
 
 }
 
-.searchFieldVisible {
+.miniSearchResults {
+  position: absolute;
+  top: var(--form-field-height);
+  left: 0;
+  width: var(--form-field-max-width);
+  height: 100vh;
+  max-height: 50vh;
+  padding: 1rem;
+  background-color: var(--color-gray);
+  border: 1px solid var(--color-dark-gray);
+  overflow: auto;
 
+  p {
+    font-size: .9rem;
+  }
+
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  li {
+    font-size: .8rem;
+  }
 }
