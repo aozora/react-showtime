@@ -3,7 +3,7 @@ import { useSearchField } from '@react-aria/searchfield';
 import { useSearchFieldState } from '@react-stately/searchfield';
 
 const SearchField = props => {
-  const { label } = props;
+  const { label, ariaLabel } = props;
   const state = useSearchFieldState(props);
   const ref = React.useRef();
   const { labelProps, inputProps, clearButtonProps } = useSearchField(props, state, ref);
@@ -12,7 +12,7 @@ const SearchField = props => {
     <>
       {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
       {label && <label {...labelProps}>{label}</label>}
-      <input {...inputProps} ref={ref} />
+      <input {...inputProps} ref={ref} aria-label={ariaLabel} />
       {state.value !== '' && (
         <button type="button" {...clearButtonProps}>
           x

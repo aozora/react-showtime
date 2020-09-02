@@ -4,7 +4,6 @@ import { SimpleImg } from 'react-simple-img';
 import {
   selectConfigurationImagesBackdropSizes,
   selectConfigurationImagesPosterSizes,
-  selectConfigurationImagesProfileSizes,
   selectConfigurationImagesSecureBaseUrl
 } from '../store/features/tmdb/configuration/configuration-slice';
 import { cardType } from '../lib/shared';
@@ -19,7 +18,6 @@ import { cardType } from '../lib/shared';
 const MediumImage = ({ medium, imageType }) => {
   const backdropSizesList = useSelector(selectConfigurationImagesBackdropSizes);
   const posterSizesList = useSelector(selectConfigurationImagesPosterSizes);
-  const profileSizesList = useSelector(selectConfigurationImagesProfileSizes);
   const imagesSecureBaseUrl = useSelector(selectConfigurationImagesSecureBaseUrl);
 
   const backdropSizes = () => {
@@ -27,9 +25,6 @@ const MediumImage = ({ medium, imageType }) => {
   };
   const posterSizes = () => {
     return posterSizesList.filter(size => size !== 'original');
-  };
-  const profileSizes = () => {
-    return profileSizesList.filter(size => size !== 'original');
   };
 
   const getImagePath = (filePath, size) => {

@@ -1,24 +1,89 @@
 import React, { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import SearchField from './SearchField';
-import styles from './MiniSearch.module.scss';
+import { useOverlayTriggerState } from '@react-stately/overlays';
+import { useOverlayTrigger, useOverlayPosition, OverlayContainer } from '@react-aria/overlays';
+import Link from 'next/link';
+import MediumImage from '@/components/MediumImage';
+import { cardType } from '@/lib/shared';
+import MiniSearchResults from './MiniSearchResults';
 import { useMultiSearch } from '../hooks/searchHooks';
+import styles from './MiniSearch.module.scss';
+import SearchField from './SearchField';
 
 const MiniSearch = props => {
   const [searchIsVisible, setSearchIsVisible] = useState(false);
   const [keyword, setKeyword] = useState();
   const { media, isLoading, isError } = useMultiSearch(keyword);
 
-  // useEffect(() => {
-  //   if (media) {
-  //
-  //   }
-  // }, [media]);
+  // overlay
+  const state = useOverlayTriggerState({});
+  const triggerRef = React.useRef();
+  const overlayRef = React.useRef();
+
+  // Get props for the trigger and overlay. This also handles
+  // hiding the overlay when a parent element of the trigger scrolls
+  // (which invalidates the popover positioning).
+  const { triggerProps, overlayProps } = useOverlayTrigger({ type: 'dialog' }, state, triggerRef);
+  // Get popover positioning props relative to the trigger
+  const { overlayProps: positionProps } = useOverlayPosition({
+    targetRef: triggerRef,
+    overlayRef,
+    placement: 'top',
+    offset: 5,
+    isOpen: state.isOpen
+  });
+
+  // // useButton ensures that focus management is handled correctly,
+  // // across all browsers. Focus is restored to the button once the
+  // // popover closes.
+  // const { buttonProps } = useButton({
+  //   onPress: () => state.open()
+  // });
 
   const onSubmit = value => {
     // console.log('VALUE', value);
     setKeyword(value);
   };
+
+  const getHrefByMediaType = type => {
+    switch (type) {
+      case 'movie':
+        return '/movie/[slug]';
+      case 'tv':
+        return '/tv/[slug]';
+      case 'person':
+        return '/people/[slug]';
+      default:
+        return '';
+    }
+  };
+
+  const generateMediumImageUrlByMediaType = result => {
+    let path;
+    switch (result.media_type) {
+      case 'movie':
+      case 'tv':
+        path = result.poster_path || result.backdrop_path;
+        break;
+      case 'person':
+        path = result.profile_path;
+        break;
+      default:
+        path = '';
+        break;
+    }
+
+    // return a fake medium object
+    return {
+      poster_path: path
+    };
+  };
+
+  useEffect(() => {
+    if (media) {
+      state.open();
+    }
+  }, [media]);
 
   return (
     <form className={styles.miniSearch}>
@@ -30,25 +95,61 @@ const MiniSearch = props => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
-            <SearchField onSubmit={onSubmit} placeholder="Search..." />
+            <SearchField onSubmit={onSubmit} placeholder="Search..." ariaLabel="Search" />
           </motion.div>
         )}
       </AnimatePresence>
-      <AnimatePresence>
-        {media && (
-          <div className={styles.miniSearchResults}>
-            Found ({media.results.length}) results.
-            <p />
+
+      {state.isOpen && (
+        <OverlayContainer>
+          <MiniSearchResults
+            {...overlayProps}
+            {...positionProps}
+            ref={overlayRef}
+            isOpen={state.isOpen}
+            onClose={state.close}
+          >
+            <p>Found ({media.results.length}) results.</p>
             <ul>
               {media.results.map(result => (
-                <li>
-                  {result.title || result.name} ({result.media_type})
+                <li key={result.id}>
+                  <Link
+                    href={getHrefByMediaType(result.media_type)}
+                    as={getHrefByMediaType(result.media_type).replace('[slug]', result.id)}
+                  >
+                    {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+                    <a>
+                      <MediumImage
+                        medium={generateMediumImageUrlByMediaType(result)}
+                        imageType={cardType.poster}
+                      />
+                      <span>
+                        {result.title || result.name} ({result.media_type})
+                      </span>
+                    </a>
+                  </Link>
                 </li>
               ))}
             </ul>
-          </div>
-        )}
-      </AnimatePresence>
+          </MiniSearchResults>
+        </OverlayContainer>
+      )}
+
+      {/* <AnimatePresence> */}
+      {/*  {media && ( */}
+      {/*    <div className={styles.miniSearchResults}> */}
+      {/*      <p>Found ({media.results.length}) results.</p> */}
+      {/*      <ul> */}
+      {/*        {media.results.map(result => ( */}
+      {/*          <li> */}
+      {/*            {result.title || result.name} ({result.media_type}) */}
+      {/*          </li> */}
+      {/*        ))} */}
+      {/*      </ul> */}
+      {/*    </div> */}
+      {/*  )} */}
+      {/* </AnimatePresence> */}
+
       <button type="button" onClick={() => setSearchIsVisible(!searchIsVisible)}>
         <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
           <path

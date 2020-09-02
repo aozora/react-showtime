@@ -7,6 +7,7 @@ import { SWRConfig } from 'swr';
 import { Provider } from 'react-redux';
 import Splash from '@/components/Splash';
 import { APP_TITLE } from '@/lib/constants';
+import { OverlayProvider } from '@react-aria/overlays';
 import { useStore } from '../store';
 
 // app styles
@@ -18,13 +19,15 @@ function MyApp({ Component, pageProps, router }) {
 
   return (
     <Provider store={store}>
-      <Layout>
-        <Head>
-          <title>{APP_TITLE}</title>
-        </Head>
+      <OverlayProvider>
+        <Layout>
+          <Head>
+            <title>{APP_TITLE}</title>
+          </Head>
 
-        <Component {...pageProps} key={router.route} />
-      </Layout>
+          <Component {...pageProps} key={router.route} />
+        </Layout>
+      </OverlayProvider>
     </Provider>
   );
 }

@@ -62,10 +62,10 @@
 }
 
 .miniSearchResults {
-  position: absolute;
-  top: var(--form-field-height);
-  left: 0;
-  width: var(--form-field-max-width);
+  //position: absolute;
+  top: calc(var(--form-field-height) + 10px);
+  right: 2rem;
+  width: calc(var(--form-field-max-width) + 120px);
   height: 100vh;
   max-height: 50vh;
   padding: 1rem;
@@ -84,6 +84,31 @@
   }
 
   li {
+    display: block;
     font-size: .8rem;
+    height: 40px;
+  }
+
+  a,
+  a:link{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    color: var(--color-white);
+    text-decoration: none;
+    line-height: 1.2;
+
+    img {
+      width: 32px;
+      height: 48px;
+    }
+
+    &:visited{
+      color: var(--color-light);
+      text-decoration: none;
+    }
+    &:hover {
+      text-decoration: underline;
+    }
   }
 }
