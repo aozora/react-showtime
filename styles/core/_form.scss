@@ -23,9 +23,10 @@ select {
   border: var(--form-field-border);
   border-radius: var(--global-border-radius);
   font-size: 1rem;
+  line-height: 2.22;
   font-weight: 400;
-  color: var(--color-light-gray);
-  background-color: var(--color-white);
+  color: var(--form-field-color);
+  background-color: var(--form-field-background);
   transition: all 0.35s ease-in-out;
 
   &[disabled] {

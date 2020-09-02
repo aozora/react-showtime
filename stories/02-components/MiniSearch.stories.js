@@ -6,4 +6,6 @@ export default {
   component: MiniSearch
 };
 
-export const Search = () => <MiniSearch />;
+export const Search = () => (
+  <MiniSearch label="Search" placeholder="Search..." onSubmit={text => alert(text)} />
+);

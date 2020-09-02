@@ -1,11 +1,37 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useSearchField } from '@react-aria/searchfield';
+import { useSearchFieldState } from '@react-stately/searchfield';
+import { AnimatePresence, motion } from 'framer-motion';
 import styles from './MiniSearch.module.scss';
 
-const MiniSearch = () => {
+const MiniSearch = props => {
+  const { label } = props;
+  const state = useSearchFieldState(props);
+  const ref = React.useRef();
+  const { labelProps, inputProps, clearButtonProps } = useSearchField(props, state, ref);
+  const [searchIsVisible, setSearchIsVisible] = useState(false);
+
   return (
     <form className={styles.miniSearch}>
-      <input type="text" />
-      <button type="button">
+      <AnimatePresence>
+        {searchIsVisible && (
+          <motion.div
+            className={styles.searchField}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            {/* eslint-disable-next-line react/jsx-props-no-spreading */}
+            <input {...inputProps} ref={ref} />
+            {state.value !== '' && (
+              <button type="button" {...clearButtonProps}>
+                x
+              </button>
+            )}
+          </motion.div>
+        )}
+      </AnimatePresence>
+      <button type="button" onClick={() => setSearchIsVisible(!searchIsVisible)}>
         <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
           <path
             fill="currentColor"

@@ -50,6 +50,7 @@
         ]
       }
     ],
-    "template-curly-spacing": 0
+    "template-curly-spacing": 0,
+    "react/jsx-props-no-spreading": "off"
   }
 }

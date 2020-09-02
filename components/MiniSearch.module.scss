@@ -1,11 +1,65 @@
 @import '../styles/shared';
 
 .miniSearch {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+
+.searchField {
+  display: flex;
+  flex-direction: row;
+  width: var(--form-field-max-width);
+  height: var(--form-field-height);
+  padding: 0 1.14rem;
+  border: var(--form-field-border);
+  border-radius: var(--global-border-radius);
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--form-field-color);
+  background: var(--form-field-background);
 
   input {
-    height: var(--form-field-height);
-    color: var(--body-font-color);
-    background: var(--color-light-gray) url("data:image/svg+xml,%3Csvg width='24' height='24' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='currentColor' d='M9.516 14.016c2.484 0 4.5-2.016 4.5-4.5s-2.016-4.5-4.5-4.5-4.5 2.016-4.5 4.5 2.016 4.5 4.5 4.5zM15.516 14.016l4.969 4.969-1.5 1.5-4.969-4.969v-0.797l-0.281-0.281c-1.125 0.984-2.625 1.547-4.219 1.547-3.609 0-6.516-2.859-6.516-6.469s2.906-6.516 6.516-6.516 6.469 2.906 6.469 6.516c0 1.594-0.563 3.094-1.547 4.219l0.281 0.281h0.797z' /%3E%3C/svg%3E") no-repeat center left;
-    padding-right: 32px;
+    flex: 1 0 auto;
+    width: calc(100% - 40px - 1.14rem - 1.14rem); // 160px;
+    padding: 0;
+
+    &::-webkit-input-placeholder {
+      color: var(--body-font-color);
+    }
+
+    &::-webkit-search-cancel-button,
+    &::-webkit-search-decoration {
+      -webkit-appearance: none;
+      appearance: none;
+    }
   }
+
+  input,
+  button {
+    -webkit-appearance: none;
+    appearance: none;
+    border: 0;
+    border-radius: 0;
+    outline: none;
+    background: none;
+  }
+
+  button {
+    width: 40px;
+    color: var(--color-gray);
+
+    &:hover {
+      color: var(--color-white);
+      background-color: var(--color-gray);
+    }
+  }
+
+
+}
+
+.searchFieldVisible {
+
 }
