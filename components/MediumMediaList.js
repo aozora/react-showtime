@@ -21,31 +21,29 @@ const MediumMediaList = ({ medium }) => {
         onChange={value => setSelectedMediaListType(value)}
       />
 
-      <div className="media-list-container">
-        <AnimatePresence>
-          {selectedMediaListType === mediaListType.videos && (
-            <ScrollableMediaList
-              key={mediaListType.videos}
-              media={medium.videos.results}
-              mediaType={mediaListType.videos}
-            />
-          )}
-          {selectedMediaListType === mediaListType.posters && (
-            <ScrollableMediaList
-              key={mediaListType.posters}
-              media={medium.images.posters}
-              mediaType={mediaListType.posters}
-            />
-          )}
-          {selectedMediaListType === mediaListType.backdrops && (
-            <ScrollableMediaList
-              key={mediaListType.backdrops}
-              media={medium.images.backdrops}
-              mediaType={mediaListType.backdrops}
-            />
-          )}
-        </AnimatePresence>
-      </div>
+      <AnimatePresence>
+        {selectedMediaListType === mediaListType.videos && (
+          <ScrollableMediaList
+            key={mediaListType.videos}
+            media={medium.videos.results}
+            mediaType={mediaListType.videos}
+          />
+        )}
+        {selectedMediaListType === mediaListType.posters && (
+          <ScrollableMediaList
+            key={mediaListType.posters}
+            media={medium.images.posters}
+            mediaType={mediaListType.posters}
+          />
+        )}
+        {selectedMediaListType === mediaListType.backdrops && (
+          <ScrollableMediaList
+            key={mediaListType.backdrops}
+            media={medium.images.backdrops}
+            mediaType={mediaListType.backdrops}
+          />
+        )}
+      </AnimatePresence>
     </section>
   );
 };

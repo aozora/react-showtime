@@ -14,10 +14,15 @@
 
   figure {
     position: relative;
+    overflow: hidden;
   }
 
   img {
     object-fit: cover;
+
+    :global {
+      animation: kenburns 50s ease;
+    }
   }
 
   figcaption {
