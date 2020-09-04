@@ -12,7 +12,7 @@ const Person = ({ person }) => {
         {/*  <use xlink:href="#icon-avatar"></use> */}
         {/* </svg> */}
         <div>
-          <p>{person.character}</p>
+          <p>{person.character || person.job}</p>
           <p>{person.name}</p>
         </div>
       </a>

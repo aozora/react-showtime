@@ -3,6 +3,8 @@ import { useSelector } from 'react-redux';
 import CircularScore from '@/components/CircularScore';
 import MediumMediaList from '@/components/MediumMediaList';
 import ImdbLink from '@/components/ImdbLink';
+import ScrollablePeopleList from '@/components/ScrollablePeopleList';
+import { AnimatePresence } from 'framer-motion';
 import { cardType, formatDate, tvCategory } from '../lib/shared';
 import MediumImage from './MediumImage';
 import { useMovieCredits, useMovieDetails } from '../hooks/moviesHooks';
@@ -118,15 +120,17 @@ const MovieDetails = ({ slug }) => {
       <h2>Cast</h2>
       {isCreditsLoading && <div>Loading...</div>}
       {credits && (
-        <section className={styles.mediumDetailsCastAndCrew}>
-          <ul className={styles.mediumCast}>
-            {credits.cast.map(cast => (
-              <li key={cast.cast_id}>
-                <Person person={cast} />
-              </li>
-            ))}
-          </ul>
-        </section>
+        <AnimatePresence>
+          <ScrollablePeopleList people={credits.cast} />
+        </AnimatePresence>
+      )}
+
+      <h2>Crew</h2>
+      {isCreditsLoading && <div>Loading...</div>}
+      {credits && (
+        <AnimatePresence>
+          <ScrollablePeopleList people={credits.crew} />
+        </AnimatePresence>
       )}
 
       <MediumMediaList medium={medium} />
