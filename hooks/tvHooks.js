@@ -80,3 +80,16 @@ export function useTvCredits(slug) {
     isCreditsError: error
   };
 }
+
+export function useTvSeasons(slug, seasonNumber) {
+  const { data, error } = useSWR(
+    URL.tvSeasons.replace('TV_ID', slug).replace('SEASON_NUMBER', seasonNumber),
+    fetcher
+  );
+
+  return {
+    seasons: data,
+    isSeasonsLoading: !error && !data,
+    isSeasonsError: error
+  };
+}

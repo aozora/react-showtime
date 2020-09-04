@@ -1,8 +1,8 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import CircularScore from '@/components/CircularScore';
-import MediumMediaList from '@/components/MediumMediaList';
-import { cardType, formatDate, mediaListType } from '../lib/shared';
+import CircularScore from './CircularScore';
+import MediumMediaList from './MediumMediaList';
+import { cardType, formatDate } from '../lib/shared';
 import MediumImage from './MediumImage';
 import Person from './Person';
 import styles from './MediumDetails.module.scss';
@@ -154,10 +154,10 @@ const TvDetails = ({ slug }) => {
         </div>
       </section>
 
-      <h2>Cast</h2>
       {isCreditsLoading && <div>Loading...</div>}
       {credits && (
         <section className={styles.mediumDetailsCastAndCrew}>
+          <h2>Cast</h2>
           <ul className={styles.mediumCast}>
             {credits.cast.map((cast, index) => (
               <li key={index}>
@@ -165,6 +165,38 @@ const TvDetails = ({ slug }) => {
               </li>
             ))}
           </ul>
+        </section>
+      )}
+
+      {medium.seasons && (
+        <section className={styles.seasons}>
+          <h2>Seasons</h2>
+          {/* <p> */}
+          {/*  <Link href="/season/[slug]" as="/season/[slug]"> */}
+          {/*    <a /> */}
+          {/*  </Link> */}
+          {/* </p> */}
+          <table>
+            <tbody>
+              {medium.seasons.map(season => (
+                <tr key={season.id}>
+                  <td className={styles.seasonPosterCell}>
+                    <MediumImage
+                      medium={{ poster_path: season.poster_path }}
+                      imageType={cardType.poster}
+                    />
+                  </td>
+                  <td className={styles.seasonsDetailsCell}>
+                    <h3>
+                      {season.name} ({formatDate(season.air_date)}) | {season.episode_count}{' '}
+                      episodes
+                    </h3>
+                    <p>{season.overview}</p>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </section>
       )}
 

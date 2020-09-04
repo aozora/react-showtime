@@ -62,6 +62,8 @@ export const URL = {
   tvOnTheAir: `https://api.themoviedb.org/3/tv/on_the_air?language=en-US&page=1`,
   tvOnTheAirToday: `https://api.themoviedb.org/3/tv/airing_today?language=en-US&page=1`,
 
+  tvSeasons: 'https://api.themoviedb.org/3/tv/TV_ID/season/SEASON_NUMBER?language=en-US&page=1',
+
   // people
   // ------------------------------------------------------------
   peopleDetails: `https://api.themoviedb.org/3/person/PERSON_ID?language=en-US`,
