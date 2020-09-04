@@ -46,7 +46,7 @@ export default function Index({}) {
       </div>
 
       <CategorySwitch
-        label="Media"
+        label="Movies"
         initialValue={movieCategory.upcoming}
         radios={[
           { label: `Upcoming`, value: movieCategory.upcoming },
@@ -75,7 +75,7 @@ export default function Index({}) {
       </div>
 
       <CategorySwitch
-        label="Media"
+        label="TV Shows"
         initialValue={tvCategory.onTheAirToday}
         radios={[
           { label: `On The Air Today`, value: tvCategory.onTheAirToday },
