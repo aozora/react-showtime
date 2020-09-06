@@ -34,8 +34,8 @@ export const URL = {
   moviesGenres: `https://api.themoviedb.org/3/genre/movie/list?language=en-US`,
   movieDetails: `https://api.themoviedb.org/3/movie/MOVIE_ID?include_image_language=en&append_to_response=videos,images`,
   movieCredits: `https://api.themoviedb.org/3/movie/MOVIE_ID/credits`,
+  movieKeywords: '/movie/MOVIE_ID/keywords',
 
-  // trending: https://developers.themoviedb.org/3/trending/get-trending
   trending: `https://api.themoviedb.org/3/trending/MEDIA_TYPE/TIME_WINDOW`,
 
   // movie collections
@@ -55,6 +55,7 @@ export const URL = {
   tvCertifications: `https://api.themoviedb.org/3/certification/tv/list`,
   tvGenres: `https://api.themoviedb.org/3/genre/tv/list?language=en-US`,
   tvDetails: `https://api.themoviedb.org/3/tv/TV_ID?append_to_response=videos,images`,
+  tvKeywords: '/tv/TV_ID/keywords',
 
   tvLatest: `https://api.themoviedb.org/3/tv/latest?language=en-US`,
   tvTopRated: `https://api.themoviedb.org/3/tv/top_rated?language=en-US&page=1`,

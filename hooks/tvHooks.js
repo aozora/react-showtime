@@ -81,6 +81,16 @@ export function useTvCredits(slug) {
   };
 }
 
+export function useTvKeywords(slug) {
+  const { data, error } = useSWR(URL.tvKeywords.replace('TV_ID', slug), fetcher);
+
+  return {
+    keywords: data,
+    isKeywordsLoading: !error && !data,
+    isKeywordsError: error
+  };
+}
+
 export function useTvSeasons(slug, seasonNumber) {
   const { data, error } = useSWR(
     URL.tvSeasons.replace('TV_ID', slug).replace('SEASON_NUMBER', seasonNumber),
