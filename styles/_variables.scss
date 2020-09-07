@@ -87,6 +87,9 @@
 
   /* type modular scale */
   // body font size
+  --min-text-size: 18px; // 18px - html is set to 112.5%
+  --target-text-size: 2vw; // 20px
+  --max-text-size: 22px; // 22px
   --text-base-size: 1rem; // 18px - html is set to 112.5%
 
   // type scale
@@ -95,7 +98,6 @@
   --text-scale-1: calc(1rem * var(--text-scale-ratio)); // h3
   --text-scale-2: calc(var(--text-scale-1) * var(--text-scale-ratio)); // h2
   --text-scale-3: calc(var(--text-scale-2) * var(--text-scale-ratio)); // h1
-
   --text-scale-4: calc(var(--text-scale-3) * var(--text-scale-ratio));
   --text-scale-5: calc(var(--text-scale-4) * var(--text-scale-ratio));
   --text-scale-6: calc(var(--text-scale-5) * var(--text-scale-ratio)); // h2 hero

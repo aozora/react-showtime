@@ -5,15 +5,16 @@ import { typography } from '../shared';
 
 # Typography
 
-**Font:** Inter
+**Headings Font:** Playfair Display
 
-**Weights:** 100 (thin), 200 (extra light), 300 (light), 400(regular), 500 (medium), 600 (semi bold), 700(bold), 800(extrabold), 900(black)
+**Weights:** 400(regular)
+
 
 <Typeset
+  fontFamily="Playfair Display"
   fontSizes={[
     Number(typography.size.s1),
     Number(typography.size.s2),
-    Number(typography.size.s3),
     Number(typography.size.m1),
     Number(typography.size.m2),
     Number(typography.size.m3),
@@ -21,5 +22,26 @@ import { typography } from '../shared';
     Number(typography.size.l2),
     Number(typography.size.l3),
   ]}
-  fontWeight={typography.weight.black}
+  fontWeight={typography.weight.regular}
 />
+
+**Body Font:** Inter
+
+**Weights:** 100 (thin), 200 (extra light), 300 (light), 400(regular), 500 (medium), 600 (semi bold), 700(bold), 800(extrabold), 900(black)
+
+<Typeset
+  fontFamily="Inter"
+  fontSizes={[
+    Number(typography.size.s1),
+    Number(typography.size.s2),
+    Number(typography.size.m1),
+    Number(typography.size.m2),
+    Number(typography.size.m3),
+    Number(typography.size.l1),
+    Number(typography.size.l2),
+    Number(typography.size.l3),
+  ]}
+  fontWeight={typography.weight.regular}
+/>
+
+# Typography Scale

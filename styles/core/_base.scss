@@ -29,7 +29,8 @@ body {
 
 html {
   height: 100%;
-  font-size: 112.5%;
+  //font-size: 112.5%;
+  font-size: clamp(var(--min-text-size), var(--target-text-size), var(--max-text-size));
 
   // Use smooth scrolling for anchor links—but not if the reduce motion accessibility preference is enabled
   scroll-behavior: smooth;
@@ -41,16 +42,16 @@ html {
 /*
   this rules controls the fluid typography across breakpoints
 */
-:root {
-  @include media('>=tablet', '<desktop') {
-    --text-base-size: 1.111rem;
-    --text-scale-ratio: 1.25;
-  }
-  @include media('>=desktop') {
-    --text-base-size: 1.222rem;
-    --text-scale-ratio: 1.25;
-  }
-}
+//:root {
+//  @include media('>=tablet', '<desktop') {
+//    --text-base-size: 1.111rem;
+//    --text-scale-ratio: 1.25;
+//  }
+//  @include media('>=desktop') {
+//    --text-base-size: 1.222rem;
+//    --text-scale-ratio: 1.25;
+//  }
+//}
 
 body,
 div,
@@ -99,7 +100,6 @@ body {
   margin: 0 auto;
   padding: 0;
   background-color: var(--color-body-background);
-
   color: var(--body-font-color);
 
   font-size: var(--text-base-size);
