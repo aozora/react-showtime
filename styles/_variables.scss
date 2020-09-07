@@ -78,6 +78,7 @@
   --body-font-family: 'Inter', Helvetica, Roboto, Arial, sans-serif;
   --heading-font-family: 'Playfair Display', serif;
 
+  --baseline: 1.5;
   --body-font-weight: 400;
   --heading-font-weight: 400;
   --kerning: normal; // auto (default), normal (enabled), none (disabled)
@@ -103,11 +104,9 @@
   /* max text sizes  */
   --text-max-width: 38rem;
 
-
   /* vf initial values */
-  --heading-weight: 700;
-  --text-weight: $body-font-weight;
-  --text-width: 100;
+  --heading-weight: 400;
+  --text-weight: var(--body-font-weight);
 
   /* spacing */
   --text-letter-spacing: 1.2px;
@@ -131,13 +130,11 @@
   --h3-font-size: var(--text-scale-1);
   --h3-line-height: 1.5;
 
-
   /* Dropcap variables */
   --dc-line-height: .8;
   --dc-font-size: 3.4;
 
   /* Blockquote variables */
-  //--bq-line-height-min: 1.3;
   --bq-line-height: 1.5;
   --bq-font-size-min: 2.7;
   --bq-font-size-max: 5;

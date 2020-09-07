@@ -103,7 +103,7 @@ body {
   color: var(--body-font-color);
 
   font-size: var(--text-base-size);
-  line-height: $baseline;
+  line-height: var(--baseline);
   font-weight: var(--text-weight);
   font-style: normal;
   letter-spacing: var(--text-letter-spacing);
