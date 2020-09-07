@@ -47,46 +47,40 @@ const HeroTv = () => {
   return (
     <section className="full-width">
       <article className={styles.hero}>
-        <figure>
-          <MediumImage medium={medium} imageType={cardType.backdrop} />
-          {/* // <v-lazy-image v-if="pictureExist" */}
-          {/* //                 sizes="(max-width: 1280px) 100vw, 1280px" */}
-          {/* //   :srcset="`${backdropPath(medium, 'w300')} 320w,${backdropPath(medium, 'w780')} 768w,${backdropPath(medium, 'w1280')} 1280w`" */}
-          {/* //   :src="backdropPath(medium, 'w1280')" */}
-          {/* // /> */}
-
-          {/* //   <img v-else */}
-          {/* //   :src="placeholder" */}
-          {/* //          alt="" */}
-          {/* // > */}
-          <figcaption>
-            <span role="doc-subtitle" className={styles.heroTag}>
-              TV Show
-            </span>
-            <h1>
-              <Link href="/tv/[slug]" as={`/tv/${medium.id}`}>
-                {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-                <a>{medium.name}</a>
-              </Link>
-            </h1>
-            <p className={styles.heroGenres}>
-              {tvGenres &&
-                medium.genre_ids.map((id, index) => <span key={index}>{getGenre(id)}</span>)}
-            </p>
-            <p className={styles.heroInfoSmall}>Released {formatDate(medium.release_date)}</p>
-            <p className={styles.heroInfoSmall}>Popularity: {medium.vote_average * 10}%</p>
-            <p className={styles.heroAbstract}>{getAbstract(medium)}</p>
-            <p className={styles.heroActions}>
-              <Link href="/tv/[slug]" as={`/tv/${medium.id}`}>
-                {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-                <a className="button">Details</a>
-              </Link>
-              <button type="button" className="button button--primary">
-                Play trailer
-              </button>
-            </p>
-          </figcaption>
-        </figure>
+        <MediumImage medium={medium} imageType={cardType.backdrop} />
+        <header className={styles.heroTitle}>
+          <span role="doc-subtitle" className={styles.heroTag}>
+            TV Show
+          </span>
+          <h1>
+            <Link href="/tv/[slug]" as={`/tv/${medium.id}`}>
+              {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+              <a>{medium.name}</a>
+            </Link>
+          </h1>
+        </header>
+        <div className={styles.heroMeta}>
+          <p className={styles.heroGenres}>
+            {tvGenres &&
+              medium.genre_ids.map((id, index) => <span key={index}>{getGenre(id)}</span>)}
+          </p>
+          <p className={styles.heroInfoSmall}>Released {formatDate(medium.release_date)}</p>
+          <p className={styles.heroInfoSmall}>Popularity: {medium.vote_average * 10}%</p>
+        </div>
+        <div className={styles.heroDescription}>
+          <p className={styles.heroAbstract}>{getAbstract(medium)}</p>
+        </div>
+        <div className={styles.heroFooter}>
+          <p className={styles.heroActions}>
+            <Link href="/tv/[slug]" as={`/tv/${medium.id}`}>
+              {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+              <a className="button">Details</a>
+            </Link>
+            <button type="button" className="button button--primary">
+              Play trailer
+            </button>
+          </p>
+        </div>
       </article>
     </section>
   );
