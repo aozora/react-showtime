@@ -1,20 +1,17 @@
 @import '../styles/shared';
 
+@mixin hero-shade {
+  background: rgba(0, 0, 0, 0.23);
+}
+
 .hero {
   position: relative;
-  display: grid;
-  grid-template-columns: auto;
-  grid-template-rows: 50vh 15vh 10vh 15vh 5vh;
-  grid-template-areas:
-    "."
-    "title"
-    "meta"
-    "desc"
-    "footer";
   width: 100%;
-  max-width: 100%;
+  //max-width: 1280px;
   height: 100vh;
+  margin: 0 auto;
   padding: 0;
+  overflow: hidden;
 
   figure {
     display: contents;
@@ -36,38 +33,46 @@
   }
 
   header {
-    //position: absolute;
-    //top: 0;
-    //left: 0;
-    //width: 70%;
-    //height: 100%;
-    //padding: 25vh 4.5vw;
-    //background-image: linear-gradient(to right, rgba(0, 0, 0, .4) 0, rgba(0, 0, 0, 0) 100%);
-    //background-blend-mode: multiply;
-    //overflow: hidden;
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: 50vh 15vh 10vh 15vh 10vh;
+    grid-template-areas:
+      ". . . . . ."
+      "title title title title title title"
+      "meta meta meta meta meta meta"
+      "desc desc desc . . ."
+      "footer footer footer footer footer footer";
+    grid-column-gap: 2rem;
+    grid-row-gap: 0;
 
-
-    //p {
-    //  //margin: 0;
-    //  color: var(--color-light-gray);
-    //}
-
-    //.button {
-    //  margin: 2rem 0;
-    //}
+    width: 100%;
+    max-width: 1280px;
+    height: 100vh;
+    z-index: 2;
+    margin: 0 auto;
+    padding: 0 var(--section-lateral-margin);
   }
 }
 
 .heroTitle {
   grid-area: title;
-  z-index: 2;
+  @include hero-shade;
 
-  [role="doc-subtitle"]{
-
+  [role="doc-subtitle"] {
+    &::before,
+    &::after {
+      content: "";
+      display: inline-block;
+      width: 1.5rem;
+      height: 1px;
+      margin: .3rem .5rem;
+      background-color: var(--color-white);
+    }
   }
 
   h1 {
-    margin: 0 0 .44rem 0;
+    margin: 0;
 
     a {
       margin: 0;
@@ -84,44 +89,35 @@
 
 .heroMeta {
   grid-area: meta;
-  z-index: 2;
+  @include hero-shade;
 }
-
-.heroDescription {
-  grid-area: desc;
-  z-index: 2;
-}
-
-.heroFooter {
-  grid-area: footer;
-  z-index: 2;
-}
-
 
 .heroGenres {
   @include title-genres;
 }
 
-.heroInfoSmall {
-  margin-bottom: .667rem;
-  font-size: 13px;
-  letter-spacing: 0.4px;
+.heroDescription {
+  grid-area: desc;
+  @include hero-shade;
+
+  p {
+    margin: 0;
+    font-size: .8rem;
+  }
 }
 
-//.heroTag {
-//  display: inline-block;
-//  width: auto;
-//  height: 1.5rem;
-//  margin-bottom: .611rem;
-//  padding: 0 .611rem;
-//  border-radius: var(--global-radius);
-//  background: var(--color-primary);
-//  box-shadow: 1px 1px 2px 0 rgba(0, 0, 0, 0.50);
-//  font-size: 1rem;
-//  letter-spacing: 1.9px;
-//  text-align: left;
-//  color: var(--color-dark-gray);
-//}
+.heroFooter {
+  grid-area: footer;
+}
+
+
+
+.heroInfoSmall {
+  //margin-bottom: .667rem;
+  //font-size: 13px;
+  //letter-spacing: 0.4px;
+}
+
 
 .heroPlayButton {
   position: absolute;
@@ -133,25 +129,26 @@
   margin: 0;
   padding: 0;
   background-color: transparent;
-  transform: translate3d(-50%, -50%, 0);
+  //transform: translate3d(-50%, -50%, 0);
 
-  .triangle {
-    transition: fill-opacity .2s ease-out;
-  }
-
-  &:hover,
-  &:focus,
-  &:active {
-    .triangle {
-      fill-opacity: 1;
-    }
-  }
+  //.triangle {
+  //  transition: fill-opacity .2s ease-out;
+  //}
+  //
+  //&:hover,
+  //&:focus,
+  //&:active {
+  //  .triangle {
+  //    fill-opacity: 1;
+  //  }
+  //}
 }
 
 .heroActions {
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  margin: 0;
   padding: 1rem 0;
 
   button,

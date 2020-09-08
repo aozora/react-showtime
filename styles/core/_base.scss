@@ -136,13 +136,14 @@ body {
 
 /* Generic header styles */
 h1, h2, h3, h4, h5, h6 {
+  //--text-weight: var(--heading-weight);
   padding: 0;
   margin: 0 0 calc(1 * var(--text-base-size)) 0;
   font-family: var(--heading-font-family);
-  font-weight: var(--heading-font-family);
+  font-weight: var(--heading-weight);
   transition: all linear 0.2s;
-  --text-weight: var(--heading-weight);
   color: inherit;
+  letter-spacing: 1px;
 
   @if $use-variable-font-for-headings {
     @supports (font-variation-settings: normal) {
@@ -150,7 +151,6 @@ h1, h2, h3, h4, h5, h6 {
     }
   }
 }
-
 
 h1 {
   margin: calc(2 * var(--text-base-size)) 0 calc(3 * var(--text-base-size)) 0;

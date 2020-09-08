@@ -37,7 +37,7 @@
   --selection-background-color: var(--color-primary);
   --placeholder-color: var(--color-black);
   --focus-ring-color: rgb(38, 128, 235);
-
+  --focus-ring-style: 1px dashed var(--focus-ring-color);
 
   // ################################################################
   //    SHADOWS
@@ -66,7 +66,7 @@
   // ################################################################
   //    SECTIONING
   // ################################################################
-  --var-section-margin: 3rem;
+  --section-lateral-margin: 1rem;
   --section-max-width: 1024px;
 
 
@@ -120,15 +120,15 @@
   --p-font-size-max: 1.25;
 
   /* H1 variables */
-  --h1-font-size: clamp(30px, 5.5vw, var(--text-scale-6));
+  --h1-font-size: clamp(1.667rem, 5.5vw, var(--text-scale-6));
   --h1-line-height: 1.5;
 
   /* H2 variables */
-  --h2-font-size: clamp(20px, 5.5vw, var(--text-scale-2));
+  --h2-font-size: clamp(1.111rem, 5.5vw, var(--text-scale-2));
   --h2-line-height: 1.5;
 
   /* H3 variables */
-  --h3-font-size: clamp(18px, 5.5vw, var(--text-scale-1));
+  --h3-font-size: clamp(1rem, 5.5vw, var(--text-scale-1));
   --h3-line-height: 1.5;
 
   /* Dropcap variables */
