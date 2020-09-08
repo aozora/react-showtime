@@ -22,7 +22,6 @@ const ScrollableMediaList = ({ media, motionKey, mediaType }) => {
                 return (
                   <article className={styles.mediaPoster}>
                     <MediumImage
-                      key={index}
                       medium={{ poster_path: medium.file_path }}
                       imageType={cardType.poster}
                     />
@@ -30,9 +29,8 @@ const ScrollableMediaList = ({ media, motionKey, mediaType }) => {
                 );
               case mediaListType.backdrops:
                 return (
-                  <article className={styles.mediaBackdrop}>
+                  <article className={styles.mediaBackdrop} key={index}>
                     <MediumImage
-                      key={index}
                       medium={{ backdrop_path: medium.file_path }}
                       imageType={cardType.backdrop}
                     />
@@ -41,8 +39,8 @@ const ScrollableMediaList = ({ media, motionKey, mediaType }) => {
               case mediaListType.videos:
               default:
                 return (
-                  <article className={styles.mediaVideo}>
-                    <LazyYouTubeVideo key={index} url={medium.key} alt={medium.name} />
+                  <article className={styles.mediaVideo} key={index}>
+                    <LazyYouTubeVideo url={medium.key} alt={medium.name} />
                   </article>
                 );
             }

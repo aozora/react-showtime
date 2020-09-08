@@ -1,6 +1,10 @@
 import '!style-loader!css-loader!resolve-url-loader!sass-loader!../styles/app.scss';
+import theme from './themes/showTimeStorybook';
 
 export const parameters = {
+  docs: {
+    theme
+  },
   actions: { argTypesRegex: '^on[A-Z].*' },
   options: {
     storySort: (a, b) => {

@@ -29,10 +29,11 @@ body {
 
 html {
   height: 100%;
-  font-size: 112.5%;
-  scroll-behavior: smooth; // this may conflicts with GSAP ScrollToPlugin
+  //font-size: 112.5%;
+  font-size: clamp(var(--min-text-size), var(--target-text-size), var(--max-text-size));
 
   // Use smooth scrolling for anchor links—but not if the reduce motion accessibility preference is enabled
+  scroll-behavior: smooth;
   @media (prefers-reduced-motion: reduce) {
     scroll-behavior: auto;
   }
@@ -41,16 +42,16 @@ html {
 /*
   this rules controls the fluid typography across breakpoints
 */
-:root {
-  @include media('>=tablet', '<desktop') {
-    --text-base-size: 1.111rem;
-    --text-scale-ratio: 1.25;
-  }
-  @include media('>=desktop') {
-    --text-base-size: 1.222rem;
-    --text-scale-ratio: 1.25;
-  }
-}
+//:root {
+//  @include media('>=tablet', '<desktop') {
+//    --text-base-size: 1.111rem;
+//    --text-scale-ratio: 1.25;
+//  }
+//  @include media('>=desktop') {
+//    --text-base-size: 1.222rem;
+//    --text-scale-ratio: 1.25;
+//  }
+//}
 
 body,
 div,
@@ -68,7 +69,7 @@ em,
 b,
 strong,
 button {
-  --text-weight: $body-font-weight;
+  --text-weight: var(--body-font-weight);
   font-family: var(--body-font-family);
   //font-size: 1rem;
   //font-size: var(--text-base-size);
@@ -99,13 +100,10 @@ body {
   margin: 0 auto;
   padding: 0;
   background-color: var(--color-body-background);
-  background-image: radial-gradient(circle at 59% 30%, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.03) 3%, transparent 3%, transparent 100%), radial-gradient(circle at 78% 41%, rgba(255, 255, 255, 0.01) 0%, rgba(255, 255, 255, 0.01) 3%, transparent 3%, transparent 100%), radial-gradient(circle at 15% 80%, rgba(255, 255, 255, 0.02) 0%, rgba(255, 255, 255, 0.02) 3%, transparent 3%, transparent 100%), radial-gradient(circle at 45% 43%, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.03) 3%, transparent 3%, transparent 100%), radial-gradient(circle at 63% 9%, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.03) 7%, transparent 7%, transparent 100%), radial-gradient(circle at 71% 80%, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.03) 7%, transparent 7%, transparent 100%), radial-gradient(circle at 19% 0%, rgba(255, 255, 255, 0.01) 0%, rgba(255, 255, 255, 0.01) 7%, transparent 7%, transparent 100%), radial-gradient(circle at 62% 12%, rgba(255, 255, 255, 0.01) 0%, rgba(255, 255, 255, 0.01) 7%, transparent 7%, transparent 100%), radial-gradient(circle at 46% 76%, rgba(255, 255, 255, 0.02) 0%, rgba(255, 255, 255, 0.02) 7%, transparent 7%, transparent 100%), radial-gradient(circle at 59% 41%, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.03) 7%, transparent 7%, transparent 100%), radial-gradient(circle at 4% 53%, rgba(255, 255, 255, 0.01) 0%, rgba(255, 255, 255, 0.01) 5%, transparent 5%, transparent 100%), radial-gradient(circle at 16% 40%, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.03) 5%, transparent 5%, transparent 100%), radial-gradient(circle at 94% 48%, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.03) 5%, transparent 5%, transparent 100%), radial-gradient(circle at 47% 6%, rgba(255, 255, 255, 0.02) 0%, rgba(255, 255, 255, 0.02) 5%, transparent 5%, transparent 100%), radial-gradient(circle at 64% 65%, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.03) 5%, transparent 5%, transparent 100%), radial-gradient(circle at 58% 40%, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.03) 5%, transparent 5%, transparent 100%), radial-gradient(circle at 37% 3%, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.03) 5%, transparent 5%, transparent 100%), radial-gradient(circle at 42% 50%, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.03) 5%, transparent 5%, transparent 100%), radial-gradient(circle at 21% 78%, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.03) 5%, transparent 5%, transparent 100%), linear-gradient(135deg, hsla(233, 81%, 39%, 1), hsla(218, 81%, 39%, 1));
-  background-repeat: repeat-y;
-
   color: var(--body-font-color);
 
   font-size: var(--text-base-size);
-  line-height: $baseline;
+  line-height: var(--baseline);
   font-weight: var(--text-weight);
   font-style: normal;
   letter-spacing: var(--text-letter-spacing);
@@ -138,13 +136,14 @@ body {
 
 /* Generic header styles */
 h1, h2, h3, h4, h5, h6 {
+  //--text-weight: var(--heading-weight);
   padding: 0;
   margin: 0 0 calc(1 * var(--text-base-size)) 0;
   font-family: var(--heading-font-family);
-  font-weight: var(--heading-font-family);
+  font-weight: var(--heading-weight);
   transition: all linear 0.2s;
-  --text-weight: var(--heading-weight);
   color: inherit;
+  letter-spacing: 1px;
 
   @if $use-variable-font-for-headings {
     @supports (font-variation-settings: normal) {
@@ -153,10 +152,9 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-
 h1 {
   margin: calc(2 * var(--text-base-size)) 0 calc(3 * var(--text-base-size)) 0;
-  max-width: 50rem;
+  //max-width: 50rem;
   font-size: var(--h1-font-size);
   line-height: var(--h1-line-height);
 }

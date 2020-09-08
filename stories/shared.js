@@ -13,8 +13,8 @@ export const colors = {
 
 export const typography = {
   type: {
-    primary: 'Inter, Helvetica, Roboto, Arial, sans-serif'
-    // code: '"SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace'
+    body: 'Inter, Helvetica, Roboto, Arial, sans-serif',
+    heading: '"Playfair Display", serif'
   },
   weight: {
     thin: '100',
@@ -28,9 +28,8 @@ export const typography = {
     black: '900'
   },
   size: {
-    s1: 12,
-    s2: 14,
-    s3: 16,
+    s1: 16,
+    s2: 18,
     m1: 20,
     m2: 24,
     m3: 28,

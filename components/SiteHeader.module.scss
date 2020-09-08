@@ -13,7 +13,7 @@ $menu-toggle-button-zindex: $menu-zindex + 2;
   width: 100vw;
   height: $menu-height;
   z-index: $menu-zindex + 1;
-  background-color: transparent;
+  background-color: rgba(0, 0, 0, 0.23);
   transition: background-color .35s ease-in-out;
   //overflow: hidden;
 }

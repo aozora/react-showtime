@@ -22,10 +22,15 @@
 //  }
 //}
 
-
+// Keyboard only focus
+:-moz-focusring,
+:focus-visible {
+  outline: var(--focus-ring-style);
+}
 
 // Gets rid of the annoying outline for mouse users but preserves it for keyboard users,
 // and is ignored by browsers that don’t support :focus-visible
+/* Mouse/Touch will use a subtle drop shadow. */
 :focus:not(:focus-visible) {
   outline: none
 }

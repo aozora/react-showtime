@@ -80,3 +80,13 @@ export function useMovieCredits(slug) {
     isCreditsError: error
   };
 }
+
+export function useMovieKeywords(slug) {
+  const { data, error } = useSWR(URL.movieKeywords.replace('MOVIE_ID', slug), fetcher);
+
+  return {
+    keywords: data,
+    isKeywordsLoading: !error && !data,
+    isKeywordsError: error
+  };
+}
