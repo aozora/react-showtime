@@ -12,6 +12,7 @@ import TopRatedMovies from '@/containers/TopRatedMovies';
 import OnTheAirTv from '@/containers/OnTheAirTv';
 import TopRatedTv from '@/containers/TopRatedTv';
 import TrendingMedia from '@/containers/TrendingMedia';
+import styles from './index.module.scss';
 
 export default function Index({}) {
   const [selectedMovieCategory, setSelectedMovieCategory] = useState(movieCategory.upcoming);
@@ -22,80 +23,84 @@ export default function Index({}) {
     <>
       <HomeHero />
 
-      {/* TrendingMedia */}
+      <section className={styles.homeSection}>
+        <CategorySwitch
+          label="Trending"
+          initialValue={timeWindow.day}
+          radios={[
+            { label: `Today`, value: timeWindow.day },
+            { label: `This week`, value: timeWindow.week }
+          ]}
+          onChange={value => setSelectedTrendingCategory(value)}
+        />
 
-      <CategorySwitch
-        label="Trending"
-        initialValue={timeWindow.day}
-        radios={[
-          { label: `Today`, value: timeWindow.day },
-          { label: `This week`, value: timeWindow.week }
-        ]}
-        onChange={value => setSelectedTrendingCategory(value)}
-      />
+        <div className="cards-list-container">
+          <AnimatePresence>
+            {selectedTrendingCategory === timeWindow.day && (
+              <TrendingMedia key={timeWindow.day} type={mediaType.all} time={timeWindow.day} />
+            )}
+            {selectedTrendingCategory === timeWindow.week && (
+              <TrendingMedia key={timeWindow.day} type={mediaType.all} time={timeWindow.week} />
+            )}
+          </AnimatePresence>
+        </div>
+      </section>
 
-      <div className="cards-list-container">
-        <AnimatePresence>
-          {selectedTrendingCategory === timeWindow.day && (
-            <TrendingMedia key={timeWindow.day} type={mediaType.all} time={timeWindow.day} />
-          )}
-          {selectedTrendingCategory === timeWindow.week && (
-            <TrendingMedia key={timeWindow.day} type={mediaType.all} time={timeWindow.week} />
-          )}
-        </AnimatePresence>
-      </div>
+      <section className={styles.homeSection}>
+        <CategorySwitch
+          label="Movies"
+          initialValue={movieCategory.upcoming}
+          radios={[
+            { label: `Upcoming`, value: movieCategory.upcoming },
+            { label: `Now Playing`, value: movieCategory.nowPlaying },
+            { label: `Popular`, value: movieCategory.popular },
+            { label: `Top Rated`, value: movieCategory.topRated }
+          ]}
+          onChange={value => setSelectedMovieCategory(value)}
+        />
 
-      <CategorySwitch
-        label="Movies"
-        initialValue={movieCategory.upcoming}
-        radios={[
-          { label: `Upcoming`, value: movieCategory.upcoming },
-          { label: `Now Playing`, value: movieCategory.nowPlaying },
-          { label: `Popular`, value: movieCategory.popular },
-          { label: `Top Rated`, value: movieCategory.topRated }
-        ]}
-        onChange={value => setSelectedMovieCategory(value)}
-      />
+        <div className="cards-list-container">
+          <AnimatePresence>
+            {selectedMovieCategory === movieCategory.upcoming && (
+              <UpcomingMovies key={movieCategory.upcoming} />
+            )}
+            {selectedMovieCategory === movieCategory.nowPlaying && (
+              <NowPlayingMovies key={movieCategory.nowPlaying} />
+            )}
+            {selectedMovieCategory === movieCategory.popular && (
+              <PopularMovies key={movieCategory.popular} />
+            )}
+            {selectedMovieCategory === movieCategory.topRated && (
+              <TopRatedMovies key={movieCategory.topRated} />
+            )}
+          </AnimatePresence>
+        </div>
+      </section>
 
-      <div className="cards-list-container">
-        <AnimatePresence>
-          {selectedMovieCategory === movieCategory.upcoming && (
-            <UpcomingMovies key={movieCategory.upcoming} />
-          )}
-          {selectedMovieCategory === movieCategory.nowPlaying && (
-            <NowPlayingMovies key={movieCategory.nowPlaying} />
-          )}
-          {selectedMovieCategory === movieCategory.popular && (
-            <PopularMovies key={movieCategory.popular} />
-          )}
-          {selectedMovieCategory === movieCategory.topRated && (
-            <TopRatedMovies key={movieCategory.topRated} />
-          )}
-        </AnimatePresence>
-      </div>
+      <section className={styles.homeSection}>
+        <CategorySwitch
+          label="TV Shows"
+          initialValue={tvCategory.onTheAirToday}
+          radios={[
+            { label: `On The Air Today`, value: tvCategory.onTheAirToday },
+            { label: `Popular`, value: tvCategory.popular },
+            { label: `Top Rated`, value: tvCategory.topRated },
+            { label: `On The Air`, value: tvCategory.onTheAir }
+          ]}
+          onChange={value => setSelectedTvCategory(value)}
+        />
 
-      <CategorySwitch
-        label="TV Shows"
-        initialValue={tvCategory.onTheAirToday}
-        radios={[
-          { label: `On The Air Today`, value: tvCategory.onTheAirToday },
-          { label: `Popular`, value: tvCategory.popular },
-          { label: `Top Rated`, value: tvCategory.topRated },
-          { label: `On The Air`, value: tvCategory.onTheAir }
-        ]}
-        onChange={value => setSelectedTvCategory(value)}
-      />
-
-      <div className="cards-list-container">
-        <AnimatePresence>
-          {selectedTvCategory === tvCategory.onTheAirToday && (
-            <OnTheAirTodayTv key={tvCategory.onTheAirToday} />
-          )}
-          {selectedTvCategory === tvCategory.popular && <PopularTv key={tvCategory.popular} />}
-          {selectedTvCategory === tvCategory.topRated && <TopRatedTv key={tvCategory.topRated} />}
-          {selectedTvCategory === tvCategory.onTheAir && <OnTheAirTv key={tvCategory.onTheAir} />}
-        </AnimatePresence>
-      </div>
+        <div className="cards-list-container">
+          <AnimatePresence>
+            {selectedTvCategory === tvCategory.onTheAirToday && (
+              <OnTheAirTodayTv key={tvCategory.onTheAirToday} />
+            )}
+            {selectedTvCategory === tvCategory.popular && <PopularTv key={tvCategory.popular} />}
+            {selectedTvCategory === tvCategory.topRated && <TopRatedTv key={tvCategory.topRated} />}
+            {selectedTvCategory === tvCategory.onTheAir && <OnTheAirTv key={tvCategory.onTheAir} />}
+          </AnimatePresence>
+        </div>
+      </section>
     </>
   );
 }

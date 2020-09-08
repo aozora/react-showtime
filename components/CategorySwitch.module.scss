@@ -2,12 +2,15 @@
 
 .categorySwitch {
   display: flex;
+  flex-direction: column;
   justify-content: flex-start;
   align-items: center;
   margin: 1rem 0;
 
   h2 {
+    display: block;
     margin: 0 2rem 0 0;
+    --h2-font-size: clamp(3rem, 10vw, 5.45rem);
   }
 
   fieldset {
@@ -22,7 +25,13 @@
     cursor: pointer;
   }
 
-  input{
+  :global {
+    label.button {
+      font-size: .8rem;
+    }
+  }
+
+  input {
     /* remove the checkbox from the page flow, positioning it on top of the SVG */
     position: absolute;
     /* set same dimensions as the SVG */
