@@ -154,7 +154,7 @@ h1, h2, h3, h4, h5, h6 {
 
 h1 {
   margin: calc(2 * var(--text-base-size)) 0 calc(3 * var(--text-base-size)) 0;
-  max-width: 50rem;
+  //max-width: 50rem;
   font-size: var(--h1-font-size);
   line-height: var(--h1-line-height);
 }
