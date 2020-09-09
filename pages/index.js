@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import UpcomingMovies from '@/containers/UpcomingMovies';
 import HomeHero from '@/containers/HomeHero';
@@ -12,12 +12,53 @@ import TopRatedMovies from '@/containers/TopRatedMovies';
 import OnTheAirTv from '@/containers/OnTheAirTv';
 import TopRatedTv from '@/containers/TopRatedTv';
 import TrendingMedia from '@/containers/TrendingMedia';
+import gsap from 'gsap/dist/gsap';
 import styles from './index.module.scss';
 
 export default function Index({}) {
   const [selectedMovieCategory, setSelectedMovieCategory] = useState(movieCategory.upcoming);
   const [selectedTrendingCategory, setSelectedTrendingCategory] = useState(timeWindow.day);
   const [selectedTvCategory, setSelectedTvCategory] = useState(tvCategory.onTheAirToday);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const chars = document.querySelectorAll('[data-splitting] span');
+      console.log('*** DEBUG ***', chars);
+
+      const timelineSettings = {
+        staggerValue: 0.014,
+        charsDuration: 0.5
+      };
+
+      if (chars && chars.length > 0) {
+        const timeline = gsap
+          .timeline({ paused: true })
+          .addLabel('switchtime')
+          .set(
+            chars,
+            {
+              y: '100%'
+            },
+            'switchtime'
+          )
+          // Stagger the animation of the about section chars
+          .staggerTo(
+            chars,
+            timelineSettings.charsDuration,
+            {
+              ease: 'Power3.easeOut',
+              y: '0%'
+            },
+            timelineSettings.staggerValue,
+            'switchtime'
+          );
+
+        console.log('*** DEBUG *** ', timeline);
+
+        timeline.play();
+      }
+    }
+  }, []);
 
   return (
     <>
@@ -103,4 +144,11 @@ export default function Index({}) {
       </section>
     </>
   );
+}
+
+export async function getServerSideProps() {
+  // Fetch data from external API
+
+  // Pass data to the page via props
+  return { props: {} };
 }

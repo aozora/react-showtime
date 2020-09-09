@@ -7,7 +7,6 @@
 .hero {
   position: relative;
   width: 100%;
-  //max-width: 1280px;
   height: 100vh;
   margin: 0 auto;
   padding: 0;
@@ -17,7 +16,10 @@
     display: contents;
   }
 
-  //figure,
+  figcaption {
+    @include visuallyhidden;
+  }
+
   img {
     position: absolute;
     top: 0;
@@ -36,9 +38,9 @@
     position: relative;
     display: grid;
     grid-template-columns: repeat(6, 1fr);
-    grid-template-rows: 50vh 15vh 10vh 15vh 10vh;
+    grid-template-rows: var(--menu-height) calc(65vh - var(--menu-height)) 10vh 15vh 10vh;
     grid-template-areas:
-      ". . . . . ."
+      "header header header header header header"
       "title title title title title title"
       "meta meta meta meta meta meta"
       "desc desc desc . . ."
@@ -57,9 +59,15 @@
 
 .heroTitle {
   grid-area: title;
-  @include hero-shade;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
 
   [role="doc-subtitle"] {
+    padding: 0 1rem;
+    @include hero-shade;
+
     &::before,
     &::after {
       content: "";
@@ -73,6 +81,8 @@
 
   h1 {
     margin: 0;
+    padding: 0 1rem;
+    @include hero-shade;
 
     a {
       margin: 0;
@@ -89,7 +99,12 @@
 
 .heroMeta {
   grid-area: meta;
-  @include hero-shade;
+
+  p{
+    margin: 0;
+    padding: 0 1rem 1rem 1rem;
+    @include hero-shade;
+  }
 }
 
 .heroGenres {
@@ -98,6 +113,7 @@
 
 .heroDescription {
   grid-area: desc;
+  padding: 0 1rem;
   @include hero-shade;
 
   p {
@@ -108,8 +124,8 @@
 
 .heroFooter {
   grid-area: footer;
+  padding: 0 1rem;
 }
-
 
 
 .heroInfoSmall {
