@@ -13,6 +13,7 @@ import { useStore } from '../store';
 // app styles
 import '@/styles/fonts.css';
 import '@/styles/app.scss';
+import 'splitting/dist/splitting.css';
 
 function MyApp({ Component, pageProps, router }) {
   const store = useStore(pageProps.initialReduxState);

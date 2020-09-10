@@ -117,10 +117,12 @@
 }
 
 .cardPoster {
+  //flex: 0 0 30vw;
+  //width: clamp(276px, 30vw, 340px);
+  //height: clamp(390px, 45vw, 510px);
   flex: 0 0 220px;
   width: 276px;
   height: 390px;
-
 
   @include media('>=desktop', '<desktophd') {
     flex: 0 0 300px;

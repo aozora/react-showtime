@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
-import { cardType, formatDate, getRandomInt, getYearDate } from '../lib/shared';
+import { motion } from 'framer-motion';
+import { cardType, getRandomInt, getYearDate } from '../lib/shared';
 import MediumImage from './MediumImage';
 import styles from './HeroMedium.module.scss';
 import { useTvGenres, usePopularTv } from '../hooks/tvHooks';
@@ -11,7 +11,6 @@ const HeroTv = () => {
   const { media, isLoading, isError } = usePopularTv();
   // load genres; don't care for error, in that case the medium genres will not be displayed
   const { tvGenres } = useTvGenres();
-  const router = useRouter();
 
   const getAbstract = () => {
     const abstract = medium.tagline || medium.overview;
@@ -44,6 +43,34 @@ const HeroTv = () => {
     medium = media.results[getRandomInt(media.results.length)];
   }
 
+  // Add staggering effect to the children of the container
+  const containerVariants = {
+    before: {},
+    after: { transition: { staggerChildren: 0.08 } }
+  };
+
+  // Variants for animating each letter
+  const letterVariants = {
+    before: {
+      opacity: 0,
+      y: 20,
+      transition: {
+        type: 'spring',
+        damping: 16,
+        stiffness: 200
+      }
+    },
+    after: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        type: 'spring',
+        damping: 16,
+        stiffness: 200
+      }
+    }
+  };
+
   return (
     <section className="full-width">
       <article className={styles.hero}>
@@ -54,7 +81,24 @@ const HeroTv = () => {
             <h1>
               <Link href="/tv/[slug]" as={`/tv/${medium.id}`}>
                 {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-                <a>{medium.name}</a>
+                <motion.a
+                  initial="before"
+                  animate="after"
+                  variants={containerVariants}
+                  className={styles.splitting}
+                  data-splitting
+                  aria-label={medium.name}
+                >
+                  {Array.from(medium.name).map((char, index) => (
+                    <motion.span
+                      key={index}
+                      variants={letterVariants}
+                      aria-hidden="true"
+                      className={styles.char}
+                      dangerouslySetInnerHTML={{ __html: char === ' ' ? '&nbsp;' : char }}
+                    />
+                  ))}
+                </motion.a>
               </Link>
             </h1>
           </div>
@@ -62,10 +106,10 @@ const HeroTv = () => {
             <p className={styles.heroGenres}>
               {tvGenres && medium.genre_ids.map(id => <span key={id}>{getGenre(id)}</span>)}
             </p>
-            <p className={styles.heroInfoSmall}>Popularity: {medium.vote_average * 10}%</p>
           </div>
           <div className={styles.heroDescription}>
             <p className={styles.heroAbstract}>{getAbstract(medium)}</p>
+            <p className={styles.heroInfoSmall}>Popularity: {medium.vote_average * 10}%</p>
           </div>
           <div className={styles.heroFooter}>
             <p className={styles.heroActions}>

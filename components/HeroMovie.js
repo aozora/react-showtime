@@ -63,11 +63,12 @@ const HeroMovie = () => {
             <p className={styles.heroGenres}>
               {moviesGenres && medium.genre_ids.map(id => <span key={id}>{getGenre(id)}</span>)}
             </p>
-            <p className={styles.heroInfoSmall}>Popularity: {medium.vote_average * 10}%</p>
           </div>
           <div className={styles.heroDescription}>
             <p className={styles.heroAbstract}>{getAbstract(medium)}</p>
+            <p className={styles.heroInfoSmall}>Popularity: {medium.vote_average * 10}%</p>
           </div>
+
           <div className={styles.heroFooter}>
             <p className={styles.heroActions}>
               <Link href="/movie/[slug]" as={`/movie/${medium.id}`}>
