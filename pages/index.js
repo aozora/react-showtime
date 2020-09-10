@@ -20,45 +20,46 @@ export default function Index({}) {
   const [selectedTrendingCategory, setSelectedTrendingCategory] = useState(timeWindow.day);
   const [selectedTvCategory, setSelectedTvCategory] = useState(tvCategory.onTheAirToday);
 
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const chars = document.querySelectorAll('[data-splitting] span');
-      console.log('*** DEBUG ***', chars);
-
-      const timelineSettings = {
-        staggerValue: 0.014,
-        charsDuration: 0.5
-      };
-
-      if (chars && chars.length > 0) {
-        const timeline = gsap
-          .timeline({ paused: true })
-          .addLabel('switchtime')
-          .set(
-            chars,
-            {
-              y: '100%'
-            },
-            'switchtime'
-          )
-          // Stagger the animation of the about section chars
-          .staggerTo(
-            chars,
-            timelineSettings.charsDuration,
-            {
-              ease: 'Power3.easeOut',
-              y: '0%'
-            },
-            timelineSettings.staggerValue,
-            'switchtime'
-          );
-
-        console.log('*** DEBUG *** ', timeline);
-
-        timeline.play();
-      }
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (typeof window !== 'undefined') {
+  //     const chars = document.querySelectorAll('[data-splitting] span');
+  //     console.log('*** DEBUG ***', chars);
+  //
+  //     const timelineSettings = {
+  //       staggerValue: 0.014,
+  //       charsDuration: 0.5
+  //     };
+  //
+  //     if (chars && chars.length > 0) {
+  //       const timeline = gsap
+  //         .timeline({ paused: true })
+  //         .addLabel('switchtime')
+  //         .set(
+  //           chars,
+  //           {
+  //             y: '100%'
+  //           },
+  //           'switchtime'
+  //         )
+  //         // Stagger the animation of the about section chars
+  //         .staggerTo(
+  //           chars,
+  //           timelineSettings.charsDuration,
+  //           {
+  //             ease: 'Power3.easeOut',
+  //             y: '0%'
+  //           },
+  //           timelineSettings.staggerValue,
+  //           'switchtime'
+  //         );
+  //
+  //       console.log('*** DEBUG *** ', timeline);
+  //       window.timwline = timeline;
+  //
+  //       timeline.play();
+  //     }
+  //   }
+  // }, []);
 
   return (
     <>

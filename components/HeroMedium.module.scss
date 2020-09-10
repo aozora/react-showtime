@@ -97,6 +97,18 @@
   }
 }
 
+.splitting{
+  display: block;
+  overflow: hidden;
+}
+
+.char {
+  position: relative;
+  display: inline-block;
+  will-change: transform;
+}
+
+
 .heroMeta {
   grid-area: meta;
 

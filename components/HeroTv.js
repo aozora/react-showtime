@@ -1,7 +1,6 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import Link from 'next/link';
-import gsap from 'gsap';
-// import Splitting from 'splitting';
+import { motion } from 'framer-motion';
 import { cardType, getRandomInt, getYearDate } from '../lib/shared';
 import MediumImage from './MediumImage';
 import styles from './HeroMedium.module.scss';
@@ -12,8 +11,6 @@ const HeroTv = () => {
   const { media, isLoading, isError } = usePopularTv();
   // load genres; don't care for error, in that case the medium genres will not be displayed
   const { tvGenres } = useTvGenres();
-  // create a ref object to our text to split
-  const splitRef = useRef(null);
 
   const getAbstract = () => {
     const abstract = medium.tagline || medium.overview;
@@ -46,6 +43,34 @@ const HeroTv = () => {
     medium = media.results[getRandomInt(media.results.length)];
   }
 
+  // Add staggering effect to the children of the container
+  const containerVariants = {
+    before: {},
+    after: { transition: { staggerChildren: 0.08 } }
+  };
+
+  // Variants for animating each letter
+  const letterVariants = {
+    before: {
+      opacity: 0,
+      y: 20,
+      transition: {
+        type: 'spring',
+        damping: 16,
+        stiffness: 200
+      }
+    },
+    after: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        type: 'spring',
+        damping: 16,
+        stiffness: 200
+      }
+    }
+  };
+
   return (
     <section className="full-width">
       <article className={styles.hero}>
@@ -56,14 +81,24 @@ const HeroTv = () => {
             <h1>
               <Link href="/tv/[slug]" as={`/tv/${medium.id}`}>
                 {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-                <a data-splitting aria-label={medium.name}>
+                <motion.a
+                  initial="before"
+                  animate="after"
+                  variants={containerVariants}
+                  className={styles.splitting}
+                  data-splitting
+                  aria-label={medium.name}
+                >
                   {Array.from(medium.name).map((char, index) => (
-                    // eslint-disable-next-line react/no-array-index-key
-                    <span key={index} aria-hidden="true">
-                      {char}
-                    </span>
+                    <motion.span
+                      key={index}
+                      variants={letterVariants}
+                      aria-hidden="true"
+                      className={styles.char}
+                      dangerouslySetInnerHTML={{ __html: char === ' ' ? '&nbsp;' : char }}
+                    />
                   ))}
-                </a>
+                </motion.a>
               </Link>
             </h1>
           </div>

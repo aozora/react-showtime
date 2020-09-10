@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import SiteHeader from '@/components/SiteHeader';
 import SiteFooter from '@/components/SiteFooter';
 import { useDispatch } from 'react-redux';
@@ -13,7 +13,7 @@ import {
   setGenresTv
 } from '@/store/features/tmdb/configuration/configuration-slice';
 import Splash from '@/components/Splash';
-import { useInView } from 'react-intersection-observer';
+import { useIntersection } from 'react-use';
 import {
   useConfigurationApi,
   useConfigurationLanguages,
@@ -38,10 +38,11 @@ export default function Layout({ preview, children }) {
   const { jobs } = useConfigurationJobs();
   const { primaryTranslations } = useConfigurationPrimaryTranslations();
 
-  const [ref, inView, entry] = useInView({
-    /* Optional options */
-    threshold: 0,
-    rootMargin: '200px'
+  const intersectionRef = useRef(null);
+  const intersection = useIntersection(intersectionRef, {
+    root: null,
+    rootMargin: '200px',
+    threshold: 0
   });
 
   if (api && !isLoadingConfigurationApi) {
@@ -85,9 +86,9 @@ export default function Layout({ preview, children }) {
       <a href="#main" tabIndex="0">
         Skip to main content
       </a>
-      <SiteHeader scrolled={inView} />
+      <SiteHeader scrolled={intersection && intersection.isIntersecting} />
       <main id="main" role="main">
-        <div ref={ref} className="visuallyhidden">{`Header inside viewport ${inView}.`}</div>
+        <div ref={intersectionRef} className="visuallyhidden" />
         {children}
       </main>
       <SiteFooter />
