@@ -4,7 +4,7 @@ import styles from '@/components/HeroMedium.module.scss';
 import React from 'react';
 import { letterContainerVariants, letterVariants } from '@/lib/motionShared';
 
-const HeroTitle = ({ title }) => {
+const HeroTitle = React.forwardRef(({ title }) => {
   return (
     <motion.a
       initial="before"
@@ -25,6 +25,6 @@ const HeroTitle = ({ title }) => {
       ))}
     </motion.a>
   );
-};
+});
 
 export default HeroTitle;

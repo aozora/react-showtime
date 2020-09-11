@@ -52,7 +52,7 @@ const HeroTv = () => {
           <div className={styles.heroTitle}>
             <span role="doc-subtitle">TV Show ({getYearDate(medium.first_air_date)})</span>
             <h1>
-              <Link href="/tv/[slug]" as={`/tv/${medium.id}`}>
+              <Link passHref href="/tv/[slug]" as={`/tv/${medium.id}`}>
                 <HeroTitle title={medium.name} />
               </Link>
             </h1>

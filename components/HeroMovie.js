@@ -1,10 +1,10 @@
 import React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { getRandomInt, getYearDate } from '@/lib/shared';
+import { getRandomInt, getYearDate, cardType, formatDate } from '@/lib/shared';
 import HeroTitle from '@/components/HeroTitle';
 import HeroSkeleton from '@/components/HeroSkeleton';
-import { cardType, formatDate } from '../lib/shared';
+
 import MediumImage from './MediumImage';
 import { useUpcomingMovies, useMoviesGenres } from '../hooks/moviesHooks';
 import styles from './HeroMedium.module.scss';
@@ -55,7 +55,7 @@ const HeroMovie = () => {
           <div className={styles.heroTitle}>
             <span role="doc-subtitle">Movie ({getYearDate(medium.release_date)})</span>
             <h1>
-              <Link href="/movie/[slug]" as={`/movie/${medium.id}`}>
+              <Link passHref href="/movie/[slug]" as={`/movie/${medium.id}`}>
                 <HeroTitle title={medium.title} />
               </Link>
             </h1>

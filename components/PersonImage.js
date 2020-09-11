@@ -41,26 +41,19 @@ const PersonImage = ({ person }) => {
     return getImagePath(profilePath, size);
   };
 
-  // const getPlaceholder = () => {
-  //   return imageType === cardType.poster
-  //     ? '/img/card-poster-placeholder-broken.svg'
-  //     : '/img/card-backdrop-placeholder-broken.svg';
-  // };
-
   return (
     <figure>
-      {person && (
+      {person && person.profile_path && (
         <SimpleImg
           sizes={personMaxPictureSize()}
           srcSet={personResponsivePath(person.profile_path)}
           src={personProfilePicturePath(person.profile_path)}
-          // placeholder={getPlaceholder()}
           placeholder={false}
           alt=""
         />
       )}
 
-      {/* {!medium && <img src={getPlaceholder()} alt="" />} */}
+      {(!person || !person.profile_path) && <img src="/img/avatar.svg" alt="" />}
 
       {/* <figcaption>{person.name}</figcaption> */}
     </figure>
