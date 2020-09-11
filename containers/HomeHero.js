@@ -11,10 +11,10 @@ const HomeHero = () => {
   const time = new Date().getTime();
   const isOdd = time % 2 !== 0;
 
-  // if (isOdd) {
-  return <HeroTv />;
-  // }
-  // return <HeroMovie />;
+  if (isOdd) {
+    return <HeroTv />;
+  }
+  return <HeroMovie />;
 };
 
 export default HomeHero;

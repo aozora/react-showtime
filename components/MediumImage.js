@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { SimpleImg } from 'react-simple-img';
 import {
   selectConfigurationImagesBackdropSizes,
   selectConfigurationImagesPosterSizes,
   selectConfigurationImagesSecureBaseUrl
-} from '../store/features/tmdb/configuration/configuration-slice';
-import { cardType } from '../lib/shared';
+} from '@/store/features/tmdb/configuration/configuration-slice';
+import { cardType } from '@/lib/shared';
 
 /**
  * MediumImage - render a medium responsive image lazily
@@ -72,9 +72,18 @@ const MediumImage = ({ medium, imageType }) => {
       : '/img/card-backdrop-placeholder-broken.svg';
   };
 
+  const isMediumValid = useMemo(() => {
+    if (!medium) {
+      return false;
+    }
+
+    const filePath = imageType === cardType.poster ? medium.poster_path : medium.backdrop_path;
+    return !(medium && !filePath);
+  }, [medium]);
+
   return (
     <figure>
-      {medium && (
+      {isMediumValid && (
         <SimpleImg
           sizes={movieMaxPictureSize()}
           srcSet={pictureResponsivePath()}
@@ -85,7 +94,7 @@ const MediumImage = ({ medium, imageType }) => {
         />
       )}
 
-      {!medium && <img src={getPlaceholder()} alt="" />}
+      {!isMediumValid && <img src={getPlaceholder()} alt="" />}
 
       {medium.title && <figcaption>{medium.title}</figcaption>}
     </figure>

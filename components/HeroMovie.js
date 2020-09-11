@@ -1,8 +1,10 @@
 import React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { getRandomInt, getYearDate } from '@/lib/shared';
-import { cardType, formatDate } from '../lib/shared';
+import { getRandomInt, getYearDate, cardType, formatDate } from '@/lib/shared';
+import HeroTitle from '@/components/HeroTitle';
+import HeroSkeleton from '@/components/HeroSkeleton';
+
 import MediumImage from './MediumImage';
 import { useUpcomingMovies, useMoviesGenres } from '../hooks/moviesHooks';
 import styles from './HeroMedium.module.scss';
@@ -36,7 +38,7 @@ const HeroMovie = () => {
   }
 
   if (isLoading) {
-    return <div>loading...</div>;
+    return <HeroSkeleton />;
   }
 
   // if the media has been loaded, take randomly a medium from the array
@@ -53,9 +55,8 @@ const HeroMovie = () => {
           <div className={styles.heroTitle}>
             <span role="doc-subtitle">Movie ({getYearDate(medium.release_date)})</span>
             <h1>
-              <Link href="/movie/[slug]" as={`/movie/${medium.id}`}>
-                {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-                <a>{medium.title}</a>
+              <Link passHref href="/movie/[slug]" as={`/movie/${medium.id}`}>
+                <HeroTitle title={medium.title} />
               </Link>
             </h1>
           </div>

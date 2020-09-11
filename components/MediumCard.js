@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 import Link from 'next/link';
-import { cardType, formatDate, mediaType } from '../lib/shared';
+import { cardType, formatDate, mediaType } from '@/lib/shared';
+import { MediaContext } from '@/containers/MediaContextProvider';
 import MediumImage from './MediumImage';
 import styles from './MediumCard.module.scss';
-import { MediaContext } from '../containers/MediaContextProvider';
 
 const MediumCard = ({ medium, card }) => {
   const contextMediaType = useContext(MediaContext);

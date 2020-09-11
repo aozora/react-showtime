@@ -1,10 +1,11 @@
 import React, { useCallback } from 'react';
+import { cardType } from '@/lib/shared';
+import { APP_TITLE } from '@/lib/constants';
+import ReelLoader from '@/components/ReelLoader';
 import MediumImage from './MediumImage';
-import { cardType } from '../lib/shared';
 import MediumCard from './MediumCard';
-import { APP_TITLE } from '../lib/constants';
 import Spinner from './Spinner';
-import { useMoviesGenres, useTopRatedMovies } from '../hooks/moviesHooks';
+import { useTopRatedMovies } from '../hooks/moviesHooks';
 // import { useTvGenres } from '../hooks/tvHooks';
 import styles from './Splash.module.scss';
 
@@ -98,23 +99,24 @@ const Splash = ({ configurationApi, moviesGenres }) => {
           </g>
         </svg>
       </h1>
-      <h2>Loading...</h2>
-      <Spinner />
+      <p>Loading...</p>
+      {/* <Spinner /> */}
+      <ReelLoader className={styles.splashLoaderBackground} />
 
-      {configurationApi && moviesGenres && media && (
-        <>
-          <article className={styles.splashFocusedMedium}>
-            <MediumImage medium={media.results[0]} imageType={cardType.backdrop} />
-          </article>
+      {/* {configurationApi && moviesGenres && media && ( */}
+      {/*  <> */}
+      {/*    <article className={styles.splashFocusedMedium}> */}
+      {/*      <MediumImage medium={media.results[0]} imageType={cardType.backdrop} /> */}
+      {/*    </article> */}
 
-          <div className={styles.splashFocusedCards}>
-            {getSlicedMedia(4).map((medium, index) => (
-              // eslint-disable-next-line react/no-array-index-key
-              <MediumCard key={index} medium={medium} card={cardType.poster} />
-            ))}
-          </div>
-        </>
-      )}
+      {/*    <div className={styles.splashFocusedCards}> */}
+      {/*      {getSlicedMedia(4).map((medium, index) => ( */}
+      {/*        // eslint-disable-next-line react/no-array-index-key */}
+      {/*        <MediumCard key={index} medium={medium} card={cardType.poster} /> */}
+      {/*      ))} */}
+      {/*    </div> */}
+      {/*  </> */}
+      {/* )} */}
     </article>
   );
 };

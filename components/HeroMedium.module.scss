@@ -97,7 +97,7 @@
   }
 }
 
-.splitting{
+.splitting {
   display: block;
   overflow: hidden;
 }
@@ -112,7 +112,7 @@
 .heroMeta {
   grid-area: meta;
 
-  p{
+  p {
     margin: 0;
     padding: 0 1rem 1rem 1rem;
     @include hero-shade;
@@ -186,4 +186,30 @@
 }
 
 .heroAbstract {
+}
+
+.heroSkeleton {
+
+}
+
+@keyframes skeletonOpacity {
+  0% {
+    opacity: 1;
+  }
+  50%{
+    opacity: .3;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.heroSkeletonBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh; // calc(100vh - #{$menu-height});
+  z-index: 1;
+  animation: skeletonOpacity 5s ease-in-out infinite;
 }

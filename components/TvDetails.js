@@ -1,5 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { AnimatePresence } from 'framer-motion';
+import ScrollablePeopleList from '@/components/ScrollablePeopleList';
 import CircularScore from './CircularScore';
 import MediumMediaList from './MediumMediaList';
 import { cardType, formatDate } from '../lib/shared';
@@ -154,18 +156,20 @@ const TvDetails = ({ slug }) => {
         </div>
       </section>
 
+      <h2>Cast</h2>
       {isCreditsLoading && <div>Loading...</div>}
       {credits && (
-        <section className={styles.mediumDetailsCastAndCrew}>
-          <h2>Cast</h2>
-          <ul className={styles.mediumCast}>
-            {credits.cast.map((cast, index) => (
-              <li key={index}>
-                <Person person={cast} />
-              </li>
-            ))}
-          </ul>
-        </section>
+        <AnimatePresence>
+          <ScrollablePeopleList people={credits.cast} />
+        </AnimatePresence>
+      )}
+
+      <h2>Crew</h2>
+      {isCreditsLoading && <div>Loading...</div>}
+      {credits && (
+        <AnimatePresence>
+          <ScrollablePeopleList people={credits.crew} />
+        </AnimatePresence>
       )}
 
       {medium.seasons && (
