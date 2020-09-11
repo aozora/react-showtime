@@ -21,8 +21,8 @@ module.exports = {
       '@/components': path.resolve(__dirname, '../components'),
       '@/lib': path.resolve(__dirname, '../lib'),
       '@/containers': path.resolve(__dirname, '../containers'),
-      '@/store': path.resolve(__dirname, '../containers'),
-      '@/styles': path.resolve(__dirname, '../containers')
+      '@/store': path.resolve(__dirname, '../store'),
+      '@/styles': path.resolve(__dirname, '../styles')
     };
 
     // If you are using CSS Modules, check out the setup from Justin (justincy)

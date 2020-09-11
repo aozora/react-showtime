@@ -15,6 +15,7 @@ function Spinner() {
 
   return (
     <svg
+      id="spinner"
       {...progressBarProps}
       width={32}
       height={32}

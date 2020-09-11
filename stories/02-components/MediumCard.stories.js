@@ -28,14 +28,32 @@ const medium = {
 
 const Template = args => <MediumCard {...args} />;
 
-export const MediumCardPoster = Template.bind({});
-MediumCardPoster.args = {
+export const Poster = Template.bind({});
+Poster.args = {
   card: 'poster',
   medium
 };
 
-export const MediumCardBackdrop = Template.bind({});
-MediumCardBackdrop.args = {
+export const PosterWithoutImage = Template.bind({});
+PosterWithoutImage.args = {
+  card: 'poster',
+  medium: {
+    ...medium,
+    poster_path: undefined
+  }
+};
+
+export const Backdrop = Template.bind({});
+Backdrop.args = {
   card: 'backdrop',
   medium
+};
+
+export const BackdropWithoutImage = Template.bind({});
+BackdropWithoutImage.args = {
+  card: 'backdrop',
+  medium: {
+    ...medium,
+    backdrop_path: undefined
+  }
 };
