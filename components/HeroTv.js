@@ -1,8 +1,8 @@
 import React from 'react';
 import Link from 'next/link';
 import HeroSkeleton from '@/components/HeroSkeleton';
+import { cardType, getRandomInt, getYearDate } from '@/lib/shared';
 import HeroTitle from './HeroTitle';
-import { cardType, getRandomInt, getYearDate } from '../lib/shared';
 import MediumImage from './MediumImage';
 import styles from './HeroMedium.module.scss';
 import { useTvGenres, usePopularTv } from '../hooks/tvHooks';
