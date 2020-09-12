@@ -47,24 +47,24 @@ const MediumImage = ({ medium, imageType }) => {
     return getImagePath(filePath, size);
   }, [medium, posterSizes, getImagePath]);
 
-  const movieMaxPicturePath = useMemo(() => {
+  const getSrc = useMemo(() => {
     return imageType === cardType.poster ? posterMaxPath : backdropMaxPath;
   }, [imageType, posterMaxPath, backdropMaxPath]);
 
-  const movieMaxPictureSize = () => {
+  const getSizes = useMemo(() => {
     const maxSize =
       imageType === cardType.poster
-        ? posterSizes[posterSizes().length - 1]
-        : backdropSizes[backdropSizes().length - 1];
+        ? posterSizes[posterSizes.length - 1]
+        : backdropSizes[backdropSizes.length - 1];
 
     return `(max-width: ${maxSize}px) 100vw, ${maxSize}px`;
-  };
+  }, [posterSizes, backdropSizes, imageType]);
 
-  const pictureResponsivePath = () => {
+  const getSrcSet = useMemo(() => {
     const filePath = imageType === cardType.poster ? medium.poster_path : medium.backdrop_path;
     const sizes = imageType === cardType.poster ? posterSizes : backdropSizes;
     return sizes.map(size => `${getImagePath(filePath, size)} ${size.replace('w', '')}w`).join(',');
-  };
+  }, [imageType, posterSizes, backdropSizes, getImagePath, medium]);
 
   const isMediumValid = useMemo(() => {
     if (!medium) {
@@ -79,9 +79,9 @@ const MediumImage = ({ medium, imageType }) => {
     <figure>
       {isMediumValid && (
         <SimpleImg
-          sizes={movieMaxPictureSize}
-          srcSet={pictureResponsivePath}
-          src={movieMaxPicturePath}
+          sizes={getSizes}
+          srcSet={getSrcSet}
+          src={getSrc}
           // placeholder={getPlaceholder()}
           placeholder={false}
           alt=""

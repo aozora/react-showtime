@@ -1,6 +1,9 @@
 @import '../styles/shared';
 
 .mediaList {
+  --posterWidth: 300px;
+  --posterAspectRatio: 0.6666666666666666;
+  --backdrop-aspect-ratio: 1.777777777777778;
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
@@ -14,9 +17,12 @@
   padding-right: 0;
   margin: 2rem 0;
 
-
   figure {
-    width: 300px;
+    display: contents;
+  }
+
+  article {
+    //width: 300px;
     margin: 1rem;
     box-shadow: var(--card-shadow);
     transform: scale(1);
@@ -24,7 +30,7 @@
     transition: transform 350ms ease-out;
 
     img {
-      width: 300px;
+      max-width: none;
     }
 
     &:hover {
@@ -53,11 +59,15 @@
   height: 242px;
 }
 
-.mediaPoster {
-  width: 300px;
+.mediaPoster,
+.mediaPoster img {
+  width: var(--posterWidth);
+  height: calc(var(--posterWidth) / var(--posterAspectRatio));
 }
 
-.mediaBackdrop {
-  width: 300px;
+.mediaBackdrop,
+.mediaBackdrop img {
+  width: calc(var(--posterWidth) / var(--posterAspectRatio) * var(--backdrop-aspect-ratio));
+  height: calc(var(--posterWidth) / var(--posterAspectRatio));
 }
 
