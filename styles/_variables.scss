@@ -39,12 +39,15 @@
   --focus-ring-color: rgb(38, 128, 235);
   --focus-ring-style: 1px dashed var(--focus-ring-color);
 
+
   // ################################################################
   //    SHADOWS
   // ################################################################
   --default-box-shadow: none;
   --default-text-shadow: none;
-  --card-shadow: .5rem .5rem 2rem rgba(0, 0, 0, .7);
+  --title-text-shadow: rgba(0, 0, 0, 0.5) 0px 15px 25px, rgba(0, 0, 0, 0.5) 0px 5px 10px;
+  --card-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
+  --card-hover-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px, rgba(0, 0, 0, 0.05) 0px 5px 10px;
 
 
   // ################################################################

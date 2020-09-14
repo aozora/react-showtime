@@ -1,8 +1,8 @@
 @import '../styles/shared';
-
-@mixin hero-shade {
-  background: rgba(0, 0, 0, 0.23);
-}
+//
+//@mixin hero-shade {
+//  background: rgba(0, 0, 0, 0.23);
+//}
 
 .hero {
   position: relative;
@@ -66,7 +66,7 @@
 
   [role="doc-subtitle"] {
     padding: 0 1rem;
-    @include hero-shade;
+    text-shadow: var(--title-text-shadow);
 
     &::before,
     &::after {
@@ -82,7 +82,7 @@
   h1 {
     margin: 0;
     padding: 0 1rem;
-    @include hero-shade;
+    text-shadow: var(--title-text-shadow);
 
     a {
       margin: 0;
@@ -115,22 +115,23 @@
   p {
     margin: 0;
     padding: 0 1rem 1rem 1rem;
-    @include hero-shade;
+    text-shadow: var(--title-text-shadow);
   }
 }
 
 .heroGenres {
   @include title-genres;
+  text-shadow: var(--title-text-shadow);
 }
 
 .heroDescription {
   grid-area: desc;
   padding: 0 1rem;
-  @include hero-shade;
 
   p {
     margin: 0;
     font-size: .8rem;
+    text-shadow: var(--title-text-shadow);
   }
 }
 

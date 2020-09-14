@@ -36,6 +36,7 @@
     &:hover {
       //transform: translate(0, -1rem);
       transform: scale(1.2);
+      box-shadow: var(--card-hover-shadow);
       z-index: 2;
 
       img {

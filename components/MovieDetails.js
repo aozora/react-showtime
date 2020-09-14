@@ -117,21 +117,25 @@ const MovieDetails = ({ slug }) => {
         </div>
       </section>
 
-      <h2>Cast</h2>
-      {isCreditsLoading && <div>Loading...</div>}
-      {credits && (
-        <AnimatePresence>
-          <ScrollablePeopleList people={credits.cast} />
-        </AnimatePresence>
-      )}
+      <section>
+        <h2>Cast</h2>
+        {isCreditsLoading && <div>Loading...</div>}
+        {credits && (
+          <AnimatePresence>
+            <ScrollablePeopleList people={credits.cast} />
+          </AnimatePresence>
+        )}
+      </section>
 
-      <h2>Crew</h2>
-      {isCreditsLoading && <div>Loading...</div>}
-      {credits && (
-        <AnimatePresence>
-          <ScrollablePeopleList people={credits.crew} />
-        </AnimatePresence>
-      )}
+      <section>
+        <h2>Crew</h2>
+        {isCreditsLoading && <div>Loading...</div>}
+        {credits && (
+          <AnimatePresence>
+            <ScrollablePeopleList people={credits.crew} />
+          </AnimatePresence>
+        )}
+      </section>
 
       <MediumMediaList medium={medium} />
     </article>

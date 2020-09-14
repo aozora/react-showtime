@@ -9,7 +9,6 @@
 main {
   position: relative;
   margin: 0;
-  //margin-top: $menu-height;
 }
 
 main > section,
@@ -25,40 +24,3 @@ main > section.full-width {
   padding: 0;
 }
 
-
-
-// *******************
-// GRID
-// *******************
-main {
-  //display: grid;
-  //grid-template-columns: fit-content(5.833rem) repeat(5, 1fr);
-  //grid-template-rows: 100px auto;
-  //gap: 3vw;
-}
-
-//.home-logo {
-//  grid-column: 1;
-//  grid-row: 2 / 4;
-//  width: 5.833rem;
-//  height: 3.72rem;
-//
-//  svg {
-//    width: 5.833rem;
-//    height: 3.72rem;
-//  }
-//
-//  @include media(">=tablet") {
-//    grid-column: 1;
-//  }
-//}
-//
-//.hero {
-//  grid-column: 2/5;
-//  grid-row: 2;
-//}
-//
-//.about {
-//  grid-column: 2/5;
-//  grid-row: 3;
-//}

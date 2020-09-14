@@ -5,7 +5,6 @@ import Head from 'next/head';
 import { SWRConfig } from 'swr';
 // import { AnimatePresence } from 'framer-motion';
 import { Provider } from 'react-redux';
-import Splash from '@/components/Splash';
 import { APP_TITLE } from '@/lib/constants';
 import { OverlayProvider } from '@react-aria/overlays';
 import { useStore } from '../store';

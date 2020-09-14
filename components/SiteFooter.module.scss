@@ -1,24 +1,31 @@
 @import '../styles/shared';
 
 .siteFooter {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: auto auto auto;
-  grid-gap: 1rem;
-  grid-template-areas: "social" "copyright" "credits";
+  padding: 4rem 0;
+  background-color: var(--color-black);
+
+  p {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+}
+
+.siteFooterInner {
   @include container;
-  margin: 4rem auto;
+  margin: 0 auto;
 }
 
 .tmdb {
-  width: 56px;
-  height: 40px;
+  width: 190.24px;
+  height: 81.52px;
+  max-width: none;
 }
 
 .siteFooterCopyright {
-  grid-area: copyright;
-  margin: 0 auto 2rem auto;
-  padding: 0 1rem;
+  //grid-area: copyright;
+  //margin: 0 auto 2rem auto;
+  //padding: 0 1rem;
   font-size: .888rem;
   //color: var(--color-black);
   text-align: center;
@@ -26,11 +33,11 @@
 
 .siteFooterCredits {
   grid-area: credits;
-  display: grid;
-  grid-template-columns: 56px 1fr;
-  grid-template-rows: 1fr;
-  grid-gap: 1rem;
-  grid-template-areas: "credits-logo credits-text";
+  //display: grid;
+  //grid-template-columns: 56px 1fr;
+  //grid-template-rows: 1fr;
+  //grid-gap: 1rem;
+  //grid-template-areas: "credits-logo credits-text";
   width: 100%;
   margin: 0 auto 2rem auto;
   padding: 0 1rem;
@@ -42,9 +49,10 @@
     grid-area: credits-logo;
   }
 
-  >p {
+  > p {
     grid-area: credits-text;
   }
+
   //a {
   //  font-size: inherit;
   //}
