@@ -35,6 +35,7 @@
 
     &:hover {
       transform: scale(1.3);
+      box-shadow: var(--card-hover-shadow);
       z-index: 2;
     }
   }

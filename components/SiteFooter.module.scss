@@ -1,19 +1,19 @@
 @import '../styles/shared';
 
 .siteFooter {
-  //display: grid;
-  //grid-template-columns: 1fr;
-  //grid-template-rows: auto auto auto;
-  //grid-gap: 1rem;
-  //grid-template-areas: "social" "copyright" "credits";
-  @include container;
-  margin: 4rem auto;
+  padding: 4rem 0;
+  background-color: var(--color-black);
 
   p {
     margin-left: auto;
     margin-right: auto;
     text-align: center;
   }
+}
+
+.siteFooterInner {
+  @include container;
+  margin: 0 auto;
 }
 
 .tmdb {

@@ -156,53 +156,59 @@ const TvDetails = ({ slug }) => {
         </div>
       </section>
 
-      <h2>Cast</h2>
-      {isCreditsLoading && <div>Loading...</div>}
-      {credits && (
-        <AnimatePresence>
-          <ScrollablePeopleList people={credits.cast} />
-        </AnimatePresence>
-      )}
+      <section>
+        <h2>Cast</h2>
+        {isCreditsLoading && <div>Loading...</div>}
+        {credits && (
+          <AnimatePresence>
+            <ScrollablePeopleList people={credits.cast} />
+          </AnimatePresence>
+        )}
+      </section>
 
-      <h2>Crew</h2>
-      {isCreditsLoading && <div>Loading...</div>}
-      {credits && (
-        <AnimatePresence>
-          <ScrollablePeopleList people={credits.crew} />
-        </AnimatePresence>
-      )}
+      <section>
+        <h2>Crew</h2>
+        {isCreditsLoading && <div>Loading...</div>}
+        {credits && (
+          <AnimatePresence>
+            <ScrollablePeopleList people={credits.crew} />
+          </AnimatePresence>
+        )}
+      </section>
 
-      {medium.seasons && (
-        <section className={styles.seasons}>
-          <h2>Seasons</h2>
-          {/* <p> */}
-          {/*  <Link href="/season/[slug]" as="/season/[slug]"> */}
-          {/*    <a /> */}
-          {/*  </Link> */}
-          {/* </p> */}
-          <table>
-            <tbody>
-              {medium.seasons.map(season => (
-                <tr key={season.id}>
-                  <td className={styles.seasonPosterCell}>
-                    <MediumImage
-                      medium={{ poster_path: season.poster_path }}
-                      imageType={cardType.poster}
-                    />
-                  </td>
-                  <td className={styles.seasonsDetailsCell}>
-                    <h3>
-                      {season.name} ({formatDate(season.air_date)}) | {season.episode_count}{' '}
-                      episodes
-                    </h3>
-                    <p>{season.overview}</p>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </section>
-      )}
+      <section>
+        {medium.seasons && (
+          <section className={styles.seasons}>
+            <h2>Seasons</h2>
+            {/* <p> */}
+            {/*  <Link href="/season/[slug]" as="/season/[slug]"> */}
+            {/*    <a /> */}
+            {/*  </Link> */}
+            {/* </p> */}
+            <table>
+              <tbody>
+                {medium.seasons.map(season => (
+                  <tr key={season.id}>
+                    <td className={styles.seasonPosterCell}>
+                      <MediumImage
+                        medium={{ poster_path: season.poster_path }}
+                        imageType={cardType.poster}
+                      />
+                    </td>
+                    <td className={styles.seasonsDetailsCell}>
+                      <h3>
+                        {season.name} ({formatDate(season.air_date)}) | {season.episode_count}{' '}
+                        episodes
+                      </h3>
+                      <p>{season.overview}</p>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </section>
+        )}
+      </section>
 
       <MediumMediaList medium={medium} />
     </article>
