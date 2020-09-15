@@ -10,6 +10,20 @@ export const fetcher = async url => {
   return res.json();
 };
 
+/**
+ * Check if the given url contains the "language" parameter, if so return the url with the proper locale
+ * @param url
+ * @param locale
+ * @returns {*}
+ */
+export const getUrlWithLanguage = (url, locale) => {
+  if (url.indexOf('language') > -1 || url.indexOf('include_image_language') > -1) {
+    return url.replace('LOCALE', locale);
+  }
+
+  return url;
+};
+
 export const URL = {
   configuration: 'https://api.themoviedb.org/3/configuration',
   languages: 'https://api.themoviedb.org/3/configuration/languages',
@@ -26,24 +40,24 @@ export const URL = {
 
   // search
   // ------------------------------------------------------------
-  search: `https://api.themoviedb.org/3/search/multi?language=en-US&query=KEYWORD&page=1&include_adult=false`,
+  search: `https://api.themoviedb.org/3/search/multi?language=LOCALE&query=KEYWORD&page=1&include_adult=false`,
 
   // movies
   // ------------------------------------------------------------
   movieCertifications: `https://api.themoviedb.org/3/certification/movie/list`,
-  moviesGenres: `https://api.themoviedb.org/3/genre/movie/list?language=en-US`,
-  movieDetails: `https://api.themoviedb.org/3/movie/MOVIE_ID?include_image_language=en&append_to_response=videos,images`,
+  moviesGenres: `https://api.themoviedb.org/3/genre/movie/list?language=LOCALE`,
+  movieDetails: `https://api.themoviedb.org/3/movie/MOVIE_ID?include_image_language=LOCALE,en,null&append_to_response=videos,images`,
   movieCredits: `https://api.themoviedb.org/3/movie/MOVIE_ID/credits`,
-  movieKeywords: '/movie/MOVIE_ID/keywords',
-
-  trending: `https://api.themoviedb.org/3/trending/MEDIA_TYPE/TIME_WINDOW`,
+  movieKeywords: 'https://api.themoviedb.org/3/movie/MOVIE_ID/keywords',
+  movieReleaseDates: 'https://api.themoviedb.org/3/movie/MOVIE_ID/release_dates',
 
   // movie collections
-  latestMovie: `https://api.themoviedb.org/3/movie/latest?language=en-US`,
-  movieTopRated: `https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1`,
-  movieNowPlaying: `https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1`,
-  movieUpcoming: `https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1`,
-  moviePopular: `https://api.themoviedb.org/3/movie/popular?language=en-US&page=1`,
+  trending: `https://api.themoviedb.org/3/trending/MEDIA_TYPE/TIME_WINDOW`,
+  latestMovie: `https://api.themoviedb.org/3/movie/latest?language=LOCALE`,
+  movieTopRated: `https://api.themoviedb.org/3/movie/top_rated?language=LOCALE&page=1`,
+  movieNowPlaying: `https://api.themoviedb.org/3/movie/now_playing?language=LOCALE&page=1`,
+  movieUpcoming: `https://api.themoviedb.org/3/movie/upcoming?language=LOCALE&page=1`,
+  moviePopular: `https://api.themoviedb.org/3/movie/popular?language=LOCALE&page=1`,
 
   // movie related
   movieSimilar: `https://api.themoviedb.org/3/movie/MOVIE_ID/similar`,
@@ -53,20 +67,21 @@ export const URL = {
   // ------------------------------------------------------------
   tvCredits: `https://api.themoviedb.org/3/tv/TV_ID/credits`,
   tvCertifications: `https://api.themoviedb.org/3/certification/tv/list`,
-  tvGenres: `https://api.themoviedb.org/3/genre/tv/list?language=en-US`,
+  tvGenres: `https://api.themoviedb.org/3/genre/tv/list?language=LOCALE`,
   tvDetails: `https://api.themoviedb.org/3/tv/TV_ID?append_to_response=videos,images`,
-  tvKeywords: '/tv/TV_ID/keywords',
+  tvKeywords: 'https://api.themoviedb.org/3/tv/TV_ID/keywords',
+  tvLatest: `https://api.themoviedb.org/3/tv/latest?language=LOCALE`,
 
-  tvLatest: `https://api.themoviedb.org/3/tv/latest?language=en-US`,
-  tvTopRated: `https://api.themoviedb.org/3/tv/top_rated?language=en-US&page=1`,
-  tvPopular: `https://api.themoviedb.org/3/tv/popular?language=en-US&page=1`,
-  tvOnTheAir: `https://api.themoviedb.org/3/tv/on_the_air?language=en-US&page=1`,
-  tvOnTheAirToday: `https://api.themoviedb.org/3/tv/airing_today?language=en-US&page=1`,
+  // tv collections
+  tvTopRated: `https://api.themoviedb.org/3/tv/top_rated?language=LOCALE&page=1`,
+  tvPopular: `https://api.themoviedb.org/3/tv/popular?language=LOCALE&page=1`,
+  tvOnTheAir: `https://api.themoviedb.org/3/tv/on_the_air?language=LOCALE&page=1`,
+  tvOnTheAirToday: `https://api.themoviedb.org/3/tv/airing_today?language=LOCALE&page=1`,
 
-  tvSeasons: 'https://api.themoviedb.org/3/tv/TV_ID/season/SEASON_NUMBER?language=en-US&page=1',
+  tvSeasons: 'https://api.themoviedb.org/3/tv/TV_ID/season/SEASON_NUMBER?language=LOCALE&page=1',
 
   // people
   // ------------------------------------------------------------
-  peopleDetails: `https://api.themoviedb.org/3/person/PERSON_ID?language=en-US&append_to_response=videos,images`,
-  peopleCombinedCredits: `https://api.themoviedb.org/3/person/PERSON_ID/combined_credits?language=en-US`
+  peopleDetails: `https://api.themoviedb.org/3/person/PERSON_ID?language=LOCALE&append_to_response=videos,images`,
+  peopleCombinedCredits: `https://api.themoviedb.org/3/person/PERSON_ID/combined_credits?language=LOCALE`
 };

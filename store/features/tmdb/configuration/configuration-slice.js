@@ -14,6 +14,10 @@ const initialState = {
   genres: {
     movies: [],
     tv: []
+  },
+  certifications: {
+    movies: [],
+    tv: []
   }
 };
 
@@ -44,6 +48,12 @@ const configurationSlice = createSlice({
     },
     setGenresTv(state, action) {
       state.genres.tv = action.payload;
+    },
+    setMoviesCertifications(state, action) {
+      state.certifications.movies = action.payload;
+    },
+    setTvCertifications(state, action) {
+      state.certifications.tv = action.payload;
     }
   }
 });
@@ -56,7 +66,9 @@ export const {
   setJobs,
   setTimezones,
   setGenresMovies,
-  setGenresTv
+  setGenresTv,
+  setMoviesCertifications,
+  setTvCertifications
 } = configurationSlice.actions;
 
 // ***************************************
@@ -89,5 +101,13 @@ export const selectConfigurationImagesSecureBaseUrl = createSelector(
 
 export const selectConfigurationLanguages = createSelector(slice, state => state.languages);
 export const selectConfigurationCountries = createSelector(slice, state => state.countries);
+export const selectConfigurationMovieCertifications = createSelector(
+  slice,
+  state => state.certifications.movies
+);
+export const selectConfigurationTvCertifications = createSelector(
+  slice,
+  state => state.certifications.tv
+);
 
 export default configurationSlice.reducer;

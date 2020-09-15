@@ -1,9 +1,14 @@
 /* eslint-disable import/prefer-default-export */
 import useSWR from 'swr';
-import { fetcher, URL } from '../api';
+import { useLocale } from '@react-aria/i18n';
+import { fetcher, getUrlWithLanguage, URL } from '../api';
 
 export function usePeopleDetails(slug) {
-  const { data, error } = useSWR(URL.peopleDetails.replace('PERSON_ID', slug), fetcher);
+  const { locale } = useLocale();
+  const { data, error } = useSWR(
+    getUrlWithLanguage(URL.peopleDetails.replace('PERSON_ID', slug), locale),
+    fetcher
+  );
 
   return {
     person: data,
@@ -13,7 +18,11 @@ export function usePeopleDetails(slug) {
 }
 
 export function usePeopleCredits(slug) {
-  const { data, error } = useSWR(URL.peopleCombinedCredits.replace('PERSON_ID', slug), fetcher);
+  const { locale } = useLocale();
+  const { data, error } = useSWR(
+    getUrlWithLanguage(URL.peopleCombinedCredits.replace('PERSON_ID', slug), locale),
+    fetcher
+  );
 
   return {
     credits: data,

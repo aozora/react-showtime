@@ -1,9 +1,11 @@
 /* eslint-disable import/prefer-default-export */
 import useSWR from 'swr';
-import { fetcher, URL } from '../api';
+import { useLocale } from '@react-aria/i18n';
+import { fetcher, getUrlWithLanguage, URL } from '../api';
 
 export const useMoviesGenres = () => {
-  const { data, error } = useSWR(URL.moviesGenres, fetcher);
+  const { locale } = useLocale();
+  const { data, error } = useSWR(getUrlWithLanguage(URL.moviesGenres, locale), fetcher);
   return {
     moviesGenres: data,
     isLoading: !error && !data,
@@ -11,8 +13,32 @@ export const useMoviesGenres = () => {
   };
 };
 
+export const useMoviesCertifications = () => {
+  const { locale } = useLocale();
+  const { data, error } = useSWR(getUrlWithLanguage(URL.movieCertifications, locale), fetcher);
+  return {
+    moviesCertifications: data,
+    isMoviesCertificationsLoading: !error && !data,
+    isMoviesCertificationsError: error
+  };
+};
+
+export const useMoviesReleaseDates = slug => {
+  const { locale } = useLocale();
+  const { data, error } = useSWR(
+    getUrlWithLanguage(URL.movieReleaseDates.replace('MOVIE_ID', slug), locale),
+    fetcher
+  );
+  return {
+    releases: data,
+    isReleasesLoading: !error && !data,
+    isReleasesError: error
+  };
+};
+
 export function useUpcomingMovies() {
-  const { data, error } = useSWR(URL.movieUpcoming, fetcher);
+  const { locale } = useLocale();
+  const { data, error } = useSWR(getUrlWithLanguage(URL.movieUpcoming, locale), fetcher);
 
   return {
     media: data,
@@ -22,7 +48,8 @@ export function useUpcomingMovies() {
 }
 
 export function useNowPlayingMovies() {
-  const { data, error } = useSWR(URL.movieNowPlaying, fetcher);
+  const { locale } = useLocale();
+  const { data, error } = useSWR(getUrlWithLanguage(URL.movieNowPlaying, locale), fetcher);
 
   return {
     media: data,
@@ -32,7 +59,8 @@ export function useNowPlayingMovies() {
 }
 
 export function useTopRatedMovies() {
-  const { data, error } = useSWR(URL.movieTopRated, fetcher);
+  const { locale } = useLocale();
+  const { data, error } = useSWR(getUrlWithLanguage(URL.movieTopRated, locale), fetcher);
 
   return {
     media: data,
@@ -42,7 +70,8 @@ export function useTopRatedMovies() {
 }
 
 export function usePopularMovies() {
-  const { data, error } = useSWR(URL.moviePopular, fetcher);
+  const { locale } = useLocale();
+  const { data, error } = useSWR(getUrlWithLanguage(URL.moviePopular, locale), fetcher);
 
   return {
     media: data,
@@ -52,7 +81,8 @@ export function usePopularMovies() {
 }
 
 export function useLatestMovie() {
-  const { data, error } = useSWR(URL.latestMovie, fetcher);
+  const { locale } = useLocale();
+  const { data, error } = useSWR(getUrlWithLanguage(URL.latestMovie, locale), fetcher);
 
   return {
     medium: data,
@@ -62,7 +92,11 @@ export function useLatestMovie() {
 }
 
 export function useMovieDetails(slug) {
-  const { data, error } = useSWR(URL.movieDetails.replace('MOVIE_ID', slug), fetcher);
+  const { locale } = useLocale();
+  const { data, error } = useSWR(
+    getUrlWithLanguage(URL.movieDetails.replace('MOVIE_ID', slug), locale),
+    fetcher
+  );
 
   return {
     medium: data,
@@ -72,7 +106,11 @@ export function useMovieDetails(slug) {
 }
 
 export function useMovieCredits(slug) {
-  const { data, error } = useSWR(URL.movieCredits.replace('MOVIE_ID', slug), fetcher);
+  const { locale } = useLocale();
+  const { data, error } = useSWR(
+    getUrlWithLanguage(URL.movieCredits.replace('MOVIE_ID', slug), locale),
+    fetcher
+  );
 
   return {
     credits: data,
@@ -82,7 +120,11 @@ export function useMovieCredits(slug) {
 }
 
 export function useMovieKeywords(slug) {
-  const { data, error } = useSWR(URL.movieKeywords.replace('MOVIE_ID', slug), fetcher);
+  const { locale } = useLocale();
+  const { data, error } = useSWR(
+    getUrlWithLanguage(URL.movieKeywords.replace('MOVIE_ID', slug), locale),
+    fetcher
+  );
 
   return {
     keywords: data,

@@ -10,7 +10,9 @@ import {
   setJobs,
   setTimezones,
   setGenresMovies,
-  setGenresTv
+  setGenresTv,
+  setMoviesCertifications,
+  setTvCertifications
 } from '@/store/features/tmdb/configuration/configuration-slice';
 import Splash from '@/components/Splash';
 import { useIntersection } from 'react-use';
@@ -22,8 +24,8 @@ import {
   useConfigurationJobs,
   useConfigurationPrimaryTranslations
 } from '../hooks/configurationHooks';
-import { useMoviesGenres } from '../hooks/moviesHooks';
-import { useTvGenres } from '../hooks/tvHooks';
+import { useMoviesCertifications, useMoviesGenres } from '../hooks/moviesHooks';
+import { useTvCertifications, useTvGenres } from '../hooks/tvHooks';
 
 export default function Layout({ preview, children }) {
   const dispatch = useDispatch();
@@ -37,6 +39,8 @@ export default function Layout({ preview, children }) {
   const { countries } = useConfigurationCountries();
   const { jobs } = useConfigurationJobs();
   const { primaryTranslations } = useConfigurationPrimaryTranslations();
+  const { tvCertifications, isTvCertificationsLoading } = useTvCertifications();
+  const { moviesCertifications, isMoviesCertificationsLoading } = useMoviesCertifications();
 
   const intersectionRef = useRef(null);
   const intersection = useIntersection(intersectionRef, {
@@ -77,7 +81,21 @@ export default function Layout({ preview, children }) {
     dispatch(setGenresTv(tvGenres));
   }
 
-  if (isLoadingConfigurationApi || isLoadingMoviesGenres || isLoadingTvGenres) {
+  if (moviesCertifications) {
+    dispatch(setMoviesCertifications(moviesCertifications));
+  }
+
+  if (tvCertifications) {
+    dispatch(setTvCertifications(tvCertifications));
+  }
+
+  if (
+    isLoadingConfigurationApi ||
+    isLoadingMoviesGenres ||
+    isLoadingTvGenres ||
+    isTvCertificationsLoading ||
+    isMoviesCertificationsLoading
+  ) {
     return <Splash configurationApi={api} moviesGenres={moviesGenres} />;
   }
 

@@ -1,9 +1,14 @@
 /* eslint-disable import/prefer-default-export */
 import useSWR from 'swr';
-import { fetcher, URL } from '../api';
+import { useLocale } from '@react-aria/i18n';
+import { fetcher, getUrlWithLanguage, URL } from '../api';
 
 export function useTrendingMedia(type, time) {
-  const url = URL.trending.replace('MEDIA_TYPE', type).replace('TIME_WINDOW', time);
+  const { locale } = useLocale();
+  const url = getUrlWithLanguage(
+    URL.trending.replace('MEDIA_TYPE', type).replace('TIME_WINDOW', time),
+    locale
+  );
 
   const { data, error } = useSWR(url, fetcher);
 

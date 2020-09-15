@@ -13,3 +13,10 @@ export default function Medium({ preview }) {
 
   return <>{router.isFallback ? <div>Loading…</div> : <MovieDetails slug={slug} />}</>;
 }
+
+export async function getServerSideProps() {
+  // Fetch data from external API
+
+  // Pass data to the page via props
+  return { props: {} };
+}

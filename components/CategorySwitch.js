@@ -51,33 +51,4 @@ export const CategorySwitch = ({ radios, label, initialValue, onChange }) => {
   );
 };
 
-// export const CategoryRadio = props => {
-//   const { children, value, label } = props;
-//   const state = React.useContext(RadioContext);
-//   const { inputProps } = useRadio(props, state);
-//   const { isFocusVisible, focusProps } = useFocusRing();
-//   const id = useId();
-//   const isSelected = state.selectedValue === value;
-//
-//   return (
-//     <>
-//       {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-//       <label htmlFor={id} style={{ display: 'flex', alignItems: 'center' }}>
-//         {/* <VisuallyHidden> */}
-//
-//         {/* </VisuallyHidden> */}
-//         {/* <div */}
-//         {/*  className={`button ${isSelected ? 'button--primary' : ''} ${ */}
-//         {/*    isFocusVisible ? 'button--focus-ring' : '' */}
-//         {/*  }`} */}
-//         {/* > */}
-//         {/*  {label} */}
-//         {/* </div> */}
-//         {label}
-//       </label>
-//       <input id={id} {...inputProps} {...focusProps} />
-//     </>
-//   );
-// };
-
 export default CategorySwitch;

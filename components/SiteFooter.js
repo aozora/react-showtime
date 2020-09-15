@@ -8,11 +8,11 @@ const SiteFooter = () => {
         <p className={styles.siteFooterCopyright}>&copy; All rights reserved.</p>
         <p>This product uses the TMDb API but is not endorsed or certified by TMDb.</p>
         <div className={styles.siteFooterCredits}>
-          <a href="https://www.themoviedb.org" rel="noreferrer noopener nofollow">
+          <a href="https://www.themoviedb.org" target="_blank" rel="noreferrer noopener nofollow">
             <img
               className={styles.tmdb}
-              width="190.24"
-              height="81.52"
+              width="82"
+              height="35"
               src="/img/tmdb-blue_square_2.svg"
               alt="The Movie DB logo"
             />
