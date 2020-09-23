@@ -15,8 +15,8 @@ const ScrollablePeopleList = ({ people, motionKey }) => {
     >
       <div className={`${styles.peopleListContainer}`}>
         {people &&
-          people.map(person => (
-            <article key={person.id}>
+          people.map((person, index) => (
+            <article key={index}>
               <Person person={person} />
             </article>
           ))}
