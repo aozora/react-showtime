@@ -53,10 +53,7 @@
 }
 
 .mediaVideo {
-  //flex: 0 0 430px;
-  //width: 430px;
-  //height: 242px;
-  --posterWidth: clamp(400px, 40vw, 521px);
+  --posterWidth: clamp(var(--cards-backdrop-min-width), 40vw, var(--cards-backdrop-min-width));
   width: var(--posterWidth);
   height: calc(var(--posterWidth) / var(--backdrop-aspect-ratio));
   flex: 0 0 var(--posterWidth);
