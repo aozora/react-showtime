@@ -2,8 +2,6 @@
 
 .mediaList {
   --posterWidth: 300px;
-  --posterAspectRatio: 0.6666666666666666;
-  --backdrop-aspect-ratio: 1.777777777777778;
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
@@ -55,20 +53,24 @@
 }
 
 .mediaVideo {
-  flex: 0 0 430px;
-  width: 430px;
-  height: 242px;
+  //flex: 0 0 430px;
+  //width: 430px;
+  //height: 242px;
+  --posterWidth: clamp(400px, 40vw, 521px);
+  width: var(--posterWidth);
+  height: calc(var(--posterWidth) / var(--backdrop-aspect-ratio));
+  flex: 0 0 var(--posterWidth);
 }
 
 .mediaPoster,
 .mediaPoster img {
   width: var(--posterWidth);
-  height: calc(var(--posterWidth) / var(--posterAspectRatio));
+  height: calc(var(--posterWidth) / var(--poster-aspect-ratio));
 }
 
 .mediaBackdrop,
 .mediaBackdrop img {
-  width: calc(var(--posterWidth) / var(--posterAspectRatio) * var(--backdrop-aspect-ratio));
-  height: calc(var(--posterWidth) / var(--posterAspectRatio));
+  width: calc(var(--posterWidth) / var(--poster-aspect-ratio) * var(--backdrop-aspect-ratio));
+  height: calc(var(--posterWidth) / var(--poster-aspect-ratio));
 }
 
