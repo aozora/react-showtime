@@ -1,0 +1,31 @@
+.videoPlayer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100vw;
+  height: calc(100vw / 1.778); // keep the 19:9 aspect ratio
+  margin-top: var(--menu-height);
+  background: var(--color-black);
+  z-index: 100;
+}
+
+.videoPlayerToolbar {
+  flex: 0 0 auto;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  height: 2.5rem;
+
+  button {
+    border: 0;
+    background-color: transparent;
+    color: var(--color-white)
+  }
+}

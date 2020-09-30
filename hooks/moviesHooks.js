@@ -1,6 +1,7 @@
 /* eslint-disable import/prefer-default-export */
 import useSWR from 'swr';
 import { useLocale } from '@react-aria/i18n';
+import { getRandomInt } from '@/lib/shared';
 import { fetcher, getUrlWithLanguage, URL } from '../api';
 
 export const useMoviesGenres = () => {
@@ -93,8 +94,28 @@ export function useLatestMovie() {
 
 export function useMovieDetails(slug) {
   const { locale } = useLocale();
+
+  // use the swr dependent format
   const { data, error } = useSWR(
-    getUrlWithLanguage(URL.movieDetails.replace('MOVIE_ID', slug), locale),
+    () =>
+      slug !== null ? getUrlWithLanguage(URL.movieDetails.replace('MOVIE_ID', slug), locale) : null,
+    fetcher
+  );
+
+  return {
+    medium: data,
+    isLoading: !error && !data,
+    isError: error
+  };
+}
+
+export function useRandomMovieDetails(media) {
+  const { locale } = useLocale();
+  const medium = media && media.results[getRandomInt(media.results.length)];
+  // use the swr dependent format
+  const { data, error } = useSWR(
+    () =>
+      media ? getUrlWithLanguage(URL.movieDetails.replace('MOVIE_ID', medium.id), locale) : null,
     fetcher
   );
 

@@ -82,8 +82,9 @@ export function useLatestTv() {
 
 export function useTvDetails(slug) {
   const { locale } = useLocale();
+  // use the swr dependent format
   const { data, error } = useSWR(
-    getUrlWithLanguage(URL.tvDetails.replace('TV_ID', slug), locale),
+    () => (slug !== null ? getUrlWithLanguage(URL.tvDetails.replace('TV_ID', slug), locale) : null),
     fetcher
   );
 
