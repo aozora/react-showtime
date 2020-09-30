@@ -3,10 +3,11 @@
 ## Core
 
 * tests + storybook
+* i18n + language management
+    * add i18next or Adobe provider
 * landing page movies, tv, people
   (popular, top rated)
 * search
-* i18n + language management
 
 * medium details:
     * add keywords
@@ -20,12 +21,13 @@
     * images
     * tagged images
 
-* add i18next or Adobe provider
 
 ## v2
 
 * login, ratings, ...
-
+* user settings
+    * language 
+    * ...
 
 ## UI
 

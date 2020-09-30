@@ -1,19 +1,14 @@
 @import '../styles/shared';
 
 .card {
-  flex: 0 0 342px;
+  --card-width: var(--cards-poster-min-width);
+  --card-height: 414px;
   position: relative;
-  width: 342px;
-  height: 192px;
+  width: var(--card-width);
+  height: var(--card-height);
   border-radius: var(--global-border-radius);
   overflow: hidden;
   transition: all .2s ease;
-
-  @include media('>=tablet') {
-    flex: 0 0 342px;
-    width: 342px;
-    height: 192px;
-  }
 
   a,
   figure {
@@ -102,49 +97,15 @@
   }
 }
 
-.cardBackdrop {
-  flex: 0 0 400px;
-  width: 100%;
-  max-width: 400px;
-  height: 226px;
-
-  @include media('>=desktop') {
-    flex: 0 0 521px;
-    width: 521px;
-    max-width: 521px;
-    height: 292px;
-  }
-}
-
 .cardPoster {
-  //flex: 0 0 30vw;
-  //width: clamp(276px, 30vw, 340px);
-  //height: clamp(390px, 45vw, 510px);
-  flex: 0 0 220px;
-  width: 276px;
-  height: 390px;
-
-  @include media('>=desktop', '<desktophd') {
-    flex: 0 0 300px;
-    width: 300px;
-    height: 450px;
-  }
-
-  @include media('>=desktophd') {
-    flex: 0 0 340px;
-    width: 340px;
-    height: 510px;
-  }
+  --card-width: clamp(var(--cards-poster-min-width), 30vw, var(--cards-poster-max-width));
+  --card-height: calc(var(--card-width) / var(--poster-aspect-ratio));
+  flex: 0 0 var(--card-width);
 }
 
-.cardVideo {
-  flex: 0 0 100%;
-  width: 100%;
-  height: 242px;
-
-  @include media('>=tablet') {
-    flex: 0 0 430px;
-    width: 430px;
-    height: 242px;
-  }
+.cardVideo,
+.cardBackdrop {
+  --card-width: clamp(var(--cards-backdrop-min-width), 40vw, var(--cards-backdrop-max-width));
+  --card-height: calc(var(--card-width) / var(--backdrop-aspect-ratio));
+  flex: 0 0 var(--card-width);
 }

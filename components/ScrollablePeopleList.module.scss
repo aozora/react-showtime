@@ -20,6 +20,8 @@
       //height: 85px;
       border-radius: var(--global-border-radius);
       text-decoration: none;
+      background-color: var(--color-black);
+      box-shadow: var(--card-shadow);
       overflow: hidden;
     }
 
@@ -35,7 +37,6 @@
     div {
       flex: 0 0 auto;
       padding: 1rem;
-      background-color: var(--color-black);
 
       p:nth-child(1),
       p:nth-child(2) {

@@ -25,9 +25,6 @@ $menu-toggle-button-zindex: $menu-zindex + 2;
   overflow: auto;
 }
 
-/**
-  Mobile Navigation
- */
 .mainMenu {
   position: relative;
   display: flex;
@@ -48,6 +45,10 @@ $menu-toggle-button-zindex: $menu-zindex + 2;
     flex-direction: row;
     flex-wrap: nowrap;
   }
+}
+
+.Logo{
+
 }
 
 .mainMenuToggle {

@@ -18,6 +18,7 @@ const ScrollableMediaList = ({ media, motionKey, mediaType }) => {
         {media &&
           media.map((medium, index) => {
             switch (mediaType) {
+              case mediaListType.profiles:
               case mediaListType.posters:
                 return (
                   <article className={styles.mediaPoster}>

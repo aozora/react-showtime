@@ -1,6 +1,7 @@
 import React, { useCallback } from 'react';
-import { compareCastReleaseDatesDesc } from '@/lib/shared';
-import { formatDate } from '../lib/shared';
+import { compareCastReleaseDatesDesc, formatDate } from '@/lib/shared';
+
+import MediumMediaList from '@/components/MediumMediaList';
 import styles from './MediumDetails.module.scss';
 import { usePeopleCredits, usePeopleDetails } from '../hooks/peopleHooks';
 import PersonImage from './PersonImage';
@@ -73,6 +74,8 @@ const PeopleDetails = ({ slug }) => {
           )}
         </div>
       </section>
+
+      <MediumMediaList medium={person} />
     </article>
   );
 };

@@ -1,10 +1,13 @@
 /* eslint-disable react/no-array-index-key */
+import React from 'react';
 import { motion } from 'framer-motion';
 import styles from '@/components/HeroMedium.module.scss';
-import React from 'react';
 import { letterContainerVariants, letterVariants } from '@/lib/motionShared';
 
-const HeroTitle = React.forwardRef(({ title }) => {
+// eslint-disable-next-line react/display-name
+const HeroTitle = React.forwardRef((props, ref) => {
+  const { title } = props;
+
   return (
     <motion.a
       initial="before"

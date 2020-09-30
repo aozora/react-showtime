@@ -1,21 +1,22 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import CircularScore from '@/components/CircularScore';
 import MediumMediaList from '@/components/MediumMediaList';
 import ImdbLink from '@/components/ImdbLink';
 import ScrollablePeopleList from '@/components/ScrollablePeopleList';
 import { AnimatePresence } from 'framer-motion';
-import { cardType, formatDate, tvCategory } from '../lib/shared';
+import { cardType, formatDate } from '@/lib/shared';
+import { selectConfigurationLanguages } from '@/store/features/tmdb/configuration/configuration-slice';
 import MediumImage from './MediumImage';
-import { useMovieCredits, useMovieDetails } from '../hooks/moviesHooks';
-import Person from './Person';
+import { useMovieCredits, useMovieDetails, useMoviesReleaseDates } from '../hooks/moviesHooks';
 import styles from './MediumDetails.module.scss';
-import { selectConfigurationLanguages } from '../store/features/tmdb/configuration/configuration-slice';
 
 const MovieDetails = ({ slug }) => {
   const { medium, isLoading, isError } = useMovieDetails(slug);
   const { credits, isCreditsLoading, isCreditsError } = useMovieCredits(slug);
+  const { releases, isReleasesLoading, isReleasesError } = useMoviesReleaseDates(slug);
   const languages = useSelector(selectConfigurationLanguages);
+  const [certification, setCertification] = useState();
 
   if (isError) {
     return <div>failed to load</div>;
@@ -25,12 +26,16 @@ const MovieDetails = ({ slug }) => {
     return <div>loading...</div>;
   }
 
+  // if (releases && releases.results) {
+  //   setCertification(releases.results.find(r => r.iso_3166_1 === 'US'));
+  // }
+
   const getLanguage = () => {
     if (!medium) {
       return '-';
     }
 
-    const lang = languages.find(lang => lang.iso_639_1 === medium.original_language);
+    const lang = languages.find(language => language.iso_639_1 === medium.original_language);
 
     if (lang) {
       return lang.english_name;
@@ -62,7 +67,14 @@ const MovieDetails = ({ slug }) => {
               <span key={genre.id}>{genre.name}</span>
             ))}
           </p>
-          <p className={styles.mediumReleased}>Released {formatDate(medium.release_date)}</p>
+          <p className={styles.mediumReleased}>
+            Released {formatDate(medium.release_date)}
+            {/* {certification && ( */}
+            {/*  <span className={styles.certification}> */}
+            {/*    {certification.release_dates[0]?.certification} */}
+            {/*  </span> */}
+            {/* )} */}
+          </p>
         </div>
 
         <MediumImage medium={medium} imageType={cardType.backdrop} />
