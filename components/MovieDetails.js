@@ -55,8 +55,8 @@ const MovieDetails = ({ slug }) => {
   };
 
   return (
-    <article className={styles.mediumDetails}>
-      <header>
+    <article className={`${styles.mediumDetails} full-bleed wrapper`}>
+      <header className="full-bleed">
         <div className={styles.mediumDetailsHeader}>
           <h1>{medium.original_title}</h1>
 
@@ -129,7 +129,7 @@ const MovieDetails = ({ slug }) => {
         </div>
       </section>
 
-      <section>
+      <section className="full-bleed">
         <h2>Cast</h2>
         {isCreditsLoading && <div>Loading...</div>}
         {credits && (
@@ -139,7 +139,7 @@ const MovieDetails = ({ slug }) => {
         )}
       </section>
 
-      <section>
+      <section className="full-bleed">
         <h2>Crew</h2>
         {isCreditsLoading && <div>Loading...</div>}
         {credits && (

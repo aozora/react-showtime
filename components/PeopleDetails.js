@@ -54,25 +54,27 @@ const PeopleDetails = ({ slug }) => {
               {person.also_known_as && person.also_known_as.map(name => <p key={name}>{name}</p>)}
             </dd>
           </dl>
-
-          <h2>Acting</h2>
-          {credits && (
-            <table>
-              <tbody>
-                {credits.cast.sort(compareCastReleaseDatesDesc).map((cast, index) => (
-                  <tr key={index}>
-                    <td>{cast.release_date && formatDateTime(cast.release_date)}</td>
-                    <td>
-                      {cast.title}
-                      {cast.original_title && <span>{`(${cast.original_title})`}</span>}
-                      {cast.character && <>&nbsp;as {cast.character}</>}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          )}
         </div>
+      </section>
+
+      <section>
+        <h2>Acting</h2>
+        {credits && (
+          <table>
+            <tbody>
+              {credits.cast.sort(compareCastReleaseDatesDesc).map((cast, index) => (
+                <tr key={index}>
+                  <td>{cast.release_date && formatDateTime(cast.release_date)}</td>
+                  <td>
+                    {cast.title}
+                    {cast.original_title && <span>{`(${cast.original_title})`}</span>}
+                    {cast.character && <>&nbsp;as {cast.character}</>}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
       </section>
 
       <MediumMediaList medium={person} />

@@ -6,21 +6,34 @@
 // across all components of the page and use class selectors where appropriate.
 // ===============================================================================
 
-main {
+//main > section,
+//main > article {
+//  max-width: var(--section-max-width);
+//  margin: 0 auto;
+//  padding: 0;
+//}
+
+//main > section.full-width {
+//  width: 100%;
+//  max-width: none;
+//  padding: 0;
+//}
+
+.wrapper {
   position: relative;
+  display: grid;
+  grid-template-columns: 1fr min(var(--section-max-width), 100%) 1fr;
   margin: 0;
 }
 
-main > section,
-main > article {
-  max-width: var(--section-max-width);
+.wrapper > * {
+  grid-column: 2;
+  width: 100%;
   margin: 0 auto;
   padding: 0;
 }
 
-main > section.full-width {
+.full-bleed {
   width: 100%;
-  max-width: none;
-  padding: 0;
+  grid-column: 1 / 4;
 }
-

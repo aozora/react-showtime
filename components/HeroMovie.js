@@ -58,7 +58,7 @@ const HeroMovie = () => {
   }
 
   return (
-    <section className="full-width">
+    <section className="full-bleed">
       <article className={styles.hero}>
         <MediumImage medium={medium} imageType={cardType.backdrop} />
         <header>
