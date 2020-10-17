@@ -24,7 +24,7 @@ export default function Index({}) {
     <>
       <HomeHero />
 
-      <section className={styles.homeSection}>
+      <section className={`${styles.homeSection} full-bleed`}>
         <CategorySwitch
           label="Trending"
           initialValue={timeWindow.day}
@@ -47,7 +47,7 @@ export default function Index({}) {
         </div>
       </section>
 
-      <section className={styles.homeSection}>
+      <section className={`${styles.homeSection} full-bleed`}>
         <CategorySwitch
           label="Movies"
           initialValue={movieCategory.upcoming}
@@ -78,7 +78,7 @@ export default function Index({}) {
         </div>
       </section>
 
-      <section className={styles.homeSection}>
+      <section className={`${styles.homeSection} full-bleed`}>
         <CategorySwitch
           label="TV Shows"
           initialValue={tvCategory.onTheAirToday}

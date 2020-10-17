@@ -105,7 +105,7 @@ export default function Layout({ preview, children }) {
         Skip to main content
       </a>
       <SiteHeader scrolled={intersection && intersection.isIntersecting} />
-      <main id="main" role="main">
+      <main id="main" className="wrapper" role="main">
         <div ref={intersectionRef} className="visuallyhidden" />
         {children}
       </main>

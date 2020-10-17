@@ -4,7 +4,7 @@ import styles from './HeroMedium.module.scss';
 
 // eslint-disable-next-line react/display-name
 const HeroSkeleton = React.memo(() => (
-  <section className="full-width">
+  <section className="full-bleed">
     <article className={`${styles.hero} ${styles.heroSkeleton}`}>
       <ReelLoader className={styles.heroSkeletonBackground} />
       {/* <svg */}

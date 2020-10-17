@@ -21,6 +21,7 @@
     * images
     * tagged images
 
+* add share (see: https://medium.com/samsung-internet-dev/improve-device-integration-for-your-web-app-in-just-a-few-minutes-cca413c4f0f)
 
 ## v2
 

@@ -53,8 +53,8 @@ const TvDetails = ({ slug }) => {
   };
 
   return (
-    <article className={styles.mediumDetails}>
-      <header>
+    <article className={`${styles.mediumDetails} full-bleed wrapper`}>
+      <header className="full-bleed">
         <div className={styles.mediumDetailsHeader}>
           <h1>{medium.original_name}</h1>
 
@@ -111,7 +111,7 @@ const TvDetails = ({ slug }) => {
 
       <section className={styles.mediumDetailsDetails}>
         <aside className={styles.mediumPoster}>
-          <h2>Poster</h2>
+          {/* <h2>Poster</h2> */}
           <MediumImage medium={medium} imageType={cardType.poster} />
         </aside>
 
@@ -156,7 +156,7 @@ const TvDetails = ({ slug }) => {
         </div>
       </section>
 
-      <section>
+      <section className="full-bleed">
         <h2>Cast</h2>
         {isCreditsLoading && <div>Loading...</div>}
         {credits && (
@@ -166,7 +166,7 @@ const TvDetails = ({ slug }) => {
         )}
       </section>
 
-      <section>
+      <section className="full-bleed">
         <h2>Crew</h2>
         {isCreditsLoading && <div>Loading...</div>}
         {credits && (
