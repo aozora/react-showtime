@@ -63,6 +63,9 @@ export const URL = {
   movieSimilar: `https://api.themoviedb.org/3/movie/MOVIE_ID/similar`,
   movieLists: `https://api.themoviedb.org/3/movie/MOVIE_ID/lists`,
 
+  // discover
+  movieDiscover: '/discover/movie?language=LOCALE',
+
   // tv series
   // ------------------------------------------------------------
   tvCredits: `https://api.themoviedb.org/3/tv/TV_ID/credits`,
@@ -79,6 +82,9 @@ export const URL = {
   tvOnTheAirToday: `https://api.themoviedb.org/3/tv/airing_today?language=LOCALE&page=1`,
 
   tvSeasons: 'https://api.themoviedb.org/3/tv/TV_ID/season/SEASON_NUMBER?language=LOCALE&page=1',
+
+  // discover
+  tvDiscover: '/discover/tv?language=LOCALE',
 
   // people
   // ------------------------------------------------------------

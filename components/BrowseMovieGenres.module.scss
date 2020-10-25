@@ -70,7 +70,7 @@
 .menuItemTitle {
   font-size: clamp(4rem, 7vw, 10rem);
   font-weight: 700;
-  font-style: italic;
+  //font-style: italic;
   pointer-events: auto;
 }
 
@@ -91,13 +91,19 @@
   grid-template-columns: repeat(25, 4%);
   grid-template-rows: repeat(25, 4%);
 
-  height: 100vh;
+  //height: 100vh;
   max-height: none;
 }
 
 .galleryItem {
   //opacity: 0;
   position: relative;
+  --gallery-item-min-width: 150px;
+  --gallery-item-max-width: 230px;
+  --gallery-item-width: clamp(var(--gallery-item-min-width), 30vw, var(--gallery-item-max-width));
+  width: var(--gallery-item-width);
+  height: calc(var(--gallery-item-width) / var(--poster-aspect-ratio));
+
   max-width: 230px;
   will-change: transform;
 

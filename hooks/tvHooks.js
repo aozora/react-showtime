@@ -139,3 +139,25 @@ export function useTvSeasons(slug, seasonNumber) {
     isSeasonsError: error
   };
 }
+
+/**
+ * Discover Tv by genres
+ * @param genresIds Must be 1 or more Genre IDs separated by "," or "|"
+ * @returns {{isKeywordsError: any, keywords: any, isKeywordsLoading: boolean}}
+ */
+export function useDiscoverTvByGenres(genresIds) {
+  const { locale } = useLocale();
+  const { data, error } = useSWR(
+    () =>
+      genresIds !== null
+        ? getUrlWithLanguage(`${URL.tvDiscover}&with_genres=${genresIds}`, locale)
+        : null,
+    fetcher
+  );
+
+  return {
+    media: data,
+    isLoading: !error && !data,
+    isError: error
+  };
+}
