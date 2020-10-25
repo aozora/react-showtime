@@ -1,0 +1,141 @@
+@import '../styles/shared';
+
+.fullGridMenu {
+  display: grid;
+  grid-template-areas: 'content content';
+  grid-template-rows: 100vh;
+  grid-template-columns: 3rem 1fr;
+  height: 100vh;
+}
+
+.menu {
+  align-self: center;
+  grid-area: content;
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-self: center;
+  align-items: flex-start;
+  width: 50vw;
+  max-width: 1000px;
+
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+
+  font-weight: 400;
+  font-size: 1.65rem;
+}
+
+.menuHeadline {
+  margin-bottom: 3rem;
+  font-weight: 400;
+  font-size: 1.65rem;
+}
+
+.menuItem {
+  cursor: pointer;
+  display: flex;
+  margin: -2.5vh 0 0 0;
+  align-items: flex-end;
+  line-height: 1.2;
+  position: relative;
+  overflow: hidden;
+  pointer-events: none;
+  text-decoration: none;
+
+  &:link {
+    text-decoration: none;
+    color: var(--color-white);
+  }
+
+  &:hover {
+    color: var(--color-primary);
+  }
+}
+
+.menuItemSelected {
+  color: var(--color-primary);
+  font-size: var(--text-scale-2);
+}
+
+//.menu__item:hover .menu__item-title,
+//.menu__item--selected .menu__item-title,
+//.menu__item-cta:hover span {
+//  color: var(--color-menu-hover);
+//}
+
+
+.menuItemTitle {
+  font-size: clamp(4rem, 7vw, 10rem);
+  font-weight: 700;
+  font-style: italic;
+  pointer-events: auto;
+}
+
+.galleryWrapper {
+  grid-area: content;
+  position: relative;
+  overflow: hidden;
+}
+
+.gallery {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  //height: calc(100vh - 13rem);
+  //max-height: 500px;
+  display: grid;
+  grid-template-columns: repeat(25, 4%);
+  grid-template-rows: repeat(25, 4%);
+
+  height: 100vh;
+  max-height: none;
+}
+
+.galleryItem {
+  //opacity: 0;
+  position: relative;
+  max-width: 230px;
+  will-change: transform;
+
+  &:nth-child(odd) {
+    max-width: 150px;
+  }
+
+  &:nth-child(-n+3) {
+    align-self: start;
+  }
+
+  &:nth-child(n+4) {
+    align-self: end;
+  }
+}
+
+.galleryItem {
+  &:nth-child(1) {
+    grid-area: 3 / 2 / auto / auto;
+  }
+
+  &:nth-child(2) {
+    grid-area: 8 / 3 / auto / auto;
+  }
+
+  &:nth-child(3) {
+    grid-area: 1 / 20 / auto / auto;
+  }
+
+  &:nth-child(4) {
+    grid-area: 25 / 5 / auto / auto;
+  }
+
+  &:nth-child(5) {
+    grid-area: 25 / 18 / auto / auto;
+  }
+
+  &:nth-child(6) {
+    grid-area: 15 / 19 / auto / auto;
+  }
+}
