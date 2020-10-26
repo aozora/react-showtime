@@ -110,4 +110,11 @@ export const selectConfigurationTvCertifications = createSelector(
   state => state.certifications.tv
 );
 
+export const selectConfigurationMovieGenres = createSelector(
+  slice,
+  state => state.genres.movies.genres
+);
+
+export const selectConfigurationTvGenres = createSelector(slice, state => state.genres.tv.genres);
+
 export default configurationSlice.reducer;

@@ -15,7 +15,7 @@ import { cardType } from '@/lib/shared';
  * @returns {JSX.Element}
  * @constructor
  */
-const MediumImage = ({ medium, imageType }) => {
+const MediumImage = ({ medium, imageType, className }) => {
   const backdropSizesList = useSelector(selectConfigurationImagesBackdropSizes);
   const posterSizesList = useSelector(selectConfigurationImagesPosterSizes);
   const imagesSecureBaseUrl = useSelector(selectConfigurationImagesSecureBaseUrl);
@@ -76,7 +76,7 @@ const MediumImage = ({ medium, imageType }) => {
   }, [medium, imageType]);
 
   return (
-    <figure>
+    <figure className={className}>
       {isMediumValid && (
         <SimpleImg
           sizes={getSizes}
