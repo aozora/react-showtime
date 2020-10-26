@@ -64,7 +64,7 @@ export const URL = {
   movieLists: `https://api.themoviedb.org/3/movie/MOVIE_ID/lists`,
 
   // discover
-  movieDiscover: '/discover/movie?language=LOCALE',
+  movieDiscover: 'https://api.themoviedb.org/3/discover/movie?language=LOCALE',
 
   // tv series
   // ------------------------------------------------------------
@@ -84,7 +84,7 @@ export const URL = {
   tvSeasons: 'https://api.themoviedb.org/3/tv/TV_ID/season/SEASON_NUMBER?language=LOCALE&page=1',
 
   // discover
-  tvDiscover: '/discover/tv?language=LOCALE',
+  tvDiscover: 'https://api.themoviedb.org/3/discover/tv?language=LOCALE',
 
   // people
   // ------------------------------------------------------------

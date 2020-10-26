@@ -45,11 +45,16 @@
   pointer-events: none;
   text-decoration: none;
 
+  input {
+    @include visuallyhidden;
+  }
+
   &:link {
     text-decoration: none;
     color: var(--color-white);
   }
 
+  input:checked + span,
   &:hover {
     color: var(--color-primary);
   }
