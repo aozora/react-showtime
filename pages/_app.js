@@ -35,4 +35,9 @@ function MyApp({ Component, pageProps, router }) {
   );
 }
 
+export function reportWebVitals(metric) {
+  // eslint-disable-next-line no-console
+  console.log(metric);
+}
+
 export default MyApp;
