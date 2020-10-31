@@ -30,24 +30,24 @@ button {
   box-shadow: var(--default-box-shadow);
   outline: 0;
 
-  &::after {
-    content: '';
-    display: block;
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    top: 0;
-    border-radius: var(--button-border-radius);
-    margin: 2px;
-    transition: box-shadow 130ms ease-out, margin 130ms ease-out;
-  }
-
-  &:hover,
-  &:active {
-    background-color: var(--button-hover-background-color);
-    border: var(--button-hover-border);
-  }
+  //&::after {
+  //  content: '';
+  //  display: block;
+  //  position: absolute;
+  //  left: 0;
+  //  right: 0;
+  //  bottom: 0;
+  //  top: 0;
+  //  border-radius: var(--button-border-radius);
+  //  margin: 2px;
+  //  transition: box-shadow 130ms ease-out, margin 130ms ease-out;
+  //}
+  //
+  //&:hover,
+  //&:active {
+  //  background-color: var(--button-hover-background-color);
+  //  border: var(--button-hover-border);
+  //}
 
   &:disabled {
     opacity: .5;

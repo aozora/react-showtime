@@ -13,6 +13,7 @@ addDecorator(
 );
 
 export const parameters = {
+  layout: 'fullscreen',
   docs: {
     theme
   },

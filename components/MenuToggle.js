@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import { useToggleState } from '@react-stately/toggle';
 import { useToggleButton } from '@react-aria/button';
+import styles from './SiteHeader.module.scss';
 
 const MenuToogle = props => {
   const ref = useRef();
@@ -11,7 +12,7 @@ const MenuToogle = props => {
     <button
       type="button"
       {...buttonProps}
-      className={isPressed ? '' : ''}
+      className={`${styles.mainMenuToggle} ${state.isSelected ? '' : ''}`}
       // style={{
       //   background: isPressed
       //     ? state.isSelected
