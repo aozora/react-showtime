@@ -13,12 +13,16 @@ $menu-toggle-button-zindex: $menu-zindex + 2;
   z-index: $menu-zindex + 1;
   background-color: var(--color-primary);
   transition: transform .35s ease-in-out;
-  //overflow: hidden;
 
   @include media(">=tablet") {
     height: var(--menu-mobile-height);
   }
+}
 
+//Menu open styles
+.siteHeaderOpen {
+  //height: 80vh;
+  //overflow: auto;
 }
 
 .siteHeaderWrapper {
@@ -33,50 +37,9 @@ $menu-toggle-button-zindex: $menu-zindex + 2;
   //transform: translateY(calc(-100% + 7px));
 }
 
-.header--open {
-  height: 100vh;
-  overflow: auto;
-}
-
-.mainMenu {
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  //height: $menu-height;
-  //overflow: hidden;
-  padding: 0 4%;
-  transform: translateY(-200%);
-
-  &:hover {
-
-  }
-
-
-  @include media(">=tablet") {
-    justify-content: space-between;
-    align-items: center;
-    flex-direction: row;
-    flex-wrap: nowrap;
-  }
-}
-
-.Logo {
-
-}
 
 .mainMenuToggle {
-  //flex: 0 0 auto;
   grid-area: 1 / auto;
-  //display: flex;
-  //justify-content: center;
-  //align-items: center;
-  //width: 3.33rem;
-  //height: 3.33rem;
   padding: 0;
   margin: 0;
   border: 0;
@@ -86,10 +49,46 @@ $menu-toggle-button-zindex: $menu-zindex + 2;
   background-color: transparent;
   z-index: $menu-toggle-button-zindex;
 
-
   @include media(">=tablet") {
     display: none;
   }
+}
+
+.mainMenuToggle_Active {
+  visibility: hidden;
+}
+
+
+.mainMenu {
+  grid-area: 1 / auto;
+  position: absolute;
+  top: var(--menu-mobile-height);
+  left: 0;
+  display: none;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+  height: auto;
+  padding: 0;
+  transition: top .35s ease-in;
+  background-color: var(--color-primary);
+
+  @include media(">=tablet") {
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: nowrap;
+  }
+}
+
+.mainMenuOpen {
+  //top: 0;
+}
+
+.Logo {
+
 }
 
 .mainMenuItems {
@@ -98,16 +97,16 @@ $menu-toggle-button-zindex: $menu-zindex + 2;
   position: relative;
   width: 100%;
   height: auto;
-  margin: 2rem 0 0 0;
+  margin: 0;
+  padding: 0 0 1.33rem 0;
   list-style-type: none;
-  padding: 0 2.22rem;
-  background-color: transparent;
+  background-color: var(--color-primary);
   z-index: $menu-zindex;
 
   > li {
-    margin: 0;
     list-style-type: none;
-    padding: 1rem 0;
+    margin: 0;
+    padding: 0;
     text-align: left;
   }
 
@@ -116,19 +115,18 @@ $menu-toggle-button-zindex: $menu-zindex + 2;
     position: relative;
     display: block;
     width: 100%;
-    padding: 0;
-    font-family: var(--variable-font-family);
-    font-size: .8rem;
-    line-height: 1;
-    font-weight: 500;
-    letter-spacing: 0.37px;
+    padding: 0 .5rem;
+    font-family: var(--variable-heading-font-family);
+    font-size: 3.11rem;
+    line-height: 1.2;
+    font-weight: 110; // small medium
     text-transform: uppercase;
     text-decoration: none;
-    color: var(--color-white);
+    color: var(--color-secondary);
     transition: color .2s ease-out;
 
     &:visited {
-      color: var(--color-white);
+      color: var(--color-secondary);
     }
 
     /*
@@ -142,7 +140,7 @@ $menu-toggle-button-zindex: $menu-zindex + 2;
 
     &:active,
     &:focus {
-      color: var(--color-primary);
+      color: var(--color-white);
       text-decoration: none;
     }
 
@@ -180,6 +178,48 @@ $menu-toggle-button-zindex: $menu-zindex + 2;
       }
 
     }
+  }
+}
+
+.mainMenuHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 2.44rem;
+  padding: 0 .5rem;
+  background-color: var(--color-primary);
+
+  a {
+    font-family: var(--variable-heading-font-family);
+    font-size: 1rem;
+    line-height: 1.2;
+    font-weight: 110; // small medium
+    color: var(--color-secondary);
+  }
+}
+
+.mainMenuFooter {
+  width: 100%;
+  height: 2.66rem;
+  border-top: 1px solid var(--color-secondary);
+  background-color: var(--color-primary);
+
+  button {
+    width: 100%;
+    height: 100%;
+    padding: .888rem .5rem;
+    margin: 0;
+    border: 0;
+    font-size: .888rem;
+    line-height: 1.18;
+    color: var(--color-secondary);
+    background-color: transparent;
+    justify-content: flex-start;
+  }
+
+  @include media(">=tablet") {
+    display: none;
   }
 }
 

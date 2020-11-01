@@ -5,6 +5,7 @@ import styles from './SiteHeader.module.scss';
 
 const MenuToogle = props => {
   const ref = useRef();
+  const { visible } = props;
   const state = useToggleState(props);
   const { buttonProps, isPressed } = useToggleButton(props, state, ref);
 
@@ -12,16 +13,7 @@ const MenuToogle = props => {
     <button
       type="button"
       {...buttonProps}
-      className={`${styles.mainMenuToggle} ${state.isSelected ? '' : ''}`}
-      // style={{
-      //   background: isPressed
-      //     ? state.isSelected
-      //       ? 'darkblue'
-      //       : 'darkgreen'
-      //     : state.isSelected
-      //     ? 'blue'
-      //     : 'green'
-      // }}
+      className={`${styles.mainMenuToggle} ${visible ? styles.mainMenuToggle_Active : ''}`}
       ref={ref}
     >
       <span>Menu</span>
