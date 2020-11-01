@@ -1,20 +1,27 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState, useRef } from 'react';
 import Link from 'next/link';
-import { getRandomInt, getYearDate, cardType, formatDate } from '@/lib/shared';
+import { getRandomInt, getYearDate, cardType } from '@/lib/shared';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import HeroTitle from '@/components/HeroTitle';
 import HeroSkeleton from '@/components/HeroSkeleton';
 import PlayTrailerButton from '@/components/PlayTrailerButton';
-import MediumImage from './MediumImage';
+// import MediumImage from './MediumImage';
 import { useUpcomingMovies, useMoviesGenres, useMovieDetails } from '../hooks/moviesHooks';
 import styles from './HeroMedium.module.scss';
+import { useBackdropImage } from '../hooks/imageHooks';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const HeroMovie = () => {
-  // let medium;
+  const heroImageRef = useRef(null);
   const [randomMedium, setRandomMedium] = useState();
   const { media, isLoading, isError } = useUpcomingMovies();
   const { medium, isLoading: isLoadingMedium } = useMovieDetails(
     randomMedium ? randomMedium.id : null
   );
+
+  const { src, sizes, srcSet } = useBackdropImage(medium);
 
   // load genres; don't care for error, in that case the medium genres will not be displayed
   const { moviesGenres, isLoading: isLoadingGenres } = useMoviesGenres();
@@ -24,6 +31,29 @@ const HeroMovie = () => {
       setRandomMedium(media.results[getRandomInt(media.results.length)]);
     }
   }, [media]);
+
+  useEffect(() => {
+    // if (typeof window !== 'undefined') {
+    //   gsap.registerPlugin(ScrollTrigger);
+    //   gsap.core.globals('ScrollTrigger', ScrollTrigger);
+    // }
+    if (heroImageRef.current) {
+      gsap.to(heroImageRef.current, {
+        // height: '200px',
+        scale: 0.5,
+        scrollTrigger: {
+          trigger: heroImageRef.current,
+          start: 'top top',
+          end: '+=100% 200px',
+          scrub: 0.5,
+          pin: true,
+          markers: true
+        }
+      });
+    }
+
+    console.log('*** scrollTrigger', heroImageRef.current);
+  }, []);
 
   const getAbstract = useCallback(() => {
     if (medium) {
@@ -60,7 +90,9 @@ const HeroMovie = () => {
   return (
     <section className="full-bleed">
       <article className={styles.hero}>
-        <MediumImage medium={medium} imageType={cardType.backdrop} />
+        {/* <MediumImage ref={heroImageRef} medium={medium} imageType={cardType.backdrop} /> */}
+        <img alt="" ref={heroImageRef} loading="eager" sizes={sizes} srcSet={srcSet} src={src} />
+
         <header>
           <div className={styles.heroTitle}>
             <span role="doc-subtitle">Movie ({getYearDate(medium.release_date)})</span>
@@ -70,6 +102,9 @@ const HeroMovie = () => {
               </Link>
             </h1>
           </div>
+        </header>
+
+        <section>
           <div className={styles.heroMeta}>
             {!isLoadingGenres && (
               <p className={styles.heroGenres}>
@@ -82,7 +117,6 @@ const HeroMovie = () => {
             <p className={styles.heroAbstract}>{getAbstract(medium)}</p>
             <p className={styles.heroInfoSmall}>Popularity: {medium.vote_average * 10}%</p>
           </div>
-
           <div className={styles.heroFooter}>
             <p className={styles.heroActions}>
               <Link href="/movie/[slug]" as={`/movie/${medium.id}`}>
@@ -97,7 +131,7 @@ const HeroMovie = () => {
               )}
             </p>
           </div>
-        </header>
+        </section>
       </article>
     </section>
   );

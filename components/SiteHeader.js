@@ -23,28 +23,7 @@ const SiteHeader = ({ scrolled }) => {
   const menuLink5Ref = useRef(null);
 
   // Gsap timeline ref
-  // const tl = useRef(gsap.timeline({ paused: true }));
   const tl = useMemo(() => gsap.timeline({ paused: true }), []);
-
-  // const animateMenuOpen = useCallback(() => {
-  //   tl.play();
-  // }, [tl]);
-  //
-  // const animateMenuClose = useCallback(() => {
-  //   tl.reverse();
-  // }, [tl]);
-
-  // const onToggleMenu = useCallback(() => {
-  //   setToggleMenu(!toggleMenu);
-  //   // const newToggleState = !toggleMenu;
-  //   // setToggleMenu(newToggleState);
-  //
-  //   // if (newToggleState) {
-  //   //   animateMenuOpen();
-  //   // } else {
-  //   //   animateMenuClose();
-  //   // }
-  // }, [toggleMenu]);
 
   useEffect(() => {
     tl.to(mainMenuRef.current, { duration: 0, css: { display: 'flex' } });
@@ -59,12 +38,11 @@ const SiteHeader = ({ scrolled }) => {
         menuFooterRef.current
       ],
       { x: '-100%' },
-      { x: 0, duration: 1.8, ease: 'elastic', stagger: { amount: 0.3 } }
+      { x: 0, duration: 1, ease: 'power1.inOut', stagger: { amount: 0.3 } }
     );
   }, [tl]);
 
   useEffect(() => {
-    console.log('toggleMenu');
     if (toggleMenu) {
       tl.play();
     } else {

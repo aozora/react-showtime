@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import HeroSkeleton from '@/components/HeroSkeleton';
 import { cardType, getRandomInt, getYearDate } from '@/lib/shared';
@@ -9,6 +9,7 @@ import styles from './HeroMedium.module.scss';
 import { useTvGenres, usePopularTv, useTvDetails } from '../hooks/tvHooks';
 
 const HeroTv = () => {
+  const heroImageRef = useRef(null);
   const [randomMedium, setRandomMedium] = useState();
   const { media, isLoading, isError } = usePopularTv();
   const { medium, isLoading: isLoadingMedium } = useTvDetails(
@@ -58,7 +59,8 @@ const HeroTv = () => {
   return (
     <section className="full-bleed">
       <article className={styles.hero}>
-        <MediumImage medium={medium} imageType={cardType.backdrop} />
+        <MediumImage ref={heroImageRef} medium={medium} imageType={cardType.backdrop} />
+
         <header>
           <div className={styles.heroTitle}>
             <span role="doc-subtitle">TV Show ({getYearDate(medium.first_air_date)})</span>
@@ -68,6 +70,9 @@ const HeroTv = () => {
               </Link>
             </h1>
           </div>
+        </header>
+
+        <section>
           <div className={styles.heroMeta}>
             {!isLoadingGenres && (
               <p className={styles.heroGenres}>
@@ -93,7 +98,7 @@ const HeroTv = () => {
               )}
             </p>
           </div>
-        </header>
+        </section>
       </article>
     </section>
   );

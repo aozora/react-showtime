@@ -1,4 +1,4 @@
-import React, { useMemo, useCallback } from 'react';
+import React, { useMemo, useCallback, forwardRef } from 'react';
 import { useSelector } from 'react-redux';
 import { SimpleImg } from 'react-simple-img';
 import {
@@ -15,8 +15,10 @@ import { cardType } from '@/lib/shared';
  * @param className
  * @returns {JSX.Element}
  * @constructor
+ * @type {React.ForwardRefExoticComponent<React.PropsWithoutRef<{readonly medium?: *, readonly imageType?: *, readonly className?: *}> & React.RefAttributes<unknown>>}
  */
-const MediumImage = ({ medium, imageType, className }) => {
+// eslint-disable-next-line react/display-name
+const MediumImage = forwardRef(({ medium, imageType, className }, ref) => {
   const backdropSizesList = useSelector(selectConfigurationImagesBackdropSizes);
   const posterSizesList = useSelector(selectConfigurationImagesPosterSizes);
   const imagesSecureBaseUrl = useSelector(selectConfigurationImagesSecureBaseUrl);
@@ -67,7 +69,7 @@ const MediumImage = ({ medium, imageType, className }) => {
     return sizes.map(size => `${getImagePath(filePath, size)} ${size.replace('w', '')}w`).join(',');
   }, [imageType, posterSizes, backdropSizes, getImagePath, medium]);
 
-  const isMediumValid = useMemo(() => {
+  const mediumHasImage = useMemo(() => {
     if (!medium) {
       return false;
     }
@@ -78,22 +80,25 @@ const MediumImage = ({ medium, imageType, className }) => {
 
   return (
     <figure className={className}>
-      {isMediumValid && (
-        <SimpleImg
-          sizes={getSizes}
-          srcSet={getSrcSet}
-          src={getSrc}
-          // placeholder={getPlaceholder()}
-          placeholder={false}
-          alt=""
-        />
+      {mediumHasImage && (
+        //   <SimpleImg
+        //     ref={ref}
+        //     sizes={getSizes}
+        //     srcSet={getSrcSet}
+        //     src={getSrc}
+        //     // placeholder={getPlaceholder()}
+        //     placeholder={false}
+        //     alt=""
+        //   />
+        // )}
+        <img alt="" ref={ref} loading="eager" sizes={getSizes} srcSet={getSrcSet} src={getSrc} />
       )}
 
-      {!isMediumValid && <img src={cardPlaceholder} alt="" />}
+      {!mediumHasImage && <img src={cardPlaceholder} alt="" />}
 
       {medium.title && <figcaption>{medium.title}</figcaption>}
     </figure>
   );
-};
+});
 
 export default MediumImage;
