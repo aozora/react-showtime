@@ -32,7 +32,7 @@ $breakpoints: (
     padding: 0 1.5rem;
   }
 
-  @include media(">=desktop","<1092") {
+  @include media(">=desktop", "<1092") {
     padding: 0 1.5rem;
   }
 
@@ -41,6 +41,15 @@ $breakpoints: (
   }
 }
 
+
+@mixin layout-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: 1fr;
+  grid-gap: 1rem;
+  gap: 1rem;
+  padding: 0 .5rem;
+}
 
 @mixin title-genres {
   margin-bottom: .667rem;
@@ -54,3 +63,4 @@ $breakpoints: (
     text-transform: capitalize;
   }
 }
+

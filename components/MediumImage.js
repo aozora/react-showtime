@@ -12,6 +12,7 @@ import { cardType } from '@/lib/shared';
  * MediumImage - render a medium responsive image lazily
  * @param medium A Medium object
  * @param imageType The type of the image, can be "poster" or "backdrop"
+ * @param className
  * @returns {JSX.Element}
  * @constructor
  */

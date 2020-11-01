@@ -7,6 +7,21 @@ module.exports = {
     '@storybook/addon-links',
     '@storybook/addon-essentials'
   ],
+
+  babel: async options => ({
+    ...options,
+    presets: [
+      ...options.presets,
+      [
+        '@babel/preset-react',
+        {
+          runtime: 'automatic'
+        },
+        'preset-react-jsx-transform' // Can name this anything, just an arbitrary alias to avoid duplicate presets'
+      ]
+    ]
+  }),
+
   // presets: [path.resolve(__dirname, './presets/next-preset.js')]
   webpackFinal: async (config, { configType }) => {
     // SCSS

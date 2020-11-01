@@ -128,10 +128,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
   font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
-
-  //@include media(">=desktop") {
-  //  max-width: 100%;
-  //}
 }
 
 /* Generic header styles */

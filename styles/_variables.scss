@@ -15,16 +15,18 @@
   // ################################################################
   //    COLORS
   // ################################################################
-  --color-primary: #6c43bf;
+  --color-primary: #FE472D;
   --color-secondary: #1a1a1a;
   --color-black: #000;
   --color-white: #fff;
-  --color-light: #828288;
 
-  // grayscale
-  --color-dark-gray: #0c1115;
+  // TODO: TO BE REMOVED
+  --color-light: #828288;
   --color-gray: #606065;
   --color-light-gray: #f6f6f6;
+
+  // grayscale
+  --color-dark-gray: var(--color-secondary);
 
   // background color
   --color-body-background: var(--color-dark-gray);
@@ -75,10 +77,10 @@
   // ################################################################
   //    TYPOGRAPHY SCALE & FONTS
   // ################################################################
-  --variable-font-family: 'Inter var', Helvetica, Roboto, Arial, sans-serif;
-  --variable-heading-font-family: 'Inter var', sans-serif;
-  --body-font-family: 'Inter', Helvetica, Roboto, Arial, sans-serif;
-  --heading-font-family: 'Playfair Display', serif;
+  --variable-font-family: '', Helvetica, Roboto, Arial, sans-serif;
+  --variable-heading-font-family: 'Marvin Visions Variable', sans-serif;
+  --body-font-family: 'Rubik', Helvetica, Roboto, Arial, sans-serif;
+  --heading-font-family: 'Marvin Visions', sans-serif;
 
   --baseline: 1.5;
   --body-font-weight: 400;

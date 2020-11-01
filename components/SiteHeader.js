@@ -1,211 +1,139 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import MiniSearch from './MiniSearch';
-import HeaderLogo from './HeaderLogo';
+import { gsap } from 'gsap';
+import MenuToogle from '@/components/MenuToggle';
+// import MiniSearch from './MiniSearch';
+// import HeaderLogo from './HeaderLogo';
 import styles from './SiteHeader.module.scss';
 
 const SiteHeader = ({ scrolled }) => {
   const router = useRouter();
+  const [toggleMenu, setToggleMenu] = useState(false);
+
+  // DOM element refs to be used for animation
+  const mainMenuRef = useRef(null);
+  const menuHeaderRef = useRef(null);
+  const menuFooterRef = useRef(null);
+  const menuLink1Ref = useRef(null);
+  const menuLink2Ref = useRef(null);
+  const menuLink3Ref = useRef(null);
+  const menuLink4Ref = useRef(null);
+  const menuLink5Ref = useRef(null);
+
+  // Gsap timeline ref
+  // const tl = useRef(gsap.timeline({ paused: true }));
+  const tl = useMemo(() => gsap.timeline({ paused: true }), []);
+
+  // const animateMenuOpen = useCallback(() => {
+  //   tl.play();
+  // }, [tl]);
+  //
+  // const animateMenuClose = useCallback(() => {
+  //   tl.reverse();
+  // }, [tl]);
+
+  // const onToggleMenu = useCallback(() => {
+  //   setToggleMenu(!toggleMenu);
+  //   // const newToggleState = !toggleMenu;
+  //   // setToggleMenu(newToggleState);
+  //
+  //   // if (newToggleState) {
+  //   //   animateMenuOpen();
+  //   // } else {
+  //   //   animateMenuClose();
+  //   // }
+  // }, [toggleMenu]);
+
+  useEffect(() => {
+    tl.to(mainMenuRef.current, { duration: 0, css: { display: 'flex' } });
+    tl.fromTo(
+      [
+        menuHeaderRef.current,
+        menuLink1Ref.current,
+        menuLink2Ref.current,
+        menuLink3Ref.current,
+        menuLink4Ref.current,
+        menuLink5Ref.current,
+        menuFooterRef.current
+      ],
+      { x: '-100%' },
+      { x: 0, duration: 1.8, ease: 'elastic', stagger: { amount: 0.3 } }
+    );
+  }, [tl]);
+
+  useEffect(() => {
+    console.log('toggleMenu');
+    if (toggleMenu) {
+      tl.play();
+    } else {
+      tl.reverse();
+    }
+  }, [toggleMenu, tl]);
 
   return (
     <header
       id="site-header"
-      className={`${styles.siteHeader} ${scrolled ? '' : styles.siteHeaderScrolled}`}
+      className={`${styles.siteHeader} ${toggleMenu ? styles.siteHeaderOpen : ''} ${
+        scrolled ? '' : styles.siteHeaderScrolled
+      }`}
     >
-      <a href="#main">Skip to main content</a>
+      <div className={styles.siteHeaderWrapper}>
+        <MenuToogle onPress={() => setToggleMenu(!toggleMenu)} visible={toggleMenu} />
 
-      <nav id="main-menu" className={styles.mainMenu}>
-        <HeaderLogo isHome>
-          <Link href="/">
-            <a>
-              <svg width="235" height="40" viewBox="0 0 431 73" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                  <radialGradient
-                    cx="78%"
-                    cy="0%"
-                    fx="78%"
-                    fy="0%"
-                    r="69.599%"
-                    gradientTransform="matrix(0 1 -.5606 0 .78 -.78)"
-                    id="a"
-                  >
-                    <stop offset="0%" />
-                    <stop stopColor="#141515" offset="100%" />
-                  </radialGradient>
-                </defs>
-                <g fillRule="nonzero" fill="none">
-                  <g fontFamily="Montserrat-Medium, Montserrat" fontSize="60" fontWeight="400">
-                    <text fill="#E6B91E" transform="translate(82)">
-                      <tspan x="0" y="58">
-                        SHOW
-                      </tspan>
-                    </text>
-                    <text fill="#FFF" transform="translate(82)">
-                      <tspan x="198.84" y="58">
-                        TIME
-                      </tspan>
-                    </text>
-                  </g>
-                  <path fill="#FFF" opacity=".219" d="M0 0h73v73H0z" />
-                  <g opacity=".509" fill="#000">
-                    <rect
-                      x=".118"
-                      width="8.303"
-                      height="10.633"
-                      rx="3"
-                      transform="translate(5 4)"
-                    />
-                    <rect
-                      x=".118"
-                      width="8.303"
-                      height="10.633"
-                      rx="3"
-                      transform="translate(5 4)"
-                    />
-                    <rect
-                      x=".515"
-                      width="8.303"
-                      height="10.633"
-                      rx="3"
-                      transform="translate(22 4)"
-                    />
-                    <rect
-                      x=".515"
-                      width="8.303"
-                      height="10.633"
-                      rx="3"
-                      transform="translate(22 4)"
-                    />
-                    <g>
-                      <rect
-                        x=".912"
-                        width="8.303"
-                        height="10.633"
-                        rx="3"
-                        transform="translate(39 4)"
-                      />
-                      <rect
-                        x=".912"
-                        width="8.303"
-                        height="10.633"
-                        rx="3"
-                        transform="translate(39 4)"
-                      />
-                    </g>
-                    <g>
-                      <rect
-                        x=".528"
-                        width="8.303"
-                        height="10.633"
-                        rx="3"
-                        transform="translate(57 4)"
-                      />
-                      <rect
-                        x=".528"
-                        width="8.303"
-                        height="10.633"
-                        rx="3"
-                        transform="translate(57 4)"
-                      />
-                    </g>
-                  </g>
-                  <path fill="url(#a)" opacity=".477" d="M4 18h66v37H4z" />
-                  <g opacity=".509" fill="#000">
-                    <rect
-                      x=".118"
-                      width="8.303"
-                      height="10.633"
-                      rx="3"
-                      transform="translate(5 58)"
-                    />
-                    <rect
-                      x=".118"
-                      width="8.303"
-                      height="10.633"
-                      rx="3"
-                      transform="translate(5 58)"
-                    />
-                    <rect
-                      x=".515"
-                      width="8.303"
-                      height="10.633"
-                      rx="3"
-                      transform="translate(22 58)"
-                    />
-                    <rect
-                      x=".515"
-                      width="8.303"
-                      height="10.633"
-                      rx="3"
-                      transform="translate(22 58)"
-                    />
-                    <g>
-                      <rect
-                        x=".912"
-                        width="8.303"
-                        height="10.633"
-                        rx="3"
-                        transform="translate(39 58)"
-                      />
-                      <rect
-                        x=".912"
-                        width="8.303"
-                        height="10.633"
-                        rx="3"
-                        transform="translate(39 58)"
-                      />
-                    </g>
-                    <g>
-                      <rect
-                        x=".528"
-                        width="8.303"
-                        height="10.633"
-                        rx="3"
-                        transform="translate(57 58)"
-                      />
-                      <rect
-                        x=".528"
-                        width="8.303"
-                        height="10.633"
-                        rx="3"
-                        transform="translate(57 58)"
-                      />
-                    </g>
-                  </g>
-                </g>
-              </svg>
-            </a>
-          </Link>
-        </HeaderLogo>
+        <nav
+          ref={mainMenuRef}
+          id="main-menu"
+          className={`${styles.mainMenu} ${toggleMenu ? styles.mainMenuOpen : ''}`}
+        >
+          <div ref={menuHeaderRef} className={styles.mainMenuHeader}>
+            <Link href="/login">
+              <a>Login</a>
+            </Link>
+            <Link href="/login">
+              <a>Language</a>
+            </Link>
+          </div>
 
-        <ul className={styles.mainMenuItems}>
-          <li>
-            <Link href="/">
-              <a className={router.pathname === '/' ? 'active' : ''}>Home</a>
-            </Link>
-          </li>
-          <li>
-            <Link href="/movies">
-              <a className={router.pathname === '/movies' ? 'active' : ''}>Movies</a>
-            </Link>
-          </li>
-          <li>
-            <Link href="/tv">
-              <a className={router.pathname === '/tv' ? 'active' : ''}>TV</a>
-            </Link>
-          </li>
-          <li>
-            <Link href="/people">
-              <a className={router.pathname === '/people' ? 'active' : ''}>People</a>
-            </Link>
-          </li>
-        </ul>
-        <div className={styles.mainMenuSearch}>
-          <MiniSearch />
-        </div>
-      </nav>
+          <ul className={styles.mainMenuItems}>
+            <li ref={menuLink1Ref}>
+              <Link href="/">
+                <a className={router.pathname === '/' ? 'active' : ''}>Home</a>
+              </Link>
+            </li>
+            <li ref={menuLink2Ref}>
+              <Link href="/movies">
+                <a className={router.pathname === '/movies' ? 'active' : ''}>Movies</a>
+              </Link>
+            </li>
+            <li ref={menuLink3Ref}>
+              <Link href="/tv">
+                <a className={router.pathname === '/tv' ? 'active' : ''}>TV Shows</a>
+              </Link>
+            </li>
+            <li ref={menuLink4Ref}>
+              <Link href="/people">
+                <a className={router.pathname === '/people' ? 'active' : ''}>People</a>
+              </Link>
+            </li>
+            <li ref={menuLink5Ref}>
+              <Link href="/search">
+                <a>Search</a>
+              </Link>
+            </li>
+          </ul>
+
+          <div ref={menuFooterRef} className={styles.mainMenuFooter}>
+            <button type="button" onClick={() => setToggleMenu(!toggleMenu)}>
+              Close ↑
+            </button>
+          </div>
+          {/* <div className={styles.mainMenuSearch}> */}
+          {/*  <MiniSearch /> */}
+          {/* </div> */}
+        </nav>
+      </div>
     </header>
   );
 };
