@@ -36,18 +36,6 @@
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
-    //display: grid;
-    //grid-template-columns: repeat(6, 1fr);
-    //grid-template-rows: var(--menu-height) calc(65vh - var(--menu-height)) 10vh 15vh 10vh;
-    //grid-template-areas:
-    //  "header header header header header header"
-    //  "title title title title title title"
-    //  "meta meta meta meta meta meta"
-    //  "desc desc desc . . ."
-    //  "footer footer footer footer footer footer";
-    //grid-column-gap: 2rem;
-    //grid-row-gap: 0;
-
     width: 100%;
     max-width: 1280px;
     height: 100vh;
@@ -96,7 +84,7 @@
       margin: 0;
       font-family: inherit;
       //font-size: inherit;
-      font-size: clamp(6rem, 30vw, 8rem);
+      font-size: clamp(4rem, 100%, 8rem);
       //font-weight: inherit;
       font-weight: 170; // big bold
       line-height: 1.2;

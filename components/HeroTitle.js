@@ -8,7 +8,7 @@ import { letterContainerVariants, letterVariants } from '@/lib/motionShared';
 const HeroTitle = React.forwardRef((props, ref) => {
   const { title } = props;
 
-  return <a>{title}</a>;
+  // return <a>{title}</a>;
 
   return (
     <motion.a

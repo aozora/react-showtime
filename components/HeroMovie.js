@@ -45,8 +45,6 @@ const HeroMovie = () => {
         }
       });
     }
-
-    console.log('*** scrollTrigger', heroImageRef.current);
   }, [medium]);
 
   const getAbstract = useCallback(() => {

@@ -3,6 +3,7 @@ import Link from 'next/link';
 import HeroSkeleton from '@/components/HeroSkeleton';
 import { cardType, getRandomInt, getYearDate } from '@/lib/shared';
 import PlayTrailerButton from '@/components/PlayTrailerButton';
+import { gsap } from 'gsap';
 import HeroTitle from './HeroTitle';
 import MediumImage from './MediumImage';
 import styles from './HeroMedium.module.scss';
@@ -23,6 +24,23 @@ const HeroTv = () => {
       setRandomMedium(media.results[getRandomInt(media.results.length)]);
     }
   }, [media]);
+
+  useEffect(() => {
+    if (heroImageRef.current && medium) {
+      gsap.to(heroImageRef.current, {
+        height: '200px',
+        // scale: 0.5,
+        scrollTrigger: {
+          trigger: heroImageRef.current,
+          start: 'top top',
+          end: '+=100% 200px',
+          scrub: 0.5,
+          pin: true,
+          markers: true
+        }
+      });
+    }
+  }, [medium]);
 
   const getAbstract = useCallback(() => {
     if (medium) {
