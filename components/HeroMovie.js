@@ -6,7 +6,7 @@ import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import HeroTitle from '@/components/HeroTitle';
 import HeroSkeleton from '@/components/HeroSkeleton';
 import PlayTrailerButton from '@/components/PlayTrailerButton';
-// import MediumImage from './MediumImage';
+import MediumImage from './MediumImage';
 import { useUpcomingMovies, useMoviesGenres, useMovieDetails } from '../hooks/moviesHooks';
 import styles from './HeroMedium.module.scss';
 import { useBackdropImage } from '../hooks/imageHooks';
@@ -33,14 +33,10 @@ const HeroMovie = () => {
   }, [media]);
 
   useEffect(() => {
-    // if (typeof window !== 'undefined') {
-    //   gsap.registerPlugin(ScrollTrigger);
-    //   gsap.core.globals('ScrollTrigger', ScrollTrigger);
-    // }
-    if (heroImageRef.current) {
+    if (heroImageRef.current && medium) {
       gsap.to(heroImageRef.current, {
-        // height: '200px',
-        scale: 0.5,
+        height: '200px',
+        // scale: 0.5,
         scrollTrigger: {
           trigger: heroImageRef.current,
           start: 'top top',
@@ -53,7 +49,7 @@ const HeroMovie = () => {
     }
 
     console.log('*** scrollTrigger', heroImageRef.current);
-  }, []);
+  }, [medium]);
 
   const getAbstract = useCallback(() => {
     if (medium) {
@@ -90,8 +86,8 @@ const HeroMovie = () => {
   return (
     <section className="full-bleed">
       <article className={styles.hero}>
-        {/* <MediumImage ref={heroImageRef} medium={medium} imageType={cardType.backdrop} /> */}
-        <img alt="" ref={heroImageRef} loading="eager" sizes={sizes} srcSet={srcSet} src={src} />
+        <MediumImage ref={heroImageRef} medium={medium} imageType={cardType.backdrop} />
+        {/* <img alt="" ref={heroImageRef} loading="eager" sizes={sizes} srcSet={srcSet} src={src} /> */}
 
         <header>
           <div className={styles.heroTitle}>

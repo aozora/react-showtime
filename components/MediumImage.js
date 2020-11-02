@@ -81,17 +81,16 @@ const MediumImage = forwardRef(({ medium, imageType, className }, ref) => {
   return (
     <figure className={className}>
       {mediumHasImage && (
-        //   <SimpleImg
-        //     ref={ref}
-        //     sizes={getSizes}
-        //     srcSet={getSrcSet}
-        //     src={getSrc}
-        //     // placeholder={getPlaceholder()}
-        //     placeholder={false}
-        //     alt=""
-        //   />
-        // )}
-        <img alt="" ref={ref} loading="eager" sizes={getSizes} srcSet={getSrcSet} src={getSrc} />
+        // <SimpleImg
+        //   ref={ref}
+        //   sizes={getSizes}
+        //   srcSet={getSrcSet}
+        //   src={getSrc}
+        //   // placeholder={getPlaceholder()}
+        //   placeholder={false}
+        //   alt=""
+        // />
+        <img alt="" ref={ref} loading="lazy" sizes={getSizes} srcSet={getSrcSet} src={getSrc} />
       )}
 
       {!mediumHasImage && <img src={cardPlaceholder} alt="" />}
