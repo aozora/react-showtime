@@ -1,44 +1,54 @@
 import { useSelector } from 'react-redux';
 import {
   selectConfigurationImagesBackdropSizes,
+  selectConfigurationImagesPosterSizes,
   selectConfigurationImagesSecureBaseUrl
 } from '@/store/features/tmdb/configuration/configuration-slice';
 import { useEffect, useState } from 'react';
 
 // eslint-disable-next-line import/prefer-default-export
-export const useBackdropImage = medium => {
+export const useMediumImage = medium => {
   const backdropSizesList = useSelector(selectConfigurationImagesBackdropSizes);
   const imagesSecureBaseUrl = useSelector(selectConfigurationImagesSecureBaseUrl);
   const backdropSizes = backdropSizesList.filter(size => size !== 'original');
-  // const cardPlaceholder = '/img/card-backdrop-placeholder-broken.svg';
-  const [src, setSrc] = useState();
-  const [sizes, setSizes] = useState();
-  const [srcSet, setSrcSet] = useState();
+  const posterSizesList = useSelector(selectConfigurationImagesPosterSizes);
+  const posterSizes = posterSizesList.filter(size => size !== 'original');
+
+  const [poster, setPoster] = useState(null);
+  const [backdrop, setBackdrop] = useState(null);
 
   useEffect(() => {
     if (medium) {
+      const posterTemp = {};
+      const backdropTemp = {};
+
       // src
-      const srcSize = backdropSizes[backdropSizes.length - 1];
-      setSrc(`${imagesSecureBaseUrl}${srcSize}${medium.backdrop_path}`);
+      const backdropMaxSize = backdropSizes[backdropSizes.length - 1];
+      const posterMaxSize = posterSizes[posterSizes.length - 1];
+      backdropTemp.src = `${imagesSecureBaseUrl}${backdropMaxSize}${medium.backdrop_path}`;
+      posterTemp.src = `${imagesSecureBaseUrl}${posterMaxSize}${medium.poster_path}`;
 
       // size
-      const maxSize = backdropSizes[backdropSizes.length - 1];
-      setSizes(`(max-width: ${maxSize}px) 100vw, ${maxSize}px`);
+      backdropTemp.sizes = `(max-width: ${backdropMaxSize}px) 100vw, ${backdropMaxSize}px`;
+      posterTemp.sizes = `(max-width: ${posterMaxSize}px) 100vw, ${posterMaxSize}px`;
 
       // srcSet
-      setSrcSet(
-        backdropSizes
-          .map(
-            size => `${imagesSecureBaseUrl}${size}${medium.backdrop_path} ${size.replace('w', '')}w`
-          )
-          .join(',')
-      );
+      backdropTemp.srcSet = backdropSizes
+        .map(
+          size => `${imagesSecureBaseUrl}${size}${medium.backdrop_path} ${size.replace('w', '')}w`
+        )
+        .join(',');
+      posterTemp.srcSet = posterSizes
+        .map(size => `${imagesSecureBaseUrl}${size}${medium.poster_path} ${size.replace('w', '')}w`)
+        .join(',');
+
+      setBackdrop(backdropTemp);
+      setPoster(posterTemp);
     }
-  }, [medium, backdropSizes, imagesSecureBaseUrl]);
+  }, [medium, backdropSizes, posterSizes, imagesSecureBaseUrl]);
 
   return {
-    src,
-    sizes,
-    srcSet
+    poster,
+    backdrop
   };
 };

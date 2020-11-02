@@ -9,7 +9,7 @@ import PlayTrailerButton from '@/components/PlayTrailerButton';
 import MediumImage from './MediumImage';
 import { useUpcomingMovies, useMoviesGenres, useMovieDetails } from '../hooks/moviesHooks';
 import styles from './HeroMedium.module.scss';
-import { useBackdropImage } from '../hooks/imageHooks';
+import { useMediumImage } from '../hooks/imageHooks';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -20,8 +20,6 @@ const HeroMovie = () => {
   const { medium, isLoading: isLoadingMedium } = useMovieDetails(
     randomMedium ? randomMedium.id : null
   );
-
-  const { src, sizes, srcSet } = useBackdropImage(medium);
 
   // load genres; don't care for error, in that case the medium genres will not be displayed
   const { moviesGenres, isLoading: isLoadingGenres } = useMoviesGenres();
