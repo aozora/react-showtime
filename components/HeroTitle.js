@@ -19,14 +19,19 @@ const HeroTitle = React.forwardRef((props, ref) => {
       data-splitting
       aria-label={title}
     >
-      {Array.from(title).map((char, index) => (
-        <motion.span
-          key={index}
-          variants={letterVariants}
-          aria-hidden="true"
-          className={styles.char}
-          dangerouslySetInnerHTML={{ __html: char === ' ' ? '&nbsp;' : char }}
-        />
+      {title.split(' ').map((word, wordIndex) => (
+        <span key={wordIndex} className={styles.word}>
+          {Array.from(word).map((char, index) => (
+            <motion.span
+              key={index}
+              variants={letterVariants}
+              aria-hidden="true"
+              className={styles.char}
+              dangerouslySetInnerHTML={{ __html: char === ' ' ? '&nbsp;' : char }}
+            />
+          ))}
+          &nbsp;
+        </span>
       ))}
     </motion.a>
   );
