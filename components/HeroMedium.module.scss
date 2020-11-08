@@ -105,6 +105,8 @@
 
 .heroMeta {
   p {
+    display: flex;
+    flex-wrap: wrap;
     margin: 0;
     padding: 0 1rem 1rem 1rem;
     text-shadow: var(--title-text-shadow);

@@ -4,11 +4,12 @@ import { motion } from 'framer-motion';
 import styles from '@/components/HeroMedium.module.scss';
 import { letterContainerVariants, letterVariants } from '@/lib/motionShared';
 
-// eslint-disable-next-line react/display-name
+// eslint-disable-next-line react/display-name,no-unused-vars
 const HeroTitle = React.forwardRef((props, ref) => {
   const { title } = props;
 
-  // return <a>{title}</a>;
+  // eslint-disable-next-line jsx-a11y/anchor-is-valid
+  return <a>{title}</a>;
 
   return (
     <motion.a

@@ -11,6 +11,40 @@ export const useHeroScrollTrigger = medium => {
 
   useEffect(() => {
     if (heroImageRef.current && heroHeaderRef.current && medium) {
+      // // hero title
+      // gsap.to(heroHeaderRef.current, {
+      //   height: '300px',
+      //   scrollTrigger: {
+      //     trigger: heroHeaderRef.current,
+      //     start: 'top top',
+      //     end: '+=100% 300px',
+      //     scrub: 0.5,
+      //     pin: true
+      //     // markers: true
+      //   }
+      // });
+
+      // hero title
+      gsap.to(heroTitleRef.current, {
+        fontSize: '3.1rem',
+        fontWeight: '110',
+        fontVariationSettings: '"opsz" 99',
+        scrollTrigger: {
+          trigger: heroTitleRef.current,
+          start: 'top center',
+          end: 'top 300px',
+          scrub: 0.5,
+          pin: false
+          // markers: {
+          //   startColor: 'blue',
+          //   endColor: 'blue',
+          //   fontSize: '16px',
+          //   fontWeight: 'bold',
+          //   indent: 20
+          // }
+        }
+      });
+
       // hero image
       gsap.to(heroImageRef.current, {
         height: '200px',
@@ -18,32 +52,6 @@ export const useHeroScrollTrigger = medium => {
           trigger: heroImageRef.current,
           start: 'top top',
           end: '+=100% 200px',
-          scrub: 0.5,
-          pin: true
-          // markers: true
-        }
-      });
-
-      // hero title
-      gsap.to(heroHeaderRef.current, {
-        height: '300px',
-        scrollTrigger: {
-          trigger: heroHeaderRef.current,
-          start: 'top top',
-          end: '+=100% 300px',
-          scrub: 0.5,
-          pin: true
-          // markers: true
-        }
-      });
-
-      // hero title
-      gsap.to(heroTitleRef.current, {
-        fontSize: '3.1rem',
-        scrollTrigger: {
-          trigger: heroTitleRef.current,
-          start: 'top top',
-          end: '+=100% 300px',
           scrub: 0.5,
           pin: true
           // markers: true
