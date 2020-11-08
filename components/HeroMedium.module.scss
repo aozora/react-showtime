@@ -17,6 +17,7 @@
   }
 
   img {
+    will-change: height, tranform;
     position: absolute;
     top: 0;
     left: 0;
@@ -31,6 +32,7 @@
   }
 
   header {
+    will-change: height, tranform;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -46,7 +48,6 @@
 }
 
 .heroTitle {
-  grid-area: title;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -60,22 +61,15 @@
     line-height: 1.2;
     text-shadow: var(--title-text-shadow);
     text-transform: uppercase;
-    //
-    //&::before,
-    //&::after {
-    //  content: "";
-    //  display: inline-block;
-    //  width: 1.5rem;
-    //  height: 1px;
-    //  margin: .3rem .5rem;
-    //  background-color: var(--color-white);
-    //}
   }
 
   h1 {
     width: 100%;
     margin: 0;
     padding: 0;
+    font-size: clamp(4rem, 100%, 8rem);
+    font-weight: 170; // big bold
+    line-height: 1.2;
     text-shadow: var(--title-text-shadow);
 
     a {
@@ -83,15 +77,12 @@
       width: 100%;
       margin: 0;
       font-family: inherit;
-      //font-size: inherit;
-      font-size: clamp(4rem, 100%, 8rem);
-      //font-weight: inherit;
-      font-weight: 170; // big bold
-      line-height: 1.2;
+      font-size: inherit;
+      font-weight: inherit;
+      line-height: inherit;
       letter-spacing: inherit;
       text-decoration: none;
       color: var(--color-white);
-      //@include better-underline;
     }
   }
 }
@@ -109,8 +100,6 @@
 
 
 .heroMeta {
-  grid-area: meta;
-
   p {
     margin: 0;
     padding: 0 1rem 1rem 1rem;
@@ -124,7 +113,6 @@
 }
 
 .heroDescription {
-  grid-area: desc;
   padding: 0 1rem;
 
   p {
@@ -135,7 +123,6 @@
 }
 
 .heroFooter {
-  grid-area: footer;
   padding: 0 1rem;
 }
 
