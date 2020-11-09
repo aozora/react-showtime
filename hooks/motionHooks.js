@@ -31,8 +31,8 @@ export const useHeroScrollTrigger = medium => {
         fontVariationSettings: '"opsz" 99',
         scrollTrigger: {
           trigger: heroTitleRef.current,
-          start: 'top center',
-          end: 'top 300px',
+          start: 'bottom bottom',
+          end: 'bottom 300px',
           scrub: 0.5,
           pin: false
           // markers: {
