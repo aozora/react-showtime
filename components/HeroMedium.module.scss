@@ -1,8 +1,4 @@
 @import '../styles/shared';
-//
-//@mixin hero-shade {
-//  background: rgba(0, 0, 0, 0.23);
-//}
 
 .hero {
   position: relative;
@@ -21,6 +17,7 @@
   }
 
   img {
+    will-change: height, tranform;
     position: absolute;
     top: 0;
     left: 0;
@@ -29,25 +26,18 @@
     z-index: 1;
     object-fit: cover;
 
-    :global {
-      animation: kenburns 50s ease;
-    }
+    //:global {
+    //  animation: kenburns 50s ease;
+    //}
   }
 
   header {
+    will-change: height, tranform;
     position: relative;
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    grid-template-rows: var(--menu-height) calc(65vh - var(--menu-height)) 10vh 15vh 10vh;
-    grid-template-areas:
-      "header header header header header header"
-      "title title title title title title"
-      "meta meta meta meta meta meta"
-      "desc desc desc . . ."
-      "footer footer footer footer footer footer";
-    grid-column-gap: 2rem;
-    grid-row-gap: 0;
-
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
     width: 100%;
     max-width: 1280px;
     height: 100vh;
@@ -58,41 +48,41 @@
 }
 
 .heroTitle {
-  grid-area: title;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-end;
+  width: 100%;
 
   [role="doc-subtitle"] {
-    padding: 0 1rem;
+    padding: 0;
+    font-family: var(--body-font-family);
+    font-size: .888rem;
+    line-height: 1.2;
     text-shadow: var(--title-text-shadow);
-
-    &::before,
-    &::after {
-      content: "";
-      display: inline-block;
-      width: 1.5rem;
-      height: 1px;
-      margin: .3rem .5rem;
-      background-color: var(--color-white);
-    }
+    text-transform: uppercase;
   }
 
   h1 {
+    width: 100%;
     margin: 0;
-    padding: 0 1rem;
+    padding: 0;
+    font-size: clamp(4rem, 100%, 8rem);
+    font-weight: 170; // big bold
+    line-height: 1.2;
     text-shadow: var(--title-text-shadow);
 
     a {
+      display: block;
+      width: 100%;
       margin: 0;
       font-family: inherit;
       font-size: inherit;
       font-weight: inherit;
+      line-height: inherit;
       letter-spacing: inherit;
       text-decoration: none;
       color: var(--color-white);
-      //@include better-underline;
     }
   }
 }
@@ -100,6 +90,10 @@
 .splitting {
   display: block;
   overflow: hidden;
+}
+
+.word {
+  display: inline-block;
 }
 
 .char {
@@ -110,9 +104,9 @@
 
 
 .heroMeta {
-  grid-area: meta;
-
   p {
+    display: flex;
+    flex-wrap: wrap;
     margin: 0;
     padding: 0 1rem 1rem 1rem;
     text-shadow: var(--title-text-shadow);
@@ -125,7 +119,6 @@
 }
 
 .heroDescription {
-  grid-area: desc;
   padding: 0 1rem;
 
   p {
@@ -136,7 +129,6 @@
 }
 
 .heroFooter {
-  grid-area: footer;
   padding: 0 1rem;
 }
 
@@ -197,7 +189,7 @@
   0% {
     opacity: 1;
   }
-  50%{
+  50% {
     opacity: .3;
   }
   100% {

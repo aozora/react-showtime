@@ -1,6 +1,5 @@
-import React, { useMemo, useCallback } from 'react';
+import React, { useMemo, useCallback, forwardRef } from 'react';
 import { useSelector } from 'react-redux';
-import { SimpleImg } from 'react-simple-img';
 import {
   selectConfigurationImagesBackdropSizes,
   selectConfigurationImagesPosterSizes,
@@ -15,8 +14,10 @@ import { cardType } from '@/lib/shared';
  * @param className
  * @returns {JSX.Element}
  * @constructor
+ * @type {React.ForwardRefExoticComponent<React.PropsWithoutRef<{readonly medium?: *, readonly imageType?: *, readonly className?: *}> & React.RefAttributes<unknown>>}
  */
-const MediumImage = ({ medium, imageType, className }) => {
+// eslint-disable-next-line react/display-name
+const MediumImage = forwardRef(({ medium, imageType, className }, ref) => {
   const backdropSizesList = useSelector(selectConfigurationImagesBackdropSizes);
   const posterSizesList = useSelector(selectConfigurationImagesPosterSizes);
   const imagesSecureBaseUrl = useSelector(selectConfigurationImagesSecureBaseUrl);
@@ -26,6 +27,8 @@ const MediumImage = ({ medium, imageType, className }) => {
     imageType === cardType.poster
       ? '/img/card-poster-placeholder-broken.svg'
       : '/img/card-backdrop-placeholder-broken.svg';
+
+  // const { poster, backdrop } = useMediumImage(medium);
 
   const getImagePath = useCallback(
     (filePath, size) => {
@@ -67,10 +70,18 @@ const MediumImage = ({ medium, imageType, className }) => {
     return sizes.map(size => `${getImagePath(filePath, size)} ${size.replace('w', '')}w`).join(',');
   }, [imageType, posterSizes, backdropSizes, getImagePath, medium]);
 
-  const isMediumValid = useMemo(() => {
+  const mediumHasImage = useMemo(() => {
     if (!medium) {
       return false;
     }
+
+    // if (imageType === cardType.poster && !poster) {
+    //   return false;
+    // }
+    //
+    // if (imageType === cardType.backdrop && !backdrop) {
+    //   return false;
+    // }
 
     const filePath = imageType === cardType.poster ? medium.poster_path : medium.backdrop_path;
     return !(medium && !filePath);
@@ -78,22 +89,36 @@ const MediumImage = ({ medium, imageType, className }) => {
 
   return (
     <figure className={className}>
-      {isMediumValid && (
-        <SimpleImg
-          sizes={getSizes}
-          srcSet={getSrcSet}
-          src={getSrc}
-          // placeholder={getPlaceholder()}
-          placeholder={false}
-          alt=""
-        />
-      )}
+      {
+        mediumHasImage && (
+          <img alt="" ref={ref} loading="lazy" sizes={getSizes} srcSet={getSrcSet} src={getSrc} />
+        )
+        /* (imageType === cardType.poster && poster ? (
+          <img
+            alt=""
+            ref={ref}
+            loading="lazy"
+            sizes={poster.sizes}
+            srcSet={poster.srcSet}
+            src={poster.src}
+          />
+        ) : (
+          <img
+            alt=""
+            ref={ref}
+            loading="lazy"
+            sizes={backdrop.sizes}
+            srcSet={backdrop.srcSet}
+            src={backdrop.src}
+          />
+        )) */
+      }
 
-      {!isMediumValid && <img src={cardPlaceholder} alt="" />}
+      {!mediumHasImage && <img src={cardPlaceholder} alt="" />}
 
       {medium.title && <figcaption>{medium.title}</figcaption>}
     </figure>
   );
-};
+});
 
 export default MediumImage;

@@ -137,6 +137,7 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0 0 calc(1 * var(--text-base-size)) 0;
   font-family: var(--heading-font-family);
   font-weight: var(--heading-weight);
+  font-variation-settings: 'opsz' 80; // specific for Marvin variable
   transition: all linear 0.2s;
   color: inherit;
   letter-spacing: 1px;

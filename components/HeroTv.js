@@ -7,6 +7,7 @@ import HeroTitle from './HeroTitle';
 import MediumImage from './MediumImage';
 import styles from './HeroMedium.module.scss';
 import { useTvGenres, usePopularTv, useTvDetails } from '../hooks/tvHooks';
+import { useHeroScrollTrigger } from '../hooks/motionHooks';
 
 const HeroTv = () => {
   const [randomMedium, setRandomMedium] = useState();
@@ -14,6 +15,7 @@ const HeroTv = () => {
   const { medium, isLoading: isLoadingMedium } = useTvDetails(
     randomMedium ? randomMedium.id : null
   );
+  const [heroImageRef, heroHeaderRef, heroTitleRef] = useHeroScrollTrigger(medium);
   // load genres; don't care for error, in that case the medium genres will not be displayed
   const { tvGenres, isLoading: isLoadingGenres } = useTvGenres();
 
@@ -58,42 +60,46 @@ const HeroTv = () => {
   return (
     <section className="full-bleed">
       <article className={styles.hero}>
-        <MediumImage medium={medium} imageType={cardType.backdrop} />
-        <header>
+        <MediumImage ref={heroImageRef} medium={medium} imageType={cardType.backdrop} />
+
+        <header ref={heroHeaderRef}>
           <div className={styles.heroTitle}>
             <span role="doc-subtitle">TV Show ({getYearDate(medium.first_air_date)})</span>
-            <h1>
+            <h1 ref={heroTitleRef}>
               <Link passHref href="/tv/[slug]" as={`/tv/${medium.id}`}>
-                <HeroTitle title={medium.name} />
+                <HeroTitle ref={heroTitleRef} title={medium.name} />
               </Link>
             </h1>
           </div>
-          <div className={styles.heroMeta}>
-            {!isLoadingGenres && (
-              <p className={styles.heroGenres}>
-                {tvGenres && medium.genres.map(genre => <span key={genre.name}>{genre.name}</span>)}
-              </p>
-            )}
-          </div>
-          <div className={styles.heroDescription}>
-            <p className={styles.heroAbstract}>{getAbstract(medium)}</p>
-            <p className={styles.heroInfoSmall}>Popularity: {medium.vote_average * 10}%</p>
-          </div>
-          <div className={styles.heroFooter}>
-            <p className={styles.heroActions}>
-              <Link href="/tv/[slug]" as={`/tv/${medium.id}`}>
-                {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-                <a className="button">Details</a>
-              </Link>
-              {/* <button type="button" className="button button--primary"> */}
-              {/*  Play trailer */}
-              {/* </button> */}
-              {medium.videos && medium.videos.results && medium.videos.results.length > 0 && (
-                <PlayTrailerButton video={medium.videos.results[0]} />
-              )}
-            </p>
-          </div>
         </header>
+      </article>
+
+      <article>
+        <div className={styles.heroMeta}>
+          {!isLoadingGenres && (
+            <p className={styles.heroGenres}>
+              {tvGenres && medium.genres.map(genre => <span key={genre.name}>{genre.name}</span>)}
+            </p>
+          )}
+        </div>
+        <div className={styles.heroDescription}>
+          <p className={styles.heroAbstract}>{getAbstract(medium)}</p>
+          <p className={styles.heroInfoSmall}>Popularity: {medium.vote_average * 10}%</p>
+        </div>
+        <div className={styles.heroFooter}>
+          <p className={styles.heroActions}>
+            <Link href="/tv/[slug]" as={`/tv/${medium.id}`}>
+              {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+              <a className="button">Details</a>
+            </Link>
+            {/* <button type="button" className="button button--primary"> */}
+            {/*  Play trailer */}
+            {/* </button> */}
+            {medium.videos && medium.videos.results && medium.videos.results.length > 0 && (
+              <PlayTrailerButton video={medium.videos.results[0]} />
+            )}
+          </p>
+        </div>
       </article>
     </section>
   );

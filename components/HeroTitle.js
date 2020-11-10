@@ -4,9 +4,12 @@ import { motion } from 'framer-motion';
 import styles from '@/components/HeroMedium.module.scss';
 import { letterContainerVariants, letterVariants } from '@/lib/motionShared';
 
-// eslint-disable-next-line react/display-name
+// eslint-disable-next-line react/display-name,no-unused-vars
 const HeroTitle = React.forwardRef((props, ref) => {
   const { title } = props;
+
+  // eslint-disable-next-line jsx-a11y/anchor-is-valid
+  return <a>{title}</a>;
 
   return (
     <motion.a
@@ -17,14 +20,19 @@ const HeroTitle = React.forwardRef((props, ref) => {
       data-splitting
       aria-label={title}
     >
-      {Array.from(title).map((char, index) => (
-        <motion.span
-          key={index}
-          variants={letterVariants}
-          aria-hidden="true"
-          className={styles.char}
-          dangerouslySetInnerHTML={{ __html: char === ' ' ? '&nbsp;' : char }}
-        />
+      {title.split(' ').map((word, wordIndex) => (
+        <span key={wordIndex} className={styles.word}>
+          {Array.from(word).map((char, index) => (
+            <motion.span
+              key={index}
+              variants={letterVariants}
+              aria-hidden="true"
+              className={styles.char}
+              dangerouslySetInnerHTML={{ __html: char === ' ' ? '&nbsp;' : char }}
+            />
+          ))}
+          &nbsp;
+        </span>
       ))}
     </motion.a>
   );
