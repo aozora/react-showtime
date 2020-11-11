@@ -43,11 +43,12 @@ export default function Layout({ preview, children }) {
   const { moviesCertifications, isMoviesCertificationsLoading } = useMoviesCertifications();
 
   const intersectionRef = useRef(null);
-  const intersection = useIntersection(intersectionRef, {
-    root: null,
-    rootMargin: '200px',
-    threshold: 0
-  });
+  const intersection = null;
+  // const intersection = useIntersection(intersectionRef, {
+  //   root: null,
+  //   rootMargin: '200px',
+  //   threshold: 0
+  // });
 
   if (api && !isLoadingConfigurationApi) {
     dispatch(setApiConfiguration(api));

@@ -11,44 +11,44 @@ import styles from './SiteHeader.module.scss';
 const SiteHeader = ({ scrolled }) => {
   const router = useRouter();
   const [toggleMenu, setToggleMenu] = useState(false);
-
-  // DOM element refs to be used for animation
-  const mainMenuRef = useRef(null);
-  const menuHeaderRef = useRef(null);
-  const menuFooterRef = useRef(null);
-  const menuLink1Ref = useRef(null);
-  const menuLink2Ref = useRef(null);
-  const menuLink3Ref = useRef(null);
-  const menuLink4Ref = useRef(null);
-  const menuLink5Ref = useRef(null);
-
-  // Gsap timeline ref
-  const tl = useMemo(() => gsap.timeline({ paused: true }), []);
-
-  useEffect(() => {
-    tl.to(mainMenuRef.current, { duration: 0, css: { display: 'flex' } });
-    tl.fromTo(
-      [
-        menuHeaderRef.current,
-        menuLink1Ref.current,
-        menuLink2Ref.current,
-        menuLink3Ref.current,
-        menuLink4Ref.current,
-        menuLink5Ref.current,
-        menuFooterRef.current
-      ],
-      { x: '-100%' },
-      { x: 0, duration: 1, ease: 'power1.inOut', stagger: { amount: 0.3 } }
-    );
-  }, [tl]);
-
-  useEffect(() => {
-    if (toggleMenu) {
-      tl.play();
-    } else {
-      tl.reverse();
-    }
-  }, [toggleMenu, tl]);
+  //
+  // // DOM element refs to be used for animation
+  // const mainMenuRef = useRef(null);
+  // const menuHeaderRef = useRef(null);
+  // const menuFooterRef = useRef(null);
+  // const menuLink1Ref = useRef(null);
+  // const menuLink2Ref = useRef(null);
+  // const menuLink3Ref = useRef(null);
+  // const menuLink4Ref = useRef(null);
+  // const menuLink5Ref = useRef(null);
+  //
+  // // Gsap timeline ref
+  // const tl = useMemo(() => gsap.timeline({ paused: true }), []);
+  //
+  // useEffect(() => {
+  //   tl.to(mainMenuRef.current, { duration: 0, css: { display: 'flex' } });
+  //   tl.fromTo(
+  //     [
+  //       menuHeaderRef.current,
+  //       menuLink1Ref.current,
+  //       menuLink2Ref.current,
+  //       menuLink3Ref.current,
+  //       menuLink4Ref.current,
+  //       menuLink5Ref.current,
+  //       menuFooterRef.current
+  //     ],
+  //     { x: '-100%' },
+  //     { x: 0, duration: 1, ease: 'power1.inOut', stagger: { amount: 0.3 } }
+  //   );
+  // }, [tl]);
+  //
+  // useEffect(() => {
+  //   if (toggleMenu) {
+  //     tl.play();
+  //   } else {
+  //     tl.reverse();
+  //   }
+  // }, [toggleMenu, tl]);
 
   return (
     <header
@@ -58,14 +58,11 @@ const SiteHeader = ({ scrolled }) => {
       }`}
     >
       <div className={styles.siteHeaderWrapper}>
-        <MenuToogle onPress={() => setToggleMenu(!toggleMenu)} visible={toggleMenu} />
-
         <nav
-          ref={mainMenuRef}
           id="main-menu"
           className={`${styles.mainMenu} ${toggleMenu ? styles.mainMenuOpen : ''}`}
         >
-          <div ref={menuHeaderRef} className={styles.mainMenuHeader}>
+          <div className={styles.mainMenuHeader}>
             <Link href="/login">
               <a>Login</a>
             </Link>
@@ -75,37 +72,38 @@ const SiteHeader = ({ scrolled }) => {
           </div>
 
           <ul className={styles.mainMenuItems}>
-            <li ref={menuLink1Ref}>
+            <li>
               <Link href="/">
                 <a className={router.pathname === '/' ? 'active' : ''}>Home</a>
               </Link>
             </li>
-            <li ref={menuLink2Ref}>
+            <li>
               <Link href="/movies">
                 <a className={router.pathname === '/movies' ? 'active' : ''}>Movies</a>
               </Link>
             </li>
-            <li ref={menuLink3Ref}>
+            <li>
               <Link href="/tv">
                 <a className={router.pathname === '/tv' ? 'active' : ''}>TV Shows</a>
               </Link>
             </li>
-            <li ref={menuLink4Ref}>
+            <li>
               <Link href="/people">
                 <a className={router.pathname === '/people' ? 'active' : ''}>People</a>
               </Link>
             </li>
-            <li ref={menuLink5Ref}>
+            <li>
               <Link href="/search">
                 <a>Search</a>
               </Link>
             </li>
           </ul>
 
-          <div ref={menuFooterRef} className={styles.mainMenuFooter}>
-            <button type="button" onClick={() => setToggleMenu(!toggleMenu)}>
-              Close ↑
-            </button>
+          <div className={styles.mainMenuFooter}>
+            <MenuToogle onPress={() => setToggleMenu(!toggleMenu)} visible={toggleMenu} />
+            {/* <button type="button" onClick={() => setToggleMenu(!toggleMenu)}> */}
+            {/*  Close ↑ */}
+            {/* </button> */}
           </div>
           {/* <div className={styles.mainMenuSearch}> */}
           {/*  <MiniSearch /> */}

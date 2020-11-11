@@ -4,15 +4,15 @@ $menu-zindex: 101;
 $menu-toggle-button-zindex: $menu-zindex + 2;
 
 .siteHeader {
-  //position: -webkit-sticky;
-  //position: sticky;
   position: fixed;
   top: 0;
+  //position: relative;
   width: 100vw;
-  height: var(--menu-height);
+  //height: var(--menu-height);
   z-index: $menu-zindex + 1;
   background-color: var(--color-primary);
-  transition: transform .35s ease-in-out;
+  //transition: transform .35s ease-in-out;
+  transform: translateY(calc(-100% + var(--menu-mobile-height)));
 
   @include media(">=tablet") {
     height: var(--menu-mobile-height);
@@ -34,12 +34,14 @@ $menu-toggle-button-zindex: $menu-zindex + 2;
 }
 
 .siteHeaderScrolled {
-  transform: translateY(calc(-100% + 7px));
+  //transform: translateY(calc(-100% + 7px));
 }
 
 
 .mainMenuToggle {
   grid-area: 1 / auto;
+  width: 100%;
+  height: 100%;
   padding: 0;
   margin: 0;
   border: 0;
@@ -48,6 +50,7 @@ $menu-toggle-button-zindex: $menu-zindex + 2;
   color: var(--color-secondary);
   background-color: transparent;
   z-index: $menu-toggle-button-zindex;
+  cursor: pointer;
 
   @include media(">=tablet") {
     display: none;
@@ -60,12 +63,12 @@ $menu-toggle-button-zindex: $menu-zindex + 2;
 
 
 .mainMenu {
-  grid-area: 1 / auto;
-  position: absolute;
-  top: var(--menu-mobile-height);
-  left: 0;
-  display: none;
-  flex-direction: row;
+  grid-area: 1/1/1/7;
+  //position: absolute;
+  //top: var(--menu-mobile-height);
+  //left: 0;
+  display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
   justify-content: flex-start;
   align-items: flex-start;
